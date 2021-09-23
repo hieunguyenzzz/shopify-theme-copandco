@@ -1861,16 +1861,16 @@ input[type="checkbox"] {
 }
 
 .header__icon .icon {
-  height: 4rem;
-  width: 4rem;
+  height: 2.4rem;
+  width: 2.4rem;
   fill: none;
   vertical-align: middle;
 }
 
 .header__icon,
 .header__icon--cart .icon {
-  height: 4rem;
-  width: 4rem;
+  height: 2.4rem;
+  width: 2.4rem;
 }
 
 .header__icon--cart {

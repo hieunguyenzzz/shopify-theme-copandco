@@ -286,7 +286,7 @@
 
     {%- if section.settings.menu != blank -%}
     <nav class=" h-full hidden xl:!block">
-      <ul class="h-full flex space-x-12"  role="list">
+      <ul class="h-full flex space-x-8"  role="list">
         <li class="flex items-center relative">
           <div class="h-full group ">
             <a href="/"
@@ -374,7 +374,7 @@
     </nav>
     {%- endif -%}
 
-    <div class="header__icons space-x-10 lg:space-x-16 flex">
+    <div class="header__icons space-x-10 flex">
         <modal-opener class="header__search" data-modal="#PopupModal-search">
           <button class="header__icon header__icon--search header__icon--summary link  focus-inset modal__toggle"
             aria-haspopup="dialog" aria-label="{{ 'general.search.search' | t }}">

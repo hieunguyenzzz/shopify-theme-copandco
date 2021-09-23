@@ -11,7 +11,7 @@
 
 @font-face {
   font-family: "Vanitas";
-  src: local("Vanitas"), url("Vanitas-Regular") format("opentype");
+  src: local("Vanitas"), url("Vanitas-Regular.otf") format("opentype");
   font-weight: normal;
 }
 
@@ -25,8 +25,8 @@
 :root {
   --diff: calc(var(--max-size) - var(--min-size));
   --responsive: calc(var(--min-size) * 1px + var(--diff) * (0.08333vw - 0.3px));
-  --max-size: 10;
-  --min-size: 8;
+  --max-size: 15;
+  --min-size: 10;
   font-size: calc(14.4px + 0.16667vw);
   font-size: var(--responsive);
 }
