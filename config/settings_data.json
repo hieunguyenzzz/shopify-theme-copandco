@@ -1,0 +1,57 @@
+{
+  "current": {
+    "colors_accent_1": "#ff7012",
+    "sections": {
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "settings": {}
+      },
+      "header": {
+        "type": "header",
+        "settings": {
+          "full_width": true,
+          "logo": "shopify:\/\/shop_images\/logo-dark.png",
+          "logo_width": 100,
+          "logo_position": "middle-left",
+          "menu": "main-menu",
+          "show_line_separator": false,
+          "enable_sticky_header": true
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "footer-0": {
+            "type": "link_list",
+            "settings": {
+              "heading": "SHOPPING GUIDE",
+              "menu": "main-menu"
+            }
+          },
+          "2ce994a8-7bed-4422-8394-32db9f21e82b": {
+            "type": "link_list",
+            "settings": {
+              "heading": "COMPANY",
+              "menu": "main-menu"
+            }
+          }
+        },
+        "block_order": [
+          "footer-0",
+          "2ce994a8-7bed-4422-8394-32db9f21e82b"
+        ],
+        "settings": {
+          "color_scheme": "background-2",
+          "newsletter_enable": true,
+          "newsletter_heading": "Sign up to our emails",
+          "newsletter_sub_heading": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris<\/p>",
+          "show_social": false,
+          "enable_country_selector": true,
+          "enable_language_selector": true,
+          "payment_enable": true
+        }
+      }
+    },
+    "content_for_index": []
+  }
+}

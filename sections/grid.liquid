@@ -1,0 +1,124 @@
+<style>
+    .tw-grid {
+        display: grid!important;
+    }
+</style>
+<div class="">
+    <div class="page-width space-y-10">
+        {% if section.settings.title != blank %}
+            <div class="flex space-x-6 w-full">
+                <h2 class="text-4xl  flex-1 items-baseline">
+                    {{ section.settings.title | escape }}
+                </h2>
+                <div class="group flex space-x-3 items-center text-gray-500 hover:text-black">
+                    <div class="overflow-hidden text-2xl">
+                        <div class="opacity-0 transition-all transform translate-x-full group-hover:translate-x-0 group-hover:opacity-100">View all</div>
+                    </div>
+                    <a class="cursor-pointer" >
+                        <svg class="text-6xl" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2S13.1 10 12 10zM18 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2S19.1 10 18 10zM6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2S7.1 10 6 10z"></path></svg>
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+        {% case section.blocks.size %}
+            {% when 1 %}
+                <ul class="tw-grid w-full gap-10" role="list">
+            {% when 2 %}
+                <ul class="tw-grid md:grid-cols-2 w-full gap-10" role="list">
+            {% when 3 %}
+                <ul class="tw-grid lg:grid-cols-3 w-full gap-10" role="list">
+            {% when 4 %}
+                <ul class="tw-grid md:grid-cols-2 lg:grid-cols-4 w-full gap-10" role="list">
+            {% else %}
+            <ul class="tw-grid md:grid-cols-2  w-full gap-10" role="list">
+        {% endcase %}
+        
+            {%- for block in section.blocks -%}
+                <li {{ block.shopify_attributes }} class="">
+                    <a href="{{block.settings.url}}" class="page-width relative h-[326px] group flex flex-col items-center justify-center ">
+                        <img srcset="{%- if block.settings.image.width >= 165 -%}{{ block.settings.image | img_url: '165x' }} 165w,{%- endif -%} {%- if block.settings.image.width >= 330 -%}{{ block.settings.image | img_url: '330x' }} 330w,{%- endif -%} {%- if block.settings.image.width >= 535 -%}{{ block.settings.image | img_url: '535x' }} 535w,{%- endif -%} {%- if block.settings.image.width >= 720 -%}{{ block.settings.image | img_url: '720x' }} 720w,{%- endif -%} {%- if block.settings.image.width >= 940 -%}{{ block.settings.image | img_url: '940x' }} 940w,{%- endif -%} {%- if block.settings.image.width >= 1440 -%}{{ block.settings.image | img_url: '1440x' }} 1440w,{%- endif -%} {%- if block.settings.image.width >= 1880 -%}{{ block.settings.image | img_url: '1880x' }} 1880w{%- endif -%}" src="{{ block.settings.image | img_url: '533x' }}" sizes="(min-width: 1100px){% if section.blocks.size > 1 %}535px{% else %}940px{% endif %}, (min-width: 750px) {% if section.blocks.size > 1 %}calc((100vw - 10rem) / 2){% else %}calc(100vw - 10rem){% endif %}, calc(100vw - 3rem)" alt="{{ block.settings.heading | escape }}" height="{{ block.settings.image.height }}" width="{{ block.settings.image.width }}" loading="lazy" class="motion-reduce absolute inset-0 object-cover w-full h-full z-[-1]">
+                        <div class="absolute !block inset-0 w-full h-full z-[-1] opacity-20 group-hover:opacity-40 bg-black transition-opacity"></div>
+                        <div class="space-y-6 text-center text-white">
+                            <div class="text-4xl font-semibold">
+                                {{block.settings.heading | escape}}
+                            </div>
+                            <div class="font-semibold">
+                                {{block.settings.subheading | escape}}
+                            </div>
+                        </div>
+
+                    </a>
+                </li>
+            {%- endfor -%}
+        </ul>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Grid",
+    "class": "spaced-section",
+    "tag": "section",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "column",
+            "name": "t:sections.multicolumn.blocks.column.name",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Heading"
+                },
+                {
+                    "type": "text",
+                    "id": "heading",
+                    "default": "Column",
+                    "label": "Heading"
+                },
+                {
+                    "type": "text",
+                    "id": "subheading",
+                    "default": "Sub heading",
+                    "label": "Sub heading"
+                },
+                {
+                    "type": "richtext",
+                    "id": "text",
+                    "default": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+                    "label": "Description"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Grid",
+            "blocks": [
+                {
+                    "type": "column",
+                    "settings": {
+                        "heading": "Street–Style Is Back In Fashion",
+                        "subheading": "Shop New Season",
+                        "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>"
+                    }
+                },
+                {
+                    "type": "column",
+                    "settings": {
+                        "heading": "Our New A \/ W Assessories",
+                        "subheading": "Available Now",
+                        "text": ""
+                    }
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

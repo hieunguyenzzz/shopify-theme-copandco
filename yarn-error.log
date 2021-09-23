@@ -1,0 +1,53 @@
+Arguments: 
+  /usr/bin/node /mnt/c/Users/long/AppData/Roaming/npm/node_modules/yarn/bin/yarn.js
+
+PATH: 
+  /home/hikaruu/.vscode-server/bin/379476f0e13988d90fab105c5c19e7abc8b1dea8/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/nodejs/:/mnt/c/Ruby30-x64/bin:/mnt/c/Users/long/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/long/AppData/Roaming/npm:/mnt/c/Users/long/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin
+
+Yarn version: 
+  1.22.11
+
+Node version: 
+  10.19.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: getaddrinfo EAI_AGAIN registry.yarnpkg.com registry.yarnpkg.com:443
+      at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:56:26)
+
+npm manifest: 
+  {
+    "name": "shopify-theme-jevelin",
+    "version": "1.0.0",
+    "main": "index.js",
+    "author": "long <ngohoanglongptit@gmail.com>",
+    "license": "MIT",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "dev": "npx tailwindcss -i ./tailwind/main.css -o ./assets/style.css -w",
+      "build:css": "postcss tailwind/main.css -o  ./assets/style.css -w"
+    },
+    "dependencies": {
+      "@tailwindcss/line-clamp": "^0.2.1",
+      "@tailwindcss/typography": "^0.4.1",
+      "animate.css": "^4.1.1",
+      "postcss-cli": "^8.3.1",
+      "postcss-import": "^14.0.2",
+      "postcss-nesting": "^8.0.1",
+      "postcss-preset-env": "^6.7.0"
+    },
+    "devDependencies": {
+      "autoprefixer": "^10.2.6",
+      "postcss": "^8.3.5",
+      "tailwindcss": "^2.2.4",
+      "webpack": "^5.41.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

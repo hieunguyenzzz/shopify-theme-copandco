@@ -1,0 +1,165 @@
+{%- assign id = section.id -%}
+<style type="text/css">
+  .{{id}}-collection-hero {
+  margin-bottom: 2rem;
+  }
+
+  .{{id}}-collection-hero--with-image {
+    background-color: rgba(var(--color-foreground), 0.04);
+  }
+
+  .{{id}}-collection-hero__inner {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .{{id}}-collection-hero.{{id}}-collection-hero--with-image {
+      padding: 4rem 0 4rem;
+    }
+  }
+
+  .{{id}}-collection-hero__text-wrapper {
+    flex-basis: 100%;
+  }
+
+  .{{id}}-collection-hero--with-image .{{id}}-collection-hero__inner {
+    margin-bottom: 4rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .{{id}}-collection-hero {
+      padding: 0 0 2rem;
+      margin-bottom: 0;
+    }
+
+    .{{id}}-collection-hero--with-image {
+      margin-bottom: 4.5rem;
+    }
+
+    .{{id}}-collection-hero__inner {
+      align-items: center;
+      flex-direction: row;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .{{id}}-collection-hero--with-image .{{id}}-collection-hero__inner {
+      margin-bottom: 0;
+    }
+  }
+
+  .{{id}}-collection-hero__title {
+    margin: 5rem 0 0;
+  }
+
+  .{{id}}-collection-hero__title + .{{id}}-collection-hero__description {
+    margin-top: 1.5rem;
+    font-size: 1.6rem;
+    line-height: 1.5;
+  }
+
+  @media screen and (min-width: 750px) {
+    .{{id}}-collection-hero__title + .{{id}}-collection-hero__description {
+      font-size: 1.8rem;
+      margin-top: 2rem;
+    }
+
+    .{{id}}-collection-hero__description {
+      max-width: 66.67%;
+    }
+
+    .{{id}}-collection-hero--with-image .{{id}}-collection-hero__description {
+      max-width: 100%;
+    }
+  }
+
+  .{{id}}-collection-hero--with-image .{{id}}-collection-hero__title {
+    margin: 0;
+  }
+
+  .{{id}}-collection-hero--with-image .{{id}}-collection-hero__text-wrapper {
+    padding: 5rem 0 4rem;
+  }
+
+  @media screen and (max-width: 749px) {
+    .{{id}}-collection-hero__image-container {
+      height: 20rem;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .{{id}}-collection-hero--with-image .{{id}}-collection-hero__text-wrapper {
+      padding: 4rem 2rem 4rem 0;
+      flex-basis: 50%;
+    }
+
+    .{{id}}-collection-hero__image-container {
+      align-self: stretch;
+      flex: 1 0 50%;
+      margin-left: 3rem;
+      min-height: 20rem;
+    }
+  }
+</style>
+<div class="{{id}}-collection-hero{% if section.settings.show_collection_image and collection.image %} {{id}}-collection-hero--with-image{% endif %}">
+  <div class="{{id}}-collection-hero__inner page-width">
+    <div class="{{id}}-collection-hero__text-wrapper">
+      <div class="lg:flex items-baseline">
+        <h1 class="{{id}}-collection-hero__title flex-1 font-bold">
+          <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
+          {{- collection.title | escape -}}
+        </h1>
+        {% render 'breadscumb' %}
+      </div>
+      {%- if section.settings.show_collection_description -%}
+        <div class="{{id}}-collection-hero__description rte">{{ collection.description }}</div>
+      {%- endif -%}
+    </div>
+    {%- if section.settings.show_collection_image and collection.image -%}
+      <div class="{{id}}-collection-hero__image-container media">
+        <img srcset="{%- if collection.image.width >= 165 -%}{{ collection.image | img_url: '165x' }} 165w,{%- endif -%}
+          {%- if collection.image.width >= 360 -%}{{ collection.image | img_url: '360x' }} 360w,{%- endif -%}
+          {%- if collection.image.width >= 535 -%}{{ collection.image | img_url: '535x' }} 535w,{%- endif -%}
+          {%- if collection.image.width >= 720 -%}{{ collection.image | img_url: '720x' }} 720w,{%- endif -%}
+          {%- if collection.image.width >= 940 -%}{{ collection.image | img_url: '940x' }} 940w,{%- endif -%}
+          {%- if collection.image.width >= 1070 -%}{{ collection.image | img_url: '1070x' }} 1070w{%- endif -%}"
+          src="{{ collection.image | img_url: '533x' }}"
+          sizes="(min-width: 1100px) 535px, (min-width: 750px) calc(50vw - 130px), calc(50vw - 55px)"
+          alt="{{ collection.title | escape }}"
+          loading="lazy"
+          width="{{ collection.image.width }}"
+          height="{{ collection.image.height }}"
+        >
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main-collection-banner.name",
+  "class": "spaced-section spaced-section--full-width",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:sections.main-collection-banner.settings.paragraph.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_description",
+      "default": false,
+      "label": "t:sections.main-collection-banner.settings.show_collection_description.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_image",
+      "default": false,
+      "label": "t:sections.main-collection-banner.settings.show_collection_image.label",
+      "info": "t:sections.main-collection-banner.settings.show_collection_image.info"
+    }
+  ]
+}
+{% endschema %}

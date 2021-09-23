@@ -1,0 +1,387 @@
+<style>
+    product-slider  .keen-slider__slide{
+       display: none;
+    }
+    product-slider.ready  .keen-slider__slide{
+       display: block;
+    }
+    product-slider >*{
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.5s linear ;
+    }
+    product-slider.ready >*{
+        opacity: 100;
+        visibility: visible;
+    }
+    .keen-slider {
+        display: flex;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-touch-callout: none;
+        -khtml-user-select: none;
+        touch-action: pan-y;
+        -webkit-tap-highlight-color: transparent
+    }
+    .keen-slider,
+    .keen-slider__slide {
+        overflow: hidden;
+        position: relative
+    }
+    .keen-slider__slide {
+        width: 100%;
+        min-height: 100%
+    }
+    .keen-slider[data-keen-slider-v] {
+        flex-wrap: wrap
+    }
+    .keen-slider[data-keen-slider-v] .keen-slider__slide {
+        width: 100%
+    }
+    .keen-slider[data-keen-slider-moves] * {
+        pointer-events: none
+    }
+    [class^="number-slide"],
+    [class*=" number-slide"] {
+        background: grey;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 50px;
+        color: #fff;
+        font-weight: 500;
+    }
+    .navigation-wrapper {
+        position: relative;
+    }
+
+    .dots {
+        display: flex;
+        padding: 10px 0;
+        justify-content: flex-end;
+    }
+
+    .dot {
+        border-radius: 9999px;
+        padding: 0.5rem;
+    }
+    .dot::before {
+        display: block;
+        content: "";
+        height: 6px;
+        width: 6px;
+        border-radius: 9999px;
+        border-width: 1px;
+        border-color: transparent;
+        background-color: gray;
+        transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+        transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+        transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+        transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+        transition-duration: 0.15s;
+    }
+    .dot:focus {
+        outline: none;
+    }
+
+    .dot--active::before {
+        --tw-bg-opacity: 1;
+        background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+    }
+
+    .arrow {
+        stroke-width: 2px;
+        width: 60px;
+        height: 60px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        cursor: pointer;
+        opacity: 0;
+        transition: visibility 0.2s ease,opacity 0.2s ease,  margin 0.2s ease;
+        fill: white;
+        visibility: hidden;
+    }
+
+    .arrow--left {
+        left: 10px;
+        margin-left:-10px ;
+        transform: translateY(-50%) rotate(180deg);
+    }
+
+    .arrow--right {
+        left: auto;
+        margin-tight:0 ;
+        right: 10px;
+        margin-right:-10px ;
+    }
+    .keen-slider:hover .arrow{
+        opacity: 1;
+        margin:0;
+        visibility: visible;
+    }
+    .arrow--disabled {
+        visibility: hidden!important;
+    }
+    .keen-slider-content{
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.5s ease 0.3s;
+    }
+    {% for item in section.blocks %}
+        [data-absoluteSlide="{{ forloop.index0 }}"] .keen-slider-content-{{ forloop.index0 }}{
+            visibility: visible;
+            opacity: 1;
+        }
+    {% endfor %}
+    .videoModal>*{
+        display: none;
+        transition: opacity 0.5s ease 0.3s;
+    }
+    .videoModal{
+        visibility: hidden;
+        transform:  translateX(-100%);
+        transition: all 0.5s cubic-bezier(1, 0, 0.28, 1);
+    }
+    .videoModal[open]{
+        visibility: visible;
+        transform:  translateX(0%);
+    }
+    .videoModal[open]>*{
+            display: block;
+            opacity: 1;
+    }
+</style>
+
+<product-slider>
+    <div class="keen-slider h-[580px]" id="my-keen-slider">
+        {% for item in section.blocks %}
+            <div class="keen-slider__slide ">
+                <div class="w-full h-full flex relative border group-hover:shadow-outline-normal ">
+                    <div style="padding-top: 172.549%;"></div>
+                    <div class="absolute inset-0">
+                        <div style="display: block; overflow: hidden; position: absolute; inset: 0px; box-sizing: border-box; margin: 0px;">
+                            <img  src="{{ item.settings.image_picker.src | img_url: '1500X' }}" alt="{{ item.settings.image_picker.alt | escape }}" class="border border-accents-2" style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;">
+                        </div>
+                    </div>
+                    <div class="absolute inset-0 flex items-center px-28  keen-slider-content keen-slider-content-{{ forloop.index0 }}">
+                        <div class="page-width w-full space-y-6 text-center lg:text-left">
+                            <h3 class="text-5xl text-white">{{item.settings.heading}}</h3>
+                            <div class="space-x-6 flex justify-center lg:justify-start items-center">
+                                <a class="text-3xl  inline-flex items-center text-white hover:text-base-accent-1 transition-colors duration-500 cursor-pointer">
+                                    {{item.settings.button_text}}
+                                </a>
+                                {% if item.settings.video_url %}
+                                    <modal-opener class="flex items-center"  data-modal="#VideoModal-{{ forloop.index0 }}">
+                                        <button tabindex="-1" class="text-3xl group inline-flex items-center text-white hover:text-base-accent-1 transition-colors duration-500 cursor-pointer">
+                                            <svg class="inline text-5xl" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.804 8L5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 010 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z" clip-rule="evenodd"></path></svg>{{item.settings.video_button_text}}
+                                        </button>
+                                    </modal-opener>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <svg  class="arrow arrow--left text-black" fill="currentColor" id="arrow-left"  viewBox="0 0 50 50"><path d="M 14.988281 3.992188 C 14.582031 3.992188 14.21875 4.238281 14.0625 4.613281 C 13.910156 4.992188 14 5.421875 14.292969 5.707031 L 33.585938 25 L 14.292969 44.292969 C 14.03125 44.542969 13.925781 44.917969 14.019531 45.265625 C 14.109375 45.617188 14.382813 45.890625 14.734375 45.980469 C 15.082031 46.074219 15.457031 45.96875 15.707031 45.707031 L 35.707031 25.707031 C 36.097656 25.316406 36.097656 24.683594 35.707031 24.292969 L 15.707031 4.292969 C 15.519531 4.097656 15.261719 3.992188 14.988281 3.992188 Z"></path></svg>
+        <svg  class="arrow arrow--right text-black" fill="currentColor" id="arrow-right" viewBox="0 0 50 50"><path d="M 14.988281 3.992188 C 14.582031 3.992188 14.21875 4.238281 14.0625 4.613281 C 13.910156 4.992188 14 5.421875 14.292969 5.707031 L 33.585938 25 L 14.292969 44.292969 C 14.03125 44.542969 13.925781 44.917969 14.019531 45.265625 C 14.109375 45.617188 14.382813 45.890625 14.734375 45.980469 C 15.082031 46.074219 15.457031 45.96875 15.707031 45.707031 L 35.707031 25.707031 C 36.097656 25.316406 36.097656 24.683594 35.707031 24.292969 L 15.707031 4.292969 C 15.519531 4.097656 15.261719 3.992188 14.988281 3.992188 Z"></path></svg>
+       
+        <div class=" absolute bottom-3 left-0 right-0 dots " >
+            <div class=" page-width lg:w-full flex justify-end" id="dots"></div>
+        </div>
+    </div>
+</product-slider>
+{% for item in section.blocks %}
+<video-modal id="VideoModal-{{ forloop.index0 }}" class="absolute inset-0 w-full h-full bg-black videoModal ">
+    <div class="fixed lg:absolute  w-full h-full inset-0">
+        <div class="VideoModal-content">
+        </div>
+        <template>
+            {%- if section.settings.video_url.type == 'youtube' -%}
+                <iframe src="https://www.youtube.com/embed/{{ item.settings.video_url.id }}?enablejsapi=1" class="absolute inset-0 w-full h-full"   allow="autoplay; encrypted-media" allowfullscreen title="{{ section.settings.description | escape }}"></iframe>
+            {%- else -%}
+                <iframe src="https://player.vimeo.com/video/{{ item.settings.video_url.id }}" class="absolute inset-0 w-full h-full" allow="autoplay; encrypted-media" allowfullscreen title="{{ section.settings.description | escape }}"></iframe>
+            {%- endif -%}
+        </template>
+        <div class="flex absolute left-0 w-full lg:right-0 top-0 justify-center items-center lg:h-full lg:w-auto lg:left-auto">
+            <modal-closer role="button" data-modal="#VideoModal-{{ forloop.index0 }}" aria-label="{{ 'accessibility.close' | t }}">
+                <button class="text-[45px] p-12 text-gray-500 transform rotate-90 hover:text-white">{% render 'icon-caret'
+                %}</button>
+            </modal-closer>
+        </div>
+    </div>
+</video-modal>
+{% endfor %}
+{% javascript %}
+
+class ProductSlider extends HTMLElement {
+    constructor() {
+        super();
+        let stated = false
+        const start = () => {
+            const updateClasses = (instance) => {
+
+                var slide = instance.details().relativeSlide
+                var arrowLeft = document.getElementById("arrow-left")
+                var arrowRight = document.getElementById("arrow-right")
+                slide === 0
+                    ? arrowLeft.classList.add("arrow--disabled")
+                    : arrowLeft.classList.remove("arrow--disabled")
+                slide === instance.details().size - 1
+                    ? arrowRight.classList.add("arrow--disabled")
+                    : arrowRight.classList.remove("arrow--disabled")
+
+                var dots = document.querySelectorAll(".dot")
+                dots.forEach(function (dot, idx) {
+                    idx === slide
+                        ? dot.classList.add("dot--active")
+                        : dot.classList.remove("dot--active")
+                })
+                if (instance) {
+                    this.setAttribute("data-absoluteSlide", instance.details().absoluteSlide)
+                }
+            }
+            var slider = new KeenSlider("#my-keen-slider", {
+                created: function (instance) {
+                    document.getElementById("arrow-left").addEventListener("click", function () {
+                        instance.prev()
+                    })
+
+                    document.getElementById("arrow-right").addEventListener("click", function () {
+                        instance.next()
+                    })
+                    var dots_wrapper = document.getElementById("dots")
+                    var slides = document.querySelectorAll(".keen-slider__slide")
+                    slides.forEach(function (t, idx) {
+                        var dot = document.createElement("button")
+                        dot.classList.add("dot")
+                        dots_wrapper.appendChild(dot)
+                        dot.addEventListener("click", function () {
+                            instance.moveToSlide(idx)
+                        })
+                    })
+                    updateClasses(instance)
+                },
+                slideChanged(instance) {
+                    updateClasses(instance)
+                }
+            })
+
+            this.classList.add("ready")
+        }
+        const handleIntersection = (entries, observer) => {
+            if (!entries[0].isIntersecting) 
+                return;
+            
+
+            if (!KeenSlider) 
+                return
+
+            
+
+            console.log(KeenSlider)
+            observer.unobserve(this);
+            start()
+        }
+        new IntersectionObserver(handleIntersection.bind(this), {
+            rootMargin: '0px 0px 500px 0px'
+        }).observe(this);
+    }
+}
+customElements.define('product-slider', ProductSlider);
+
+class VideoModal extends ModalDialog {
+    constructor() {
+        super();
+    }
+
+    hide() {
+        super.hide();
+        const content = this.querySelector('.VideoModal-content')
+        content.innerHTML = '';
+        window.pauseAllMedia();
+    }
+
+    show(opener) {
+        super.show(opener);
+        this.showActiveMedia();
+    }
+
+    showActiveMedia() {
+        const template = this.querySelector('template')
+        const content = this.querySelector('.VideoModal-content')
+        content.innerHTML = '';
+        content.appendChild(template.content.firstElementChild.cloneNode(true))
+    }
+}
+
+customElements.define('video-modal', VideoModal);
+
+{% endjavascript %}
+
+<script src="https://cdn.jsdelivr.net/npm/keen-slider@5.5.0/keen-slider.min.js"></script>
+
+{% schema %}
+{
+    "name": "Slider Banner",
+    "tag": "section",
+    "class": "relative spaced-section spaced-section--full-width",
+    "blocks": [
+        {
+            "type": "item",
+            "name": "Item",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "heading",
+                    "label": "Heading",
+                    "default": "Collection"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image_picker",
+                    "label": "Image"
+                },
+                {
+                    "type": "url",
+                    "id": "url",
+                    "label": "Url",
+                    "default": "/"
+                },
+                {
+                    "type": "text",
+                    "id": "button_text",
+                    "label": "Button text",
+                    "default": "Discovery"
+                },
+                {
+                    "type": "video_url",
+                    "id": "video_url",
+                    "accept": [
+                        "youtube",
+                        "vimeo"
+                    ],
+                    "label": "video url"
+                },
+                {
+                    "type": "text",
+                    "id": "video_button_text",
+                    "label": "Video Button Text",
+                    "default": "Play video"
+                }
+            ]
+        }
+    ],
+    "settings": [],
+    "presets": [
+        {
+            "name": "Slider banner",
+            "blocks": []
+        }
+    ]
+}
+{% endschema %}

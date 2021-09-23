@@ -1,0 +1,204 @@
+{%- assign id = block.id |default: section.id -%}
+<style>
+    .{{id}}-image-with-text {
+      margin-top: 5rem;
+    }
+    .{{id}}-image-with-text__sub-heading{
+      font-size: 1.4em;
+    }
+    .{{id}}-image-with-text__heading{
+      font-weight: bold;
+      line-height: 1.2;
+      margin-bottom: 1em;
+    }
+    .{{id}}-image-with-text:not(.color-scheme-background-1) {
+      margin-bottom: 5rem;
+    }
+    .{{id}}-image-with-text .grid__item{
+        width: 100%;
+        padding: 2em 0;
+        display:flex;
+        align-items:center;
+        justify-content: center;
+      }
+    @media screen and (min-width: 750px) {
+      .{{id}}-image-with-text {
+        margin-bottom: 5rem;
+      }
+      .{{id}}-image-with-text .grid__item{
+        flex:1;
+       
+      }
+    }
+
+    .{{id}}-image-with-text .grid {
+      margin-left: 0;
+      margin-bottom: 0;
+    }
+
+    .{{id}}-image-with-text__grid {
+      overflow: hidden;
+    }
+
+    @media screen and (min-width: 750px) {
+      .{{id}}-image-with-text__grid--reverse {
+        flex-direction: row-reverse;
+      }
+     
+    }
+
+    .{{id}}-image-with-text__media {
+      background-color: transparent;
+      min-height: 100%;
+    }
+
+    .{{id}}-image-with-text__media--small {
+      height: 19.4rem;
+    }
+
+    .{{id}}-image-with-text__media--large {
+      height: 43.5rem;
+    }
+
+    @media screen and (min-width: 750px) {
+      .{{id}}-image-with-text__media--small {
+        height: 31.4rem;
+      }
+
+      .{{id}}-image-with-text__media--large {
+        height: 69.5rem;
+      }
+    }
+
+    .{{id}}-image-with-text__media--placeholder {
+      background-color: rgba(var(--color-foreground), 0.04);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .{{id}}-image-with-text__media--placeholder.{{id}}-image-with-text__media--adapt {
+      height: 20rem;
+    }
+
+    @media screen and (min-width: 750px) {
+      .{{id}}-image-with-text__media--placeholder.{{id}}-image-with-text__media--adapt {
+        height: 30rem;
+      }
+    }
+
+    .{{id}}-image-with-text__media--placeholder > svg {
+      position: absolute;
+      left: 50%;
+      max-width: 80rem;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      fill: currentColor;
+    }
+
+    .{{id}}-image-with-text__content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      height: 100%;
+      justify-content: center;
+      padding: 4rem 4rem 5rem;
+      max-width:40em;
+    }
+
+    @media screen and (min-width: 750px) {
+      .{{id}}-image-with-text__grid--reverse .{{id}}-image-with-text__content {
+        margin-left: auto;
+      }
+    }
+
+    @media screen and (min-width: 990px) {
+      .{{id}}-image-with-text__content {
+        padding: 6rem 7rem 7rem;
+      }
+    }
+
+    .{{id}}-image-with-text__content > * + * {
+      margin-top: 2rem;
+    }
+
+    .{{id}}-image-with-text__content > .{{id}}-image-with-text__text:empty ~ a {
+      margin-top: 2rem;
+    }
+
+    .{{id}}-image-with-text__content > :first-child:is(.{{id}}-image-with-text__heading) {
+      margin-top: 0;
+    }
+
+    .{{id}}-image-with-text__content :last-child:is(.{{id}}-image-with-text__heading) {
+      margin-bottom: 0;
+    }
+
+    .{{id}}-image-with-text__content .button + .{{id}}-image-with-text__text {
+      margin-top: 2rem;
+    }
+
+    .{{id}}-image-with-text__content .{{id}}-image-with-text__text + .button {
+      margin-top: 3rem;
+    }
+
+    .{{id}}-image-with-text__heading {
+      /* margin-bottom: 0; */
+    }
+    .{{id}}-image-with-text__text p {
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+
+</style>
+
+<div class="{{id}}-image-with-text {% if section.settings.full_width %}{{id}}-image-with-text--full-width{% else %}{% endif %} color-scheme-{{ section.settings.color_scheme }}">
+  <div class="{{id}}-image-with-text__grid color-{{ section.settings.color_scheme }}{% if section.settings.layout == 'text_first' %} {{id}}-image-with-text__grid--reverse{% endif %} grid grid--gapless grid--1-col grid--2-col-tablet">
+    <div  class="grid__item">
+      <div style="max-width:{{section.settings.image.width}}px ;width:100%">
+ <div  class="{{id}}-image-with-text__media {{id}}-image-with-text__media--{{ section.settings.height }} {% if section.settings.image != blank %}media{% else %}{{id}}-image-with-text__media--placeholder placeholder{% endif %}"
+        {% if section.settings.height == 'adapt' and section.settings.image != blank %} 
+        style="padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;"{% endif %}
+      >
+        {%- if section.settings.image != blank -%}
+          <img  
+            src="{{ section.settings.image | img_url: '800x800' }}"
+            sizes="(min-width: 1100px) 100vw, (min-width: 750px) 100vw, 100vw"
+            alt="{{ section.settings.image.alt | escape }}"
+            loading="lazy"
+            width="{{ section.settings.image.width }}"
+            height="{{ section.settings.image.height }}"
+          >
+        {%- else -%}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+      </div>
+      </div>
+     
+    </div>
+    <div class="grid__item ">
+      <div class="{{id}}-image-with-text__content {{id}}-image-with-text__content--{{ section.settings.height }}">
+        {%- for block in section.blocks -%}
+          {% case block.type %}
+            {%- when 'sub_heading' -%}
+              <div class="{{id}}-image-with-text__sub-heading" {{ block.shopify_attributes }}>
+                {{ block.settings.sub_heading | escape }}
+              </div>
+            {%- when 'heading' -%}
+              <h2 class="{{id}}-image-with-text__heading h1" {{ block.shopify_attributes }}>
+                {{ block.settings.heading | escape }}
+              </h2>
+            {%- when 'text' -%}
+              <div class="{{id}}-image-with-text__text rte" {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
+            {%- when 'button' -%}
+              {%- if block.settings.button_label != blank -%}
+                <a{% if block.settings.button_link != blank %} href="{{ block.settings.button_link }}"{% endif %} class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"{% if block.settings.button_link == blank %} aria-disabled="true"{% endif %} {{ block.shopify_attributes }}>
+                  {{ block.settings.button_label | escape }}
+                </a>
+              {%- endif -%}
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>

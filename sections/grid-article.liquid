@@ -1,0 +1,115 @@
+
+<div class="">
+    <div class="page-width space-y-10">
+        {% if section.settings.title != blank %}
+            <div class="flex space-x-6 w-full">
+                <h2 class="text-4xl  flex-1 items-baseline">
+                    {{ section.settings.title | escape }}
+                </h2>
+                <div class="group flex space-x-3 items-center text-gray-500 hover:text-black">
+                    <div class="overflow-hidden text-2xl">
+                        <div class="opacity-0 transition-all transform translate-x-full group-hover:translate-x-0 group-hover:opacity-100">View all</div>
+                    </div>
+                    <a class="cursor-pointer" >
+                        <svg class="text-6xl" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2S13.1 10 12 10zM18 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2S19.1 10 18 10zM6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2S7.1 10 6 10z"></path></svg>
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+        {% case section.blocks.size %}
+            {% when 1 %}
+                <ul class="tw-grid w-full gap-10" role="list">
+            {% when 2 %}
+                <ul class="tw-grid md:grid-cols-2 w-full gap-10" role="list">
+            {% when 3 %}
+                <ul class="tw-grid lg:grid-cols-3 w-full gap-10" role="list">
+            {% when 4 %}
+                <ul class="tw-grid md:grid-cols-2 lg:grid-cols-4 w-full gap-10" role="list">
+            {% else %}
+            <ul class="tw-grid md:grid-cols-2  w-full gap-10" role="list">
+        {% endcase %}
+            {%- for block in section.blocks -%}
+                {%- assign article = block.settings.article -%}
+                <li {{ block.shopify_attributes }} class="">
+                    <div class=" relative group flex flex-col items-center justify-center ">
+                        <a  href="{{article.url}}"  class="relative w-full">
+                            <div class="pt-[100%] w-full !block"></div>
+                            <img class="z-[-1] motion-reduce absolute inset-0 object-cover w-full h-full" srcset="{%- if article.image.width >= 165 -%}{{ article.image | img_url: '165x' }} 165w,{%- endif -%} 
+                                    {%- if article.image.width >= 330 -%}{{ article.image | img_url: '330x' }} 330w,{%- endif -%} 
+                                    {%- if article.image.width >= 535 -%}{{ article.image | img_url: '535x' }} 535w,{%- endif -%} 
+                                    {%- if article.image.width >= 720 -%}{{ article.image | img_url: '720x' }} 720w,{%- endif -%} 
+                                    {%- if article.image.width >= 940 -%}{{ article.image | img_url: '940x' }} 940w,{%- endif -%} 
+                                    {%- if article.image.width >= 1440 -%}{{ article.image | img_url: '1440x' }} 1440w,{%- endif -%} 
+                                    {%- if article.image.width >= 1880 -%}{{ article.image | img_url: '1880x' }} 1880w{%- endif -%}" 
+                                    src="{{ article.image | img_url: '533x' }}" 
+                                    sizes="(min-width: 1100px){% if section.blocks.size > 1 %}535px{% else %}940px{% endif %}, (min-width: 750px) {% if section.blocks.size > 1 %}calc((100vw - 10rem) / 2){% else %}calc(100vw - 10rem){% endif %}, calc(100vw - 3rem)" alt="{{ article.heading | escape }}" height="{{ article.image.height }}" width="{{ article.image.width }}" loading="lazy" >
+                            <div class="flex items-center justify-center absolute  inset-0 w-full h-full z-[-1] opacity-0 bg-opacity-40 group-hover:opacity-100 bg-black text-white transition-opacity">
+                                <svg width="40px" height="40px" fill="currentColor"  viewBox="0 0 50 50"><path d="M 14.988281 3.992188 C 14.582031 3.992188 14.21875 4.238281 14.0625 4.613281 C 13.910156 4.992188 14 5.421875 14.292969 5.707031 L 33.585938 25 L 14.292969 44.292969 C 14.03125 44.542969 13.925781 44.917969 14.019531 45.265625 C 14.109375 45.617188 14.382813 45.890625 14.734375 45.980469 C 15.082031 46.074219 15.457031 45.96875 15.707031 45.707031 L 35.707031 25.707031 C 36.097656 25.316406 36.097656 24.683594 35.707031 24.292969 L 15.707031 4.292969 C 15.519531 4.097656 15.261719 3.992188 14.988281 3.992188 Z"></path></svg>
+                            </div>
+                        </a>
+                        <div class="p-8 w-full bg-gray-100 space-y-3">
+                            <div class="flex items-baseline text-gray-400 text-xl">
+                                <div class="flex-1 ">{% for tag in article.tags %}
+                                    <a class="hover:text-black" href="/search?q=={{ tag }}">{{ tag }} </a>
+                                {% endfor %}</div>
+                                <a>
+                                    {{ article.published_at | date: "%b %d, %y" }}
+                                </a>
+                            </div>
+                            <div>
+                                <a href="{{article.url}}"  class="font-semibold hover:text-base-accent-1 text-opacity-100">
+                                    {{article.title | escape}}
+                                </a>
+                            </div>
+                           
+                            <div class="flex items-baseline space-x-6 text-gray-400">
+                                <a href="{{article.url}}" class="text-5xl hover:text-base-accent-1 text-opacity-100 flex-1">
+                                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M9 13.887l5-5V8.18l-5-5-.707.707 4.146 4.147H2v1h10.44L8.292 13.18l.707.707z"></path></svg>
+                                </a>
+                                <div class="overflow-hidden ">
+                                    <div class=" opacity-0 translate-x-6 group-hover:translate-x-0 group-hover:opacity-100 transition-all">
+                                        7 <svg class="text-3xl inline" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M352 56h-1c-39.7 0-74.8 21-95 52-20.2-31-55.3-52-95-52h-1c-61.9.6-112 50.9-112 113 0 37 16.2 89.5 47.8 132.7C156 384 256 456 256 456s100-72 160.2-154.3C447.8 258.5 464 206 464 169c0-62.1-50.1-112.4-112-113zm41.6 229.2C351 343.5 286.1 397.3 256 420.8c-30.1-23.5-95-77.4-137.6-135.7C89.1 245.1 76 198 76 169c0-22.6 8.8-43.8 24.6-59.8 15.9-16 37-24.9 59.6-25.1H161.1c14.3 0 28.5 3.7 41.1 10.8 12.2 6.9 22.8 16.7 30.4 28.5 5.2 7.9 14 12.7 23.5 12.7s18.3-4.8 23.5-12.7c7.7-11.8 18.2-21.6 30.4-28.5 12.6-7.1 26.8-10.8 41.1-10.8h.9c22.5.2 43.7 9.1 59.6 25.1 15.9 16 24.6 37.3 24.6 59.8-.2 29-13.3 76.1-42.6 116.2z"></path><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M352 56h-1c-39.7 0-74.8 21-95 52-20.2-31-55.3-52-95-52h-1c-61.9.6-112 50.9-112 113 0 37 16.2 89.5 47.8 132.7C156 384 256 456 256 456s100-72 160.2-154.3C447.8 258.5 464 206 464 169c0-62.1-50.1-112.4-112-113zm41.6 229.2C351 343.5 286.1 397.3 256 420.8c-30.1-23.5-95-77.4-137.6-135.7C89.1 245.1 76 198 76 169c0-22.6 8.8-43.8 24.6-59.8 15.9-16 37-24.9 59.6-25.1H161.1c14.3 0 28.5 3.7 41.1 10.8 12.2 6.9 22.8 16.7 30.4 28.5 5.2 7.9 14 12.7 23.5 12.7s18.3-4.8 23.5-12.7c7.7-11.8 18.2-21.6 30.4-28.5 12.6-7.1 26.8-10.8 41.1-10.8h.9c22.5.2 43.7 9.1 59.6 25.1 15.9 16 24.6 37.3 24.6 59.8-.2 29-13.3 76.1-42.6 116.2z"></path></svg></svg>
+                                    </div>
+                                </div>
+                           </div>
+                        </div>
+                    </div >
+                </li>
+            {%- endfor -%}
+        </ul>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Articles Grid",
+    "class": "spaced-section",
+    "tag": "section",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "article",
+            "name": "Article",
+            "settings": [
+                {
+                    "type": "article",
+                    "id": "article",
+                    "label": "Article"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Articles Grid",
+            "blocks": []
+        }
+    ]
+}
+{% endschema %}

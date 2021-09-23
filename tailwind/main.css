@@ -1,0 +1,66 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "tailwindcss/variants";
+
+@font-face {
+  font-family: "Gramatika";
+  src: local("Gramatika"), url("Gramatika-Regular.ttf") format("truetype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Vanitas";
+  src: local("Vanitas"), url("Vanitas-Regular") format("opentype");
+  font-weight: normal;
+}
+
+:root {
+  --safe-area-inset-top: env(safe-area-inset-top, 20px);
+  --safe-area-inset-right: env(safe-area-inset-right, 20px);
+  --safe-area-inset-bottom: env(safe-area-inset-bottom, 50px);
+  --safe-area-inset-left: env(safe-area-inset-left, 20px);
+}
+
+:root {
+  --diff: calc(var(--max-size) - var(--min-size));
+  --responsive: calc(var(--min-size) * 1px + var(--diff) * (0.08333vw - 0.3px));
+  --max-size: 10;
+  --min-size: 8;
+  font-size: calc(14.4px + 0.16667vw);
+  font-size: var(--responsive);
+}
+html,
+body {
+  width: 100%;
+}
+.tw-grid {
+  display: grid !important;
+}
+.fit {
+  min-height: calc(100vh - calc(var(--header-height)));
+}
+.text-effect-1 {
+  @apply inline-flex overflow-hidden relative cursor-pointer;
+}
+.text-effect-1:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 0;
+  opacity: 0.5;
+  border-bottom: 0.12em solid currentColor;
+  transition: width 0.3s, color 0.3s;
+}
+.text-effect-1:hover:after {
+  @apply text-current;
+  width: 100%;
+  left: 0;
+}
+.text-effect-1.text-effect-1_active:after {
+  @apply text-current;
+  border-color: var(--primary-2);
+  width: 100%;
+  left: 0;
+}
