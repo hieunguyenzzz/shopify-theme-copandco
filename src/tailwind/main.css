@@ -30,6 +30,7 @@
   font-size: calc(14.4px + 0.16667vw);
   font-size: var(--responsive);
 }
+
 html,
 body {
   width: 100%;

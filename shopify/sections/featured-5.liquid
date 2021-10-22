@@ -8,52 +8,11 @@
         <h2 class="text-6xl whitespace-pre-line ">{{section.settings.heading}}</h2>
         <div class="mt-8 text-xl font-semibold">{{section.settings.sub_heading}}</div>
         <div class="mt-8">{{section.settings.description}}</div>
-        <button class="btn btn-lg rounded-none bg-black text-white mt-12">SHOP SALE</button>
+        <button class="btn btn-lg mt-12">SHOP SALE</button>
     </div>
 </div>
 
-{% schema %}
-{
-    "name": "Featured 2",
-    "tag": "section",
-    "settings": [
-        {
-            "type": "text",
-            "id": "heading",
-            "label": "Heading",
-            "default": "End of season Sale"
-        },
-        {
-            "type": "text",
-            "id": "sub_heading",
-            "label": "Sub Heading",
-            "default": "UP TO 50%"
-        },
-        {
-            "type": "richtext",
-            "id": "description",
-            "label": "Description",
-            "default": "<p>It’s time to sale. 10 - 50% off on selected items.</p><p>Ends 5 September.</p>"
-        }
-    ],
-    "blocks": [
-        {
-            "type": "article",
-            "name": "Article",
-            "settings": [
-                {
-                    "type": "article",
-                    "id": "article",
-                    "label": "Article"
-                }
-            ]
-        }
-    ],
-    "presets": [
-        {
-            "name": "Featured 2",
-            "blocks": []
-        }
-    ]
-}
-{% endschema %}
+{% schema %} { "name": "Featured 2", "tag": "section", "settings": [ { "type": "text", "id": "heading", "label": "Heading", "default": "End of season Sale" }, { "type": "text", "id": "sub_heading", "label": "Sub Heading", "default": "UP TO 50%" }, { "type":
+"richtext", "id": "description", "label": "Description", "default": "
+<p>It’s time to sale. 10 - 50% off on selected items.</p>
+<p>Ends 5 September.</p>" } ], "blocks": [ { "type": "article", "name": "Article", "settings": [ { "type": "article", "id": "article", "label": "Article" } ] } ], "presets": [ { "name": "Featured 2", "blocks": [] } ] } {% endschema %}

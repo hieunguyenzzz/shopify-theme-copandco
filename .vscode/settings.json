@@ -66,7 +66,8 @@
     "editor.defaultFormatter": "sissel.shopify-liquid",
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": false
-    }
+    },
+    "editor.formatOnSave": false
   },
   "git.ignoreLimitWarning": true,
   "editor.formatOnSave": false

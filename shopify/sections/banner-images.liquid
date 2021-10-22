@@ -1,24 +1,20 @@
 <div class="-mt-header pt-header min-h-screen flex relative text-white text-xl">
     <div class=" flex absolute top-0 left-0 h-full lg:w-[60%]">
-        {% if section.settings.image_left %}
-            {% include 'image-full' image:section.settings.image_left %}
-        {% else %}
-            <img class="object-cover w-full h-full" src="https://cdn.shopify.com/s/files/1/0594/5406/2744/files/jewelry-02_2000x.jpg?v=1632407363" loading="lazy" class="header__heading-logo ]" width="256" height="131" alt="{{ shop_name | escape }}">
-        {% endif %}
+        {% if section.settings.image_left %} {% include 'image-full' image:section.settings.image_left %} {% else %}
+        <img class="object-cover w-full h-full" src="https://cdn.shopify.com/s/files/1/0594/5406/2744/files/jewelry-02_2000x.jpg?v=1632407363" loading="lazy" class="header__heading-logo ]" width="256" height="131" alt="{{ shop_name | escape }}"> {% endif
+        %}
     </div>
     <div class="hidden lg:flex absolute top-0 right-0 h-full lg:w-[40%]">
-        {% if section.settings.image_right %}
-            {% include 'image-full' image:section.settings.image_right %}
-        {% else %}
-            <img class="object-cover w-full h-full" src="https://cdn.shopify.com/s/files/1/0594/5406/2744/files/jewelry-03_1000x.jpg?v=1632407363" loading="lazy" class="header__heading-logo ]" width="256" height="131" alt="{{ shop_name | escape }}">
-        {% endif %}
+        {% if section.settings.image_right %} {% include 'image-full' image:section.settings.image_right %} {% else %}
+        <img class="object-cover w-full h-full" src="https://cdn.shopify.com/s/files/1/0594/5406/2744/files/jewelry-03_1000x.jpg?v=1632407363" loading="lazy" class="header__heading-logo ]" width="256" height="131" alt="{{ shop_name | escape }}"> {% endif
+        %}
     </div>
 
     <div class="page-width flex w-full flex-col items-start justify-center py-12 min-h-full relative text-white">
         <h2 class="text-white text-6xl">Everyday Jewelry Essentials</h2>
-        <p class="whitespace-pre-line mt-6">Inspired by all of the little thing in our life  &#10Complete your look for every occasion
+        <p class="whitespace-pre-line mt-6">Inspired by all of the little thing in our life &#10Complete your look for every occasion
         </p>
-        <a class="btn btn-lg mt-16 rounded-none">SHOP ALL</a>
+        <a class="btn btn-lg mt-16">SHOP ALL</a>
     </div>
     <div class="hidden lg:block absolute bottom-0 right-[40%] transform translate-x-[50%] w-[400px] h-[400px] text-white text-base">
         <svg class="" enable-background="new 0 0 300 300" height="100%" version="1.1" viewbox="0 0 300 300" width="100%" x="0px" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" y="0px">
@@ -39,29 +35,5 @@
         <p>a varius lorem &#10tristique quis</p>
     </div>
 </div>
-{% schema %}
-{
-    "name": "Banner",
-    "tag": "section",
-    "class": "relative spaced-section spaced-section--full-width",
-    "blocks": [
-       
-    ],
-    "settings": [
-    {
-        "type": "image_picker",
-        "id": "image_left",
-        "label": "left image"
-    }, {
-        "type": "image_picker",
-        "id": "image_right",
-        "label": "left image"
-    }],
-    "presets": [
-        {
-            "name": "Banner",
-            "blocks": []
-        }
-    ]
-}
-{% endschema %}
+{% schema %} { "name": "Banner", "tag": "section", "class": "relative spaced-section spaced-section--full-width", "blocks": [ ], "settings": [ { "type": "image_picker", "id": "image_left", "label": "left image" }, { "type": "image_picker", "id": "image_right",
+"label": "left image" }], "presets": [ { "name": "Banner", "blocks": [] } ] } {% endschema %}
