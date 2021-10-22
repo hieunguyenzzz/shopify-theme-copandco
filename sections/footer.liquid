@@ -29,7 +29,7 @@
                         assign footer_grid_class = 'grid--3-col-tablet'
                     endif
                 -%}
-                <div class="flex-1 footer__blocks-wrapper flex {{ footer_grid_class }}">
+                <div class="flex-1 footer__blocks-wrapper lg:flex {{ footer_grid_class }}">
                     {%- for block in section.blocks -%}
                         {%- if block.type == 'link_list' and block.settings.heading != blank -%}
                             <div class="accordion" {{ block.shopify_attributes }}>
@@ -52,7 +52,7 @@
                             </div>
                         {%- endif -%}
 
-                        <div class="footer-block grid__item{% if block.type == 'link_list' and block.settings.heading != blank %} footer-block--menu small-hide{% endif %}" {{ block.shopify_attributes }}>
+                        <div class="footer-block flex-1 {% if block.type == 'link_list' and block.settings.heading != blank %} footer-block--menu small-hide{% endif %}" {{ block.shopify_attributes }}>
                             {%- if block.settings.heading != blank -%}
                                 <h2 class="footer-block__heading  relative">
                                     <div class="">{{- block.settings.heading | escape -}}</div>
@@ -144,7 +144,7 @@
                                     <button aria-controls="FooterCountryList" aria-describedby="FooterCountryLabel" aria-expanded="false" class="border border-gray-400 flex items-center px-5 py-3 space-x-4" type="button">
                                         <div class="truncate">
                                             <!-- {{ localization.country.name }} -->
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ({{ localization.country.currency.iso_code }}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ({{ localization.country.currency.iso_code }}
                                             {{ localization.country.currency.symbol }})
                                         </div>
                                         <div>{% render 'icon-caret' %}</div>
