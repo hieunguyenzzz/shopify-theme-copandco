@@ -5,7 +5,7 @@ module.exports = {
     applyComplexClasses: true,
   },
   purge: [
-    './**/*.{liquid,html,js}',
+    './**/*.liquid',
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
@@ -32,5 +32,6 @@ module.exports = {
     require('@tailwindcss/typography'),
     require('./tailwind/plugins/nestedGroup'),
     require('./tailwind/plugins/typography'),
+    require('daisyui'),
   ],
 }

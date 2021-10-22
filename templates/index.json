@@ -1,11 +1,41 @@
 {
-  "sections": {
-    "banner": {
-      "type": "banner-images",
-      "settings": {}
-    }
-  },
-  "order": [
-    "banner"
-  ]
+    "sections": {
+        "banner": {
+            "type": "banner-images",
+            "settings": {}
+        },
+        "featured-1": {
+            "type": "featured-1",
+            "settings": {}
+        },
+        "featured-2": {
+            "type": "featured-2",
+            "settings": {}
+        },
+        "featured-3": {
+            "type": "featured-3",
+            "settings": {}
+        },
+        "featured-4": {
+            "type": "featured-4",
+            "settings": {}
+        },
+        "featured-5": {
+            "type": "featured-5",
+            "settings": {}
+        },
+        "featured-6": {
+            "type": "featured-6",
+            "settings": {}
+        }
+    },
+    "order": [
+        "banner",
+        "featured-1",
+        "featured-2",
+        "featured-3",
+        "featured-4",
+        "featured-5",
+        "featured-6"
+    ]
 }

@@ -16,9 +16,10 @@
 <noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'disclosure.css' | asset_url | stylesheet_tag }}</noscript>
 
-<footer class="footer font-semibold text-xl">
-    {%- if section.blocks.size > 0 or section.settings.newsletter_enable or section.settings.show_social -%}
-        <div class="footer__content-top page-width lg:flex py-12 ">
+<footer class="footer font-semibold ">
+    <div class="w-full">
+        {%- if section.blocks.size > 0 or section.settings.newsletter_enable or section.settings.show_social -%}
+        <div class="footer__content-top page-width lg:flex py-12 w-full">
             {%- if section.blocks.size > 0 -%}
                 {%- liquid
                     if section.blocks.size == 9
@@ -104,17 +105,17 @@
                     {%- endfor -%}
                 </div>
             {%- endif -%}
-            <div class="lg:w-[40%] flex justify-center lg:justify-end items-center py-12">
+            <div class="lg:w-[300px]  flex justify-center items-center py-12">
                 <a href="{{ routes.root_url }}" class="header__heading-link link  focus-inset w-[160px]  py-4">
                     <img src="/assets/logo-footer.png" loading="lazy" class="header__heading-logo " width="256" height="131" alt="{{ shop_name | escape }}">
                 </a>
             </div>
         </div>
     {%- endif -%}
-    <div class="page-width">
+    <div class="page-width w-full">
         <!-- <div class=" h-px !block bg-gray-400"></div> -->
     </div>
-    <div class="footer__content-bottom">
+    <div class="footer__content-bottom w-full">
         <div class="footer__content-bottom-wrapper page-width justify-center">
             <div class="footer__column footer__localization">
                 {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
@@ -236,6 +237,8 @@
             </div>
         </div>
     </div>
+    </div>
+    
 </footer>
 
 {% javascript %}

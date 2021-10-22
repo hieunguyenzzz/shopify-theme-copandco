@@ -12,7 +12,6 @@
 <noscript>{{ 'component-cart-notification.css' | asset_url | stylesheet_tag }}</noscript>
 <style>
   /* Icon 1 */
-
   .nav-icon {
     width: 20px;
     height: 15px;
@@ -95,7 +94,7 @@
     top: 0;
   }
 
-    {
+  {
     % endif %
   }
 
@@ -148,16 +147,7 @@
 
   .list-menu__item--link {
     text-decoration: none;
-    /* padding-bottom: 1rem;
-    padding-top: 1rem; */
     line-height: 1.8;
-  }
-
-  @media screen and (min-width: 750px) {
-    .list-menu__item--link {
-      /* padding-bottom: 0.5rem;
-      padding-top: 0.5rem; */
-    }
   }
 
   body {
@@ -198,7 +188,18 @@
     transform: translate3d(0, 0, 0);
   }
 </style>
+<style>
+  #PopupModal-search>* {
+    transform: translateY(-100%);
+    transition: transform 0.7s cubic-bezier(1, 0, 0.28, 1);
+    pointer-events: none;
+  }
 
+  #PopupModal-search[open]>* {
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+</style>
 <script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
@@ -586,18 +587,7 @@
   </div>
 </div>
 
-<style>
-  #PopupModal-search>* {
-    transform: translateY(-100%);
-    transition: transform 0.7s cubic-bezier(1, 0, 0.28, 1);
-    pointer-events: none;
-  }
 
-  #PopupModal-search[open]>* {
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-</style>
 <modal-dialog id="PopupModal-search" class="collage-video__modal">
   <div class="bg-[#272727] fixed inset-0 w-screen h-screen" role="dialog" aria-modal="true"
     aria-label="{{ 'general.search.search' | t }}">
@@ -696,13 +686,10 @@ class StickyHeader extends HTMLElement {
 customElements.define('sticky-header', StickyHeader);
 
 {% endjavascript %}
-
-
     {%- if request.page_type == 'index' -%}
-    {% assign potential_action_target = shop.url | append: routes.search_url | append: "?q={search_term_string}" %}
+      {% assign potential_action_target = shop.url | append: routes.search_url | append: "?q={search_term_string}" %}
     {%- endif -%}
-
-    {% schema %}
+{% schema %}
 {
     "name": "t:sections.header.name",
     "settings": [
