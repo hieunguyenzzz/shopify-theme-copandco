@@ -1,63 +1,8 @@
 {
+  "editor.defaultFormatter": "sissel.shopify-liquid",
   "liquid.format": true,
   "editor.codeActionsOnSave": {
     "source.fixAll": false,
-  },
-  "html.validate.scripts": false,
-  "html.validate.styles": false,
-  "liquid.rules": {
-    "ignore": [
-      {
-        "type": "liquid",
-        "begin": "comment",
-        "end": "endcomment"
-      },
-      {
-        "type": "html",
-        "begin": "script",
-        "end": "script"
-      },
-      {
-        "type": "html",
-        "begin": "style",
-        "end": "style"
-      }
-    ],
-    "html": {
-      "correct": true,
-      "force_attribute": false,
-      "preserve": 2,
-      "unformatted": false
-    },
-    "js": {
-      "preserve": 1,
-      "method_chain": 0,
-      "quote_convert": "none",
-      "format_array": "indent",
-      "format_object": "indent",
-      "braces": false,
-      "no_semicolon": false,
-      "brace_block": true
-    },
-    "scss": {
-      "css_insert_lines": true,
-      "preserve": 2,
-      "braces": false,
-      "brace_block": true
-    },
-    "css": {
-      "css_insert_lines": true,
-      "preserve": 2,
-      "braces": false,
-      "brace_block": true
-    },
-    "json": {
-      "preserve": 0,
-      "format_array": "indent",
-      "braces": true,
-      "no_semicolon": true,
-      "brace_block": false
-    }
   },
   "[html]": {
     "editor.defaultFormatter": "sissel.shopify-liquid",
@@ -65,9 +10,15 @@
       "source.fixAll.eslint": false
     },
   },
+  "[liquid]": {
+    "editor.defaultFormatter": "sissel.shopify-liquid",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": false
+    },
+  },
   "git.ignoreLimitWarning": true,
-  "editor.formatOnSave": true,
-    "files.associations": {
-        "*.liquid": "html"
-    }
+  "editor.formatOnSave": false,
+  "files.associations": {
+    "*.liquid": "html"
+  },
 }

@@ -1,4 +1,6 @@
-<img class="object-cover w-full h-full"
+
+{% if image %}
+<img class="object-cover w-full h-full absolute inset-0 "
         srcset="{%- if image.width >= 375 -%}{{ image | img_url: '375x' }} 375w,{%- endif -%}
           {%- if image.width >= 750 -%}{{ image | img_url: '750x' }} 750w,{%- endif -%}
           {%- if image.width >= 1100 -%}{{ image | img_url: '1100x' }} 1100w,{%- endif -%}
@@ -7,10 +9,13 @@
           {%- if image.width >= 2000 -%}{{ image | img_url: '2000x' }} 2000w,{%- endif -%}
           {%- if image.width >= 3000 -%}{{ image | img_url: '3000x' }} 3000w,{%- endif -%}
           {%- if image.width >= 3840 -%}{{ image | img_url: '3840x' }} 3840w,{%- endif -%}"
-        sizes="{% if image_2 != blank and section.settings.stack_images_on_mobile %}(min-width: 750px) 50vw, 100vw{% elsif image_2 != blank %}50vw{% else %}100vw{% endif %}"
         src="{{ image | img_url: '1500x' }}"
         loading="lazy"
         alt="{{ image.alt | escape }}"
         width="{{ image.width }}"
-        height="{{ image.width | divided_by: image.aspect_ratio }}"
-        {% if image_2 != blank %}class="banner__media-image-half"{% endif %}>
+        height="{{ image.width | divided_by: image.aspect_ratio }}">
+{% else %}
+  <div class="w-full h-full flex absolute inset-0 justify-center items-center bg-gray-100 brightness-50">
+    {{ 'collection-3' | placeholder_svg_tag }}
+  </div>
+{% endif %}
