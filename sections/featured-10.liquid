@@ -1,0 +1,56 @@
+<div class="page-width my-24 space-x-24">
+    <div class="flex flex-col justify-center max-w-prose">
+        <h2 class="text-6xl">{{section.settings.heading}}</h2>
+        <div>{{section.settings.subHeading}}</div>
+        <div>{{section.settings.description}}</div>
+        <a href="{{section.settings.buttonUrl}}">{{section.settings.buttonText}}</a>
+    </div>
+    <div class="relative aspect-w-16 aspect-h-9">
+        {{ 'product-1' | placeholder_svg_tag : 'w-full h-full flex items-center' }}
+    </div>
+</div>
+{% schema %}
+{
+    "name": "Featured 10",
+    "tag": "section",
+    "settings": [
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading",
+            "default": "Must-have items"
+        },
+        {
+            "type": "text",
+            "id": "subHeading",
+            "label": "Sub heading",
+            "default": ""
+        },
+        {
+            "type": "richtext",
+            "id": "description",
+            "label": "Description",
+            "default": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet"
+        },
+        {
+            "type": "text",
+            "id": "buttonText",
+            "label": "Button Text",
+            "default": "SHOP ALL"
+        },
+        {
+            "type": "url",
+            "id": "buttonUrl",
+            "label": "Button Url",
+            "default": "/"
+        },
+    ],
+    
+    "presets": [
+        {
+            "name": "Featured 10",
+            "blocks": []
+        }
+    ]
+}
+{% endschema %}
