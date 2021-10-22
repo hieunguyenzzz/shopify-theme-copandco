@@ -1,7 +1,7 @@
 {
     "sections": {
         "banner": {
-            "type": "banner-images",
+            "type": "featured-banner",
             "settings": {}
         },
         "featured-1": {
@@ -27,7 +27,28 @@
         "featured-6": {
             "type": "featured-6",
             "settings": {}
+        },
+        "featured-7": {
+            "type": "featured-7",
+            "settings": {}
+        },
+        "featured-8": {
+            "type": "featured-8",
+            "settings": {}
+        },
+        "featured-9": {
+            "type": "featured-9",
+            "settings": {}
+        },
+        "featured-10": {
+            "type": "featured-10",
+            "settings": {}
+        },
+        "featured-11": {
+            "type": "featured-11",
+            "settings": {}
         }
+
     },
     "order": [
         "banner",
@@ -36,6 +57,11 @@
         "featured-3",
         "featured-4",
         "featured-5",
-        "featured-6"
+        "featured-6",
+        "featured-7",
+        "featured-8",
+        "featured-9",
+        "featured-10",
+        "featured-11"
     ]
 }

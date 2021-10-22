@@ -1,13 +1,12 @@
 {
-    "name": "shopify-theme-float",
+    "name": "shopify-theme",
     "version": "1.0.0",
     "main": "index.js",
-    "author": "long <ngohoanglongptit@gmail.com>",
     "license": "MIT",
     "scripts": {
         "dev:style": "npx tailwindcss -i ./src/tailwind/main.css -c ./src/tailwind.config.js -o ./shopify/assets/style.css -w",
         "dev": "run-p -sr dev:* shopify:serve ",
-        "deploy": "run-s cd shopify && shopify theme push",
+        "deploy": "cd shopify && shopify theme push",
         "deploy:new": "run-s cd shopify && shopify theme push --unpublished",
         "shopify:serve": "cd shopify && shopify theme serve",
         "shopify:pull": "cd shopify && shopify theme pull"

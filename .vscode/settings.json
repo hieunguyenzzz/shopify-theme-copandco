@@ -1,10 +1,7 @@
 {
   "liquid.format": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll": false
-  },
-  "files.associations": {
-    "*.liquid": "liquid"
+    "source.fixAll": false,
   },
   "html.validate.scripts": false,
   "html.validate.styles": false,
@@ -67,8 +64,10 @@
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": false
     },
-    "editor.formatOnSave": false
   },
   "git.ignoreLimitWarning": true,
-  "editor.formatOnSave": false
+  "editor.formatOnSave": true,
+    "files.associations": {
+        "*.liquid": "html"
+    }
 }
