@@ -25,7 +25,7 @@
 :root {
   --diff: calc(var(--max-size) - var(--min-size));
   --responsive: calc(var(--min-size) * 1px + var(--diff) * (0.08333vw - 0.3px));
-  --max-size: 15;
+  --max-size: 16;
   --min-size: 10;
   font-size: calc(14.4px + 0.16667vw);
   font-size: var(--responsive);
@@ -35,7 +35,10 @@ html,
 body {
   width: 100%;
 }
-
+section{
+  overflow-x: auto;
+  overflow-y: hidden;
+}
 .tw-grid {
   display: grid !important;
 }

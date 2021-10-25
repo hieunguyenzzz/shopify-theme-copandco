@@ -106,6 +106,22 @@
         "settings": {
           
         }
+      },"featured-15": {
+        "type": "featured-15",
+        "settings": {
+          
+        }
+      },
+      "featured-newsletter": {
+        "type": "featured-newsletter",
+        "settings": {
+          
+        }
+      },"featured-instagram": {
+        "type": "featured-instagram",
+        "settings": {
+          
+        }
       }
     },
     "order": [
@@ -123,6 +139,9 @@
       "featured-11",
       "featured-12",
       "featured-13",
-      "featured-14"
+      "featured-14",
+      "featured-15",
+      "featured-newsletter",
+      "featured-instagram"
     ]
   }
