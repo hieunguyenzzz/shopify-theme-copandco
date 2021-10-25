@@ -1,0 +1,14 @@
+{% if product == 'example' %}
+    <div class="space-y-2 {{class}}">
+        <a href="{{ product.url | default: '#' }}" class="text-3xl font-heading">example product {{forloop.index}}</a>
+        <div>gold, jade pendant</div>
+        {% render '[product]-price' product:product  class: '' %}
+    </div>
+{% else %}
+    <div class="space-y-2 {{class}}">
+        <a href="{{ product.url | default: '#' }}" class="text-3xl font-heading">{{product.title}}</a>
+        <div>gold, jade pendant</div>
+        {% render '[product]-price' product:product  class: '' %}
+    </div>
+{% endif %}
+

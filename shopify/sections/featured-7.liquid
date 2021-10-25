@@ -1,17 +1,103 @@
-<div class="page-width my-24 space-x-24">
-    <div class="flex flex-col justify-center max-w-prose">
-        <h2 class="text-6xl">{{section.settings.heading}}</h2>
-        <div>{{section.settings.subHeading}}</div>
-        <div>{{section.settings.description}}</div>
-        <a href="{{section.settings.buttonUrl}}">{{section.settings.buttonText}}</a>
+<style>
+    {% if section.blocks.size == 0 %}
+        {% for i in (1..3) %}
+            #section-{{section.id}}-item-{{i}}{
+                display:none
+            }
+            #section-{{section.id}}-input-{{i}}:checked ~ #section-{{section.id}}-item-{{i}}{
+                display:block
+            }
+        {% endfor %}
+    {% else %}
+        {% for block in section.blocks %}
+            #section-{{section.id}}-item-{{forloop.index}}{
+                display:none
+            }
+            #section-{{section.id}}-input-{{forloop.index}}:checked ~ #section-{{section.id}}-item-{{forloop.index}}{
+                display:block
+            }
+        {% endfor %}
+    {% endif %}
+</style>
+    
+        
+<div  class="page-width my-24 space-x-24 lg:flex items-center">
+    <div class="  max-w-prose py-24">
+        {% render '[section]-heading'  class: '' %}
+        {% render '[section]-description'  class: 'mt-6' %}
+        {% render '[section]-button'  class: 'mt-10' %}
     </div>
-    <div class="relative aspect-w-16 aspect-h-9">
-        {{ 'product-1' | placeholder_svg_tag : 'w-full h-full flex items-center' }}
+    <div class=" flex-1">
+        <input hidden checked type="radio" name="section-{{section.id}}" id="section-{{section.id}}-input-1">
+        <input hidden type="radio" name="section-{{section.id}}" id="section-{{section.id}}-input-2">
+        <input hidden type="radio" name="section-{{section.id}}" id="section-{{section.id}}-input-3">
+        {% if section.blocks.size == 0 %}
+            {% for i in (1..3) %}
+                <div id="section-{{section.id}}-item-{{i}}" class="w-full ">
+                    <div class="w-full relative overflow-hidden animate__animated animate__fadeIn ease-in-out">
+                        <div class="pt-[70%]"></div>
+                        {% render 'image-full'  class: '' %}
+                    </div>
+                    <div class="mt-6 space-y-[0.5em] flex space-x-3 items-baseline ">
+                        <div class="flex-1 animate__animated animate__fadeIn ease-in-out space-y-2">
+                            <h4 class="text-3xl">Gemmine jade set {{i}}</h4>
+                            <div>gold, jade pendant</div>
+                            {% render '[product]-price'  class: '' %}
+                        </div>
+                        <div class="flex">
+                            {% assign preIndex = i | minus:1 %}
+                            {% assign nextIndex = i | plus:1 %}
+                            {% if preIndex <= 0 %}
+                                {% assign preIndex = 3 %}
+                            {% endif %}
+                            {% if nextIndex >= 4 %}
+                                {% assign nextIndex = 1 %}
+                            {% endif %}
+                            <label for="section-{{section.id}}-input-{{preIndex}}" class="rounded hover:bg-base-200 cursor-pointer w-8 h-8 flex justify-center items-center">
+                                <svg width="1em" height="1em" fill="none" stroke-width="0.05em" stroke="currentColor" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.14 14.74"><g ><polyline  points="7.39 0.67 1.35 7.33 7.39 14.07"/></g></svg>
+                            </label>
+                            <label for="section-{{section.id}}-input-{{nextIndex}}" class="rounded hover:bg-base-200 cursor-pointer w-8 h-8 flex justify-center items-center">
+                                <svg width="1em" height="1em" fill="none" stroke-width="0.05em" stroke="currentColor" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6.14 14.74"><g ><polyline points="0.74 14.07 6.79 7.41 0.74 0.67"/></g></svg>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            {% for block in section.blocks %}
+                {% assign product  = block.settings.product %}
+                <div id="section-{{section.id}}-item-{{forloop.index}}" class="w-full ">
+                    <div class="w-full relative overflow-hidden animate__animated animate__fadeIn ease-in-out">
+                        <div class="pt-[70%]"></div>
+                        {% render 'image-full' image: product.images[0] class: '' %}
+                    </div>
+                    <div class="mt-6 space-y-[0.5em] flex space-x-3 items-baseline ">
+                        {% render '[product]-content' product:product class: 'flex-1 animate__animated animate__fadeIn ease-in-out'  %}
+                        <div class="flex">
+                            {% assign preIndex = forloop.index | minus:1 %}
+                            {% assign nextIndex = forloop.index | plus:1 %}
+                            {% if preIndex <= 0 %}
+                                {% assign preIndex = 3 %}
+                            {% endif %}
+                            {% if nextIndex >= 4 %}
+                                {% assign nextIndex = 1 %}
+                            {% endif %}
+                            <label for="section-{{section.id}}-input-{{preIndex}}" class="rounded hover:bg-base-200 cursor-pointer w-8 h-8 flex justify-center items-center">
+                                <svg width="1em" height="1em" fill="none" stroke-width="0.05em" stroke="currentColor" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.14 14.74"><g ><polyline  points="7.39 0.67 1.35 7.33 7.39 14.07"/></g></svg>
+                            </label>
+                            <label for="section-{{section.id}}-input-{{nextIndex}}" class="rounded hover:bg-base-200 cursor-pointer w-8 h-8 flex justify-center items-center">
+                                <svg width="1em" height="1em" fill="none" stroke-width="0.05em" stroke="currentColor" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6.14 14.74"><g ><polyline points="0.74 14.07 6.79 7.41 0.74 0.67"/></g></svg>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
     </div>
 </div>
 {% schema %}
 {
-    "name": "Featured 10",
+    "name": "Featured 7",
     "tag": "section",
     "settings": [
         {
@@ -44,9 +130,22 @@
             "default": "/"
         }
     ],
+    "blocks": [
+        {
+            "type": "product",
+            "name": "product",
+            "settings": [
+                {
+                    "type": "product",
+                    "id": "product",
+                    "label": "Product"
+                }
+            ]
+        }
+    ],
     "presets": [
         {
-            "name": "Featured 10",
+            "name": "Featured 7",
             "blocks": []
         }
     ]

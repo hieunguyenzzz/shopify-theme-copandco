@@ -2266,6 +2266,11 @@
   dependencies:
     "has-flag" "^4.0.0"
 
+"tailwindcss-animatecss@^1.0.7":
+  "integrity" "sha512-PSGZDYSOqRNm+C/hJTMfw1pj4nprPQfbNh/wrYDC4G0R9dqtepPncIlKAFNSl7nTUFxH9ynhvBwcIul093ceXw=="
+  "resolved" "https://registry.npmjs.org/tailwindcss-animatecss/-/tailwindcss-animatecss-1.0.7.tgz"
+  "version" "1.0.7"
+
 "tailwindcss@^2.2.4", "tailwindcss@>=2.0.0", "tailwindcss@>=2.0.0 || >=3.0.0-alpha.1":
   "integrity" "sha512-WgRpn+Pxn7eWqlruxnxEbL9ByVRWi3iC10z4b6dW0zSdnkPVC4hPMSWLQkkW8GCyBIv/vbJ0bxIi9dVrl4CfoA=="
   "resolved" "https://registry.npmjs.org/tailwindcss/-/tailwindcss-2.2.17.tgz"

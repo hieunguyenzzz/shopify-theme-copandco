@@ -35,9 +35,7 @@ html,
 body {
   width: 100%;
 }
-section{
-  overflow: auto;
-}
+
 .tw-grid {
   display: grid !important;
 }

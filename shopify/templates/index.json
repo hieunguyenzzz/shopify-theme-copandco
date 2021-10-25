@@ -64,6 +64,48 @@
           "buttonText": "SHOP ALL",
           "buttonUrl": "\/"
         }
+      },
+      "featured-8": {
+        "type": "featured-8",
+        "settings": {
+         
+        }
+      },
+      "featured-9": {
+        "type": "featured-9",
+        "settings": {
+          
+        }
+      },
+      "featured-10": {
+        "type": "featured-10",
+        "settings": {
+          
+        }
+      },
+      "featured-11": {
+        "type": "featured-11",
+        "settings": {
+          
+        }
+      },
+      "featured-12": {
+        "type": "featured-12",
+        "settings": {
+          
+        }
+      },
+      "featured-13": {
+        "type": "featured-13",
+        "settings": {
+          
+        }
+      },
+      "featured-14": {
+        "type": "featured-14",
+        "settings": {
+          
+        }
       }
     },
     "order": [
@@ -74,6 +116,13 @@
       "featured-4",
       "featured-5",
       "featured-6",
-      "featured-7"
+      "featured-7",
+      "featured-8",
+      "featured-9",
+      "featured-10",
+      "featured-11",
+      "featured-12",
+      "featured-13",
+      "featured-14"
     ]
   }

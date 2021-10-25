@@ -3,7 +3,7 @@
         <div class="mb-2 text-xl">{{section.settings.sub_heading}}</div>
         <h2 class="text-6xl">{{section.settings.heading}}</h2>
         <div class="mt-20">{{section.settings.description}}</div>
-        <button class="btn btn-lg mt-6">SHOP All</button>
+        {% render 'button' url: section.settings.buttonUrl text: section.settings.buttonText class: 'mt-6' %}
     </div>
     <div class="space-y-6 flex-1">
         <div class="flex space-x-6">
@@ -33,7 +33,60 @@
     </div>
 </div>
 
-{% schema %} { "name": "Featured 2", "tag": "section", "settings": [ { "type": "text", "id": "heading", "label": "Heading", "default": "Categories" }, { "type": "text", "id": "sub_heading", "label": "Sub Heading", "default": "SHOP BY" }, { "type": "richtext",
-"id": "description", "label": "Description", "default": "
-<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, </p>" } ], "blocks": [ { "type": "article", "name": "Article", "settings": [
-{ "type": "article", "id": "article", "label": "Article" } ] } ], "presets": [ { "name": "Featured 2", "blocks": [] } ] } {% endschema %}
+{% schema %} {
+    "name":"Featured 3",
+    "tag":"section",
+    "settings":[
+       {
+          "type":"text",
+          "id":"heading",
+          "label":"Heading",
+          "default":"Best selling"
+       },
+       {
+          "type":"text",
+          "id":"sub_heading",
+          "label":"Sub Heading",
+          "default":"CHECK IT OUT"
+       },
+       {
+          "type":"richtext",
+          "id":"description",
+          "label":"Description",
+          "default":"<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, </p>"
+       },
+        {
+            "type": "text",
+            "id": "buttonText",
+            "label": "Button Text",
+            "default": "SHOP ALL"
+        }, {
+            "type": "url",
+            "id": "buttonUrl",
+            "label": "Button Url",
+            "default": "/"
+        }
+    ],
+    "blocks":[
+       {
+          "type":"article",
+          "name":"Article",
+          "settings":[
+             {
+                "type":"article",
+                "id":"article",
+                "label":"Article"
+             }
+          ]
+       }
+    ],
+    "presets":[
+       {
+          "name":"Featured 3",
+          "blocks":[
+             
+          ]
+       }
+    ]
+ }
+ {% endschema %}

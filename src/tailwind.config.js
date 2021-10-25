@@ -11,6 +11,9 @@ module.exports = {
   theme: {
     namedGroups: ['one', 'two'],
     extend: {
+      fontFamily:{
+        heading:'var(--font-heading-family)'
+      },
       spacing: {
         header: '100px',
       },
@@ -35,6 +38,18 @@ module.exports = {
     require('./tailwind/plugins/typography'),
     require('@tailwindcss/aspect-ratio'),
     require('daisyui'),
+    require('tailwindcss-animatecss')({
+      classes: ['animate__animated', 'animate__fadeIn', 'animate__bounceIn', 'animate__lightSpeedOut'],
+      settings: {
+        animatedSpeed: 1000,
+        heartBeatSpeed: 1000,
+        hingeSpeed: 2000,
+        bounceInSpeed: 750,
+        bounceOutSpeed: 750,
+        animationDelaySpeed: 1000
+      },
+      variants: ['responsive', 'hover', 'reduced-motion'],
+    }),
   ],
   daisyui: {
     themes: [
