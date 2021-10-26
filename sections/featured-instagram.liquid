@@ -1,0 +1,31 @@
+<div class="my-24 space-y-16 text-center">
+  <h2 class="text-3xl whitespace-pre-line">{{section.settings.heading}}</h2>   
+  <div class="w-full tw-grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-px">
+    {% for i in (1..6) %}
+        <div class="relative transform hover:shadow-md hover:z-10">
+          <div class="aspect-w-1 aspect-h-1"></div>
+          {% render 'image-full'  class: '' %}
+        </div>
+    {% endfor %}
+  </div>
+</div>
+{% schema %}
+{
+    "name": "Featured instagram",
+    "tag": "section",
+    "settings": [
+        {
+          "type":"text",
+          "id":"heading",
+          "label":"Heading",
+          "default":"FOLLOW US ON INSTAGRAM"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Featured instagram",
+            "blocks": []
+        }
+    ]
+}
+{% endschema %}

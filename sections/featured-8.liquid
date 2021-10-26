@@ -1,0 +1,71 @@
+<div class="page-width my-24 tw-grid grid-cols-1 lg:grid-cols-2">
+    <div class="relative ">
+        {% render '[section]-image-full' %}
+        <div class="border absolute top-6 bottom-6 right-6 left-6"></div>
+    </div>
+    <div class="p-16 flex flex-col justify-between items-center relative isolate text-white">
+        {% render '[section]-image-full' image:section.settings.image2 %}
+        <div class="flex flex-col justify-center flex-1 py-16 isolate">
+            {% render '[section]-sub-heading' %}
+            {% render '[section]-heading'  class: 'mt-8' %}
+            {% render '[section]-description'  class: 'mt-8' %}
+        </div>
+        <div class="isolate mt-16">
+            {% render '[section]-button'  class: 'mt-6' %}
+        </div>
+    </div>
+</div>
+{% schema %}
+{
+    "name": "Featured 8",
+    "tag": "section",
+    "settings": [
+        {
+        "type":"text",
+        "id":"heading",
+        "label":"Heading",
+        "default":"Highway to the soul"
+        },
+        {
+        "type":"text",
+        "id":"sub_heading",
+        "label":"Sub Heading",
+        "default":"INTRODUCING"
+        },
+        {
+        "type":"richtext",
+        "id":"description",
+        "label":"Description",
+        "default":"<p><b>Fall & Winter 2021 Collection</b></p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><p>Pellentesque sollicitudin iaculis faucibus.</p>"
+        },{
+        "type": "text",
+        "id": "buttonText",
+        "label": "Button Text",
+        "default": "SHOP NOW"
+        }, 
+        {
+        "type": "url",
+        "id": "buttonUrl",
+        "label": "Button Url",
+        "default": "/"
+        },
+        {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image background"
+        },
+        {
+            "type": "image_picker",
+            "id": "image2",
+            "label": "Image background"
+        }
+    ],
+    
+    "presets": [
+        {
+            "name": "Featured 8",
+            "blocks": []
+        }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,34 @@
+<style>
+    .shopify-section{
+      visibility: hidden;
+      opacity: 0;
+      transform:translateY(200px);
+      transition: opacity 0.7s ease-in-out,transform 0.7s ease-in-out; 
+    }
+    .shopify-section.visible{
+      visibility: visible;
+      transform:translateY(0%);
+      opacity: 1;
+    }
+</style>
+<visible-animate data-selector=".shopify-section">
+</visible-animate>
+
+{% schema %}
+{
+  "name": "Animate sections",
+  "tag": "div",
+  "class": "hidden",
+  "settings": [
+   
+  ],
+  "presets": [
+    {
+      "name": "Animate sections",
+      "blocks": [
+       
+      ]
+    }
+  ]
+}
+{% endschema %}

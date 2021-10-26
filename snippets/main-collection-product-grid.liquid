@@ -1,0 +1,281 @@
+{{ 'template-collection.css' | asset_url | stylesheet_tag }}
+{{ 'component-loading-overlay.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-product-grid.css' | asset_url | stylesheet_tag }}
+<style>
+  select{
+    background-color: transparent;
+  }
+</style>
+<link rel="preload" href="{{ 'component-rte.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
+
+<script src="{{ 'collection-filters-form.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'filter-price.js' | asset_url }}" defer="defer"></script>
+{%- for filter in collection.filters -%}
+{%- for value in filter.active_values -%}
+    {%- assign showActiveFilter = true -%}
+{%- endfor -%}
+{% if filter.type == "price_range" %}
+    {%- if filter.min_value.value != nil or filter.max_value.value != nil -%}
+        {%- assign showActiveFilter = true -%}
+    {%- endif -%}
+{%- endif -%}
+{%- endfor -%}
+{%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+<div class="page-width collection-filters" id="main-collection-filters" data-id="{{ section.id }}">
+    {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
+        {%- assign total_active_values = 0 -%}
+        <collection-filters-form>
+            <form class="py-12" id="CollectionFiltersForm">
+                <div>
+                    <accordion-custom>
+                        <details class="appearance-none" {%- if showActiveFilter -%}
+                          open
+                        {%- endif -%} >
+                            <summary class="appearance-none pointer-events-none space-y-6">
+                                <div class="flex items-center space-x-12">
+                                    <div class="flex items-center space-x-6 ">
+                                        <div class="pointer-events-auto transform transition-transform hover:rotate-180 hover:text-base-accent-1 text-opacity-100">{% render 'icon-plus' %}</div>
+                                        <span class="text-gray-400 font-semibold hidden lg:!block" role="status">
+                                            {{ 'sections.collection_template.product_count' | t: product_count: collection.products_count, count: collection.all_products_count }}
+                                        </span>
+                                    </div>
+                                    {%- if section.settings.enable_sorting -%}
+                                        <div onclick="event.stopPropagation();">
+                                            <div class="pointer-events-auto">
+                                                <label class=" hidden" for="SortBy">{{ 'sections.collection_template.sort_by_label' | t }}</label>
+                                                <div>
+                                                    {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+                                                    <select aria-describedby="a11y-refresh-page-message" class="text-gray-400 appearance-none font-semibold pointer-events-auto" id="SortBy" name="sort_by">
+                                                        {%- for option in collection.sort_options -%}
+                                                            <option value="{{ option.value | escape }}" {% if option.value==sort_by %} selected="selected" {% endif %}>Sort by
+                                                                {{ option.name | escape }}</option>
+                                                        {%- endfor -%}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <noscript>
+                                                <button class="button button--small" type="submit">{{ 'sections.collection_template.sort_button' | t }}</button>
+                                            </noscript>
+                                        </div>
+                                    {%- endif -%}
+                                    <div class="!block flex-1"></div>
+                                    <modal-opener class="header__search pointer-events-auto" data-modal="#PopupModal-search">
+                                        <button aria-haspopup="dialog" aria-label="Search" onclick="event.stopPropagation();event.preventDefault()" role="button">
+                                            <svg aria-hidden="true" focusable="false" height="1em" role="presentation" width="1em">
+                                                <use href="#icon-search"></use>
+                                            </svg>
+                                        </button>
+                                    </modal-opener>
+                                </div>
+                               
+                                {% if showActiveFilter %}
+                                    <div class="flex flex-wrap space-x-3 pointer-events-auto" onclick="event.stopPropagation();">
+                                        {%- for filter in collection.filters -%}
+                                            {%- for value in filter.active_values -%}
+                                                <facet-remove>
+                                                    <a href="{{ value.url_to_remove }}" class="active-facets__button active-facets__button--light">
+                                                        <span class="active-facets__button-inner button button--tertiary">
+                                                            {{ value.label | escape }}
+                                                            {% render 'icon-close-small' %}
+                                                        </span>
+                                                    </a>
+                                                </facet-remove>
+                                            {%- endfor -%}
+                                            {% if filter.type == "price_range" %}
+                                                {%- if filter.min_value.value != nil or filter.max_value.value != nil -%}
+
+                                                    <facet-remove>
+                                                        <a href="{{ filter.url_to_remove }}" class="active-facets__button active-facets__button--light">
+                                                            <span class="active-facets__button-inner button button--tertiary">
+                                                                {%- if filter.min_value.value -%}
+                                                                    {{ filter.min_value.value | money }}
+                                                                {%- else -%}
+                                                                    {{ 0 | money }}
+                                                                {%-
+                          endif -%}-
+                                                                {%- if filter.max_value.value -%}
+                                                                    {{ filter.max_value.value | money }}
+                                                                {%- else -%}
+                                                                    {{
+                          filter.range_max | money }}
+                                                                {%- endif -%}
+                                                                {% render 'icon-close-small' %}
+                                                            </span>
+                                                        </a>
+                                                    </facet-remove>
+                                                {%- endif -%}
+                                            {% endif %}
+                                        {%- endfor -%}
+                                        <facet-remove>
+                                            <a href="{{ collection.url }}?sort_by={{ sort_by }}" class="active-facets__button">
+                                                <span class="active-facets__button-inner button button--secondary">{{
+                          'sections.collection_template.clear_all' | t }}</span>
+                                            </a>
+                                        </facet-remove>
+                                    </div>
+                                {% endif %}
+
+                            </summary>
+                            <div class="content mt-6">
+                                {% if section.settings.enable_filtering %}
+                                    <div class="py-6 tw-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                                        {%- unless collection.filters == empty -%}
+                                            <p class="hidden">{{ 'sections.collection_template.filter_by_label' | t }}</p>
+                                        {%- endunless -%}
+                                        {%- for filter in collection.filters -%}
+                                            {%- assign total_active_values = total_active_values | plus: filter.active_values.size -%}
+                                            {% case filter.type %}
+                                                {% when 'list' %}
+                                                    <div class="space-y-2">
+                                                        <div class="font-semibold text-xl text-gray-400">
+                                                            <label cla>{{filter.label}}</label>
+                                                        </div>
+                                                        <select name="{{filter.param_name}}" class="w-full appearance-none font-semibold">
+                                                            <option value="{{value.value}}">
+                                                                All
+                                                            </option>
+                                                            {%- for value in filter.values -%}
+                                                                <option value="{{value.value}}" {%- if value.active -%} selected {%- endif -%}>
+                                                                    {{ value.label | escape }}
+                                                                    ({{ value.count }})
+                                                                </option>
+                                                            {%- endfor -%}
+                                                        </select>
+                                                    </div>
+                                                    <!-- <details class="disclosure-has-popup facets__disclosure js-filter" data-index="{{ forloop.index }}">
+                    <summary class="facets__summary">
+                      <div>
+                        <span>{{ filter.label | escape }}</span>
+                        <span class="count-bubble">{%- if filter.active_values.size > 0 -%}{{ filter.active_values.size }}{%-
+                          endif -%}</span>
+                        {% render 'icon-caret' %}
+                      </div>
+                    </summary>
+                    <div class="facets__display">
+                      <div class="facets__header">
+                        <span class="facets__selected no-js-hidden">{{ 'sections.collection_template.filters_selected' | t:
+                          count: filter.active_values.size }}</span>
+                        <facet-remove>
+                          <a href="{{ filter.url_to_remove }}" class="facets__reset link underlined-link">
+                            {{ 'sections.collection_template.reset' | t }}
+                          </a>
+                        </facet-remove>
+                      </div>
+        
+                      <ul class="facets__list list-unstyled" role="list">
+                        {%- for value in filter.values -%}
+                        <li class="list-menu__item facets__item">
+                          <label for="Filter-{{ filter.label | escape }}-{{ forloop.index }}"
+                            class="facet-checkbox{% if value.count == 0 and value.active == false %} facet-checkbox--disabled{% endif %}">
+                            <input type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}"
+                              id="Filter-{{ filter.label | escape }}-{{ forloop.index }}" {% if value.active %}checked{% endif
+                              %} {% if value.count==0 and value.active==false %}disabled{% endif %}>
+        
+                            <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                              <rect width="16" height="16" stroke="currentColor" fill="none" stroke-width="1"></rect>
+                            </svg>
+        
+                            <svg class="icon icon-checkmark" width="11" height="7" viewBox="0 0 11 7" fill="none"
+                              xmlns="http://www.w3.org/2000/svg">
+        
+                              <path d="M1.5 3.5L2.83333 4.75L4.16667 6L9.5 1" stroke="currentColor" stroke-width="1.75"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+        
+                            </svg>
+                            {{ value.label | escape }} ({{ value.count }})
+                          </label>
+                        </li>
+                        {%- endfor -%}
+                      </ul>
+                    </div>
+                  </details> -->
+                                                {% when 'price_range' %}
+                                                <div class="space-y-2">
+                                                  <div class="font-semibold text-xl text-gray-400">
+                                                      <label cla>{{filter.label}}</label>
+                                                  </div>
+                                                  <div class="pt-3">
+                                                    {% render 'filter-price', filter: filter  %}
+                                                  </div>
+                                                </div>
+                                            {% endcase %}
+                                        {%- endfor -%}
+                                        <noscript>
+                                            <button class="facets__button button" type="submit">{{ 'sections.collection_template.filter_button' | t }}</button>
+                                        </noscript>
+                                    </div>
+
+
+                                {% endif %}
+
+                                {% if collection.current_vendor or collection.current_type %}
+                                    <input type="hidden" name="q" value="{{ collection.current_vendor }}{{ collection.current_type }}">
+                                {% endif %}
+                            </div>
+                        </details>
+                    </accordion-custom>
+                </div>
+
+            </form>
+        </collection-filters-form>
+
+    {%- endif -%}
+</div>
+<div class="relative" id="CollectionProductGrid">
+    {%- paginate collection.products by section.settings.products_per_page -%}
+        {%- if collection.products.size == 0 -%}
+            <div class="collection collection--empty page-width " id="main-collection-product-grid" data-id="{{ section.id }}">
+                <div class="loading-overlay flex justify-center w-full  h-full p-12 absolute inset-0">
+                    <div class="loading-overlay__spinner flex justify-center w-full">
+                        <svg aria-hidden="true" class="spinner" focusable="false" role="presentation" viewbox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                            <circle class="path" cx="33" cy="33" fill="none" r="30" stroke-width="6"></circle>
+                        </svg>
+                    </div>
+                </div>
+                <div class="title-wrapper center">
+                    <h2 class="title title--primary">
+                        {{ 'sections.collection_template.empty' | t }}<br>
+                        {{ 'sections.collection_template.use_fewer_filters_html' | t: link: collection.url, class: "underlined-link link" }}
+                    </h2>
+                </div>
+            </div>
+        {%- else -%}
+            <div class="collection page-width w-full">
+                <div class="loading-overlay flex justify-center p-12 w-full">
+                    <div class="loading-overlay__spinner">
+                        <svg aria-hidden="true" class="spinner" focusable="false" role="presentation" viewbox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                            <circle class="path" cx="33" cy="33" fill="none" r="30" stroke-width="6"></circle>
+                        </svg>
+                    </div>
+                </div>
+                <ul id="main-collection-product-grid" data-id="{{ section.id }}" class="
+                                  grid grid--2-col negative-margin product-grid
+                                  {% if collection.products_count < 4 %} grid--{{ collection.products_count }}-col-tablet{% else %}
+                                    {% if collection.products_count == 4 %} grid--4-col-desktop{% else %} grid--3-col-tablet grid--one-third-max grid--4-col-desktop grid--quarter-max{% endif %}
+                                  {% endif %}">
+                    {%- for product in collection.products -%}
+                        <li class="grid__item">
+                            {% render 'product-card', 
+                            product_card_product: product, 
+                            media_size: section.settings.image_ratio,
+        show_secondary_image: section.settings.show_secondary_image, add_image_padding:
+        section.settings.add_image_padding, show_vendor: section.settings.show_vendor, show_image_outline:
+        section.settings.show_image_outline %}
+                        </li>
+                    {%- endfor -%}
+                </ul>
+                {%- if paginate.pages > 1 -%}
+                    {% render 'pagination', paginate: paginate, anchor: '' %}
+                {%- endif -%}
+            </div>
+        {%- endif -%}
+    {%- endpaginate -%}
+</div>
+<div class="h-24">
+    <div></div>
+</div>

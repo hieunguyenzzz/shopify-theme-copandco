@@ -1,0 +1,85 @@
+<style>
+    .tw-grid {
+        display: grid!important;
+    }
+</style>
+<div class="">
+    <div class="page-width space-y-10">
+        {% if section.settings.title != blank %}
+            <div class="flex space-x-6 w-full">
+                <h2 class="text-4xl  flex-1 items-baseline">
+                    {{ section.settings.title | escape }}
+                </h2>
+                <div class="group flex space-x-3 items-center text-gray-500 hover:text-black">
+                    <div class="overflow-hidden text-2xl">
+                        <div class="opacity-0 transition-all transform translate-x-full group-hover:translate-x-0 group-hover:opacity-100">View all</div>
+                    </div>
+                    <a class="cursor-pointer" >
+                        <svg class="text-6xl" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2S13.1 10 12 10zM18 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2S19.1 10 18 10zM6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2S7.1 10 6 10z"></path></svg>
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+        {% case section.blocks.size %}
+            {% when 1 %}
+                <ul class="tw-grid w-full gap-10" role="list">
+            {% when 2 %}
+                <ul class="tw-grid md:grid-cols-2 w-full gap-10" role="list">
+            {% when 3 %}
+                <ul class="tw-grid lg:grid-cols-3 w-full gap-10" role="list">
+            {% when 4 %}
+                <ul class="tw-grid md:grid-cols-2 lg:grid-cols-4 w-full gap-10" role="list">
+            {% else %}
+            <ul class="tw-grid md:grid-cols-2  w-full gap-10" role="list">
+        {% endcase %}
+        
+            {%- for block in section.blocks -%}
+                <li {{ block.shopify_attributes }} class="">
+                    <a href="{{block.settings.collection.collection.url}}" class="page-width relative h-[326px] group flex flex-col items-center justify-center ">
+                        <img srcset="{%- if block.settings.collection.collection.image.width >= 165 -%}{{ block.settings.collection.collection.image | img_url: '165x' }} 165w,{%- endif -%} {%- if block.settings.collection.collection.image.width >= 330 -%}{{ block.settings.collection.collection.image | img_url: '330x' }} 330w,{%- endif -%} {%- if block.settings.collection.image.width >= 535 -%}{{ block.settings.collection.image | img_url: '535x' }} 535w,{%- endif -%} {%- if block.settings.collection.image.width >= 720 -%}{{ block.settings.collection.collection.image | img_url: '720x' }} 720w,{%- endif -%} {%- if block.settings.collection.collection.image.width >= 940 -%}{{ block.settings.collection.collection.image | img_url: '940x' }} 940w,{%- endif -%} {%- if block.settings.collection.image.width >= 1440 -%}{{ block.settings.collection.image | img_url: '1440x' }} 1440w,{%- endif -%} {%- if block.settings.collection.image.width >= 1880 -%}{{ block.settings.collection.image | img_url: '1880x' }} 1880w{%- endif -%}" src="{{ block.settings.collection.image | img_url: '533x' }}" sizes="(min-width: 1100px){% if section.blocks.size > 1 %}535px{% else %}940px{% endif %}, (min-width: 750px) {% if section.blocks.size > 1 %}calc((100vw - 10rem) / 2){% else %}calc(100vw - 10rem){% endif %}, calc(100vw - 3rem)" alt="{{ block.settings.collection.heading | escape }}" height="{{ block.settings.collection.image.height }}" width="{{ block.settings.collection.image.width }}" loading="lazy" class="motion-reduce absolute inset-0 object-cover w-full h-full z-[-1]">
+                        <div class="absolute !block inset-0 w-full h-full z-[-1] opacity-20 group-hover:opacity-40 bg-white transition-opacity"></div>
+                        <div class="space-y-6 text-center text-white">
+                            <div class="text-4xl font-semibold group-hover:text-black ">
+                                {{block.settings.collection.title | escape}} ({{block.settings.collection.products_count}})
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            {%- endfor -%}
+        </ul>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Grid collection",
+    "class": "spaced-section",
+    "tag": "section",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "collection",
+            "name": "Collection",
+            "settings": [
+                {
+                    "type": "collection",
+                    "id": "collection",
+                    "label": "Collection"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Grid collection",
+            "blocks": []
+        }
+    ]
+}
+{% endschema %}

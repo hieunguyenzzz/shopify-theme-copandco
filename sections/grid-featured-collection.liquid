@@ -1,0 +1,137 @@
+<style>
+    .tw-grid {
+        display: grid!important;
+    }
+</style>
+<div class="">
+    <div class="page-width space-y-10">
+        <div class="flex space-x-6 w-full">
+            <h2 class="text-4xl  flex-1 items-baseline">
+                {{ section.settings.collection.title | escape }}
+            </h2>
+            <div class="group flex space-x-3 items-center text-gray-500 hover:text-black">
+                <div class="overflow-hidden text-2xl">
+                    <div class="opacity-0 transition-all transform translate-x-full group-hover:translate-x-0 group-hover:opacity-100">View all</div>
+                </div>
+                <a href="{{section.settings.collection.url}}" class="cursor-pointer" >
+                    <svg class="text-6xl" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2S13.1 10 12 10zM18 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2S19.1 10 18 10zM6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2S7.1 10 6 10z"></path></svg>
+                </a>
+            </div>
+        </div>
+        <ul class="tw-grid md:grid-cols-2 lg:grid-cols-4 w-full gap-10" role="list">
+            {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
+              <li class="">
+                {% render 'product-card',
+                  product_card_product: product,
+                  media_size: section.settings.image_ratio,
+                  show_secondary_image: section.settings.show_secondary_image,
+                  add_image_padding: section.settings.add_image_padding,
+                  show_vendor: section.settings.show_vendor,
+                  show_image_outline: section.settings.show_image_outline
+                %}
+              </li>
+            {%- else -%}
+              {%- for i in (1..4) -%}
+                <li class="">
+                  {% render 'product-card-placeholder' %}
+                </li>
+              {%- endfor -%}
+            {%- endfor -%}
+          </ul>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Grid featured collection",
+    "class": "spaced-section",
+    "tag": "section",
+    "settings": [
+    {
+        "type": "text",
+        "id": "title",
+        "default": "Featured collection",
+        "label": "t:sections.featured-collection.settings.title.label"
+      },
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "t:sections.featured-collection.settings.collection.label"
+      },
+      {
+        "type": "range",
+        "id": "products_to_show",
+        "min": 2,
+        "max": 12,
+        "step": 2,
+        "default": 4,
+        "label": "t:sections.featured-collection.settings.products_to_show.label"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_view_all",
+        "default": true,
+        "label": "t:sections.featured-collection.settings.show_view_all.label"
+      },
+      {
+        "type": "checkbox",
+        "id": "swipe_on_mobile",
+        "default": false,
+        "label": "t:sections.featured-collection.settings.swipe_on_mobile.label"
+      },
+      {
+        "type": "header",
+        "content": "t:sections.featured-collection.settings.header.content"
+      },
+      {
+        "type": "select",
+        "id": "image_ratio",
+        "options": [
+          {
+            "value": "adapt",
+            "label": "t:sections.featured-collection.settings.image_ratio.options__1.label"
+          },
+          {
+            "value": "portrait",
+            "label": "t:sections.featured-collection.settings.image_ratio.options__2.label"
+          },
+          {
+            "value": "square",
+            "label": "t:sections.featured-collection.settings.image_ratio.options__3.label"
+          }
+        ],
+        "default": "adapt",
+        "label": "t:sections.featured-collection.settings.image_ratio.label"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_secondary_image",
+        "default": true,
+        "label": "t:sections.featured-collection.settings.show_secondary_image.label"
+      },
+      {
+        "type": "checkbox",
+        "id": "add_image_padding",
+        "default": false,
+        "label": "t:sections.featured-collection.settings.add_image_padding.label"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_image_outline",
+        "default": true,
+        "label": "t:sections.featured-collection.settings.show_image_outline.label"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "default": false,
+        "label": "t:sections.featured-collection.settings.show_vendor.label"
+      }
+    ],
+    "presets": [
+        {
+            "name": "Grid featured collection"
+        }
+    ]
+}
+{% endschema %}

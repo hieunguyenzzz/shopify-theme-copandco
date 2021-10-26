@@ -1,0 +1,336 @@
+{%- assign component = block | default: section -%}
+{%- assign id = component.id -%}
+<style>
+  .{{id}}-multicolumn .title {
+    margin: 0;
+  }
+
+  .{{id}}-multicolumn.no-heading .title {
+    display: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    .{{id}}-multicolumn.no-heading.background-secondary {
+      padding-top: 5rem;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .{{id}}-multicolumn.no-heading:not(.background-secondary) {
+      margin-top: 6rem;
+    }
+  }
+
+  .{{id}}-multicolumn.background-secondary .title-wrapper-with-link {
+    margin-top: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .{{id}}-multicolumn .title-wrapper-with-link {
+      margin-bottom: 3rem;
+    }
+  }
+
+  .{{id}}-multicolumn-card__image-wrapper--third-width {
+    width: 33%;
+  }
+
+  .{{id}}-multicolumn-card__image-wrapper--half-width {
+    width: 50%;
+  }
+  .{{id}}-multicolumn-list__item{
+    padding: 1em;
+  }
+ 
+  .{{id}}-multicolumn-list__item h3{
+    font-weight: bold;
+  }
+  .{{id}}-multicolumn-list__item.center
+    .{{id}}-multicolumn-card__image-wrapper:not(.{{id}}-multicolumn-card__image-wrapper--full-width),
+  .{{id}}-multicolumn-list__item:only-child {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .{{id}}-multicolumn .button {
+    margin-top: 1.5rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .{{id}}-multicolumn .button {
+      flex:1;
+      margin-top: 0;
+    }
+  }
+
+  .{{id}}-multicolumn-list {
+    margin-bottom: 0;
+    padding: 0;
+  }
+
+  .{{id}}-multicolumn-list__item:only-child {
+    max-width: 72rem;
+  }
+
+  .{{id}}-multicolumn:not(.background-none) .{{id}}-multicolumn-card {
+    /* background: rgba(var(--color-foreground), 0.04); */
+    height: 100%;
+  }
+
+  .{{id}}-multicolumn.background-secondary .{{id}}-multicolumn-card {
+    /* background: rgb(var(--color-background)); */
+  }
+
+  .{{id}}-multicolumn.background-secondary {
+    padding: 4rem 0 5rem;
+  }
+
+  .{{id}}-multicolumn:not(.background-secondary) {
+    margin: 5rem 0;
+  }
+
+  .{{id}}-multicolumn-list h3,
+  .{{id}}-multicolumn-list p {
+    margin: 0;
+  }
+
+  .{{id}}-multicolumn-card-spacing {
+    padding-top: 2.5rem;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+  }
+
+  .{{id}}-multicolumn-card__info > :nth-child(2) {
+    /* margin-top: 1rem; */
+  }
+
+  .{{id}}-multicolumn-list__item.center .media--adapt,
+  .{{id}}-multicolumn-list__item .media--adapt img {
+    object-fit: contain;
+    width: auto;
+    position: relative;
+  }
+
+  .{{id}}-multicolumn-list__item.center .media--adapt img {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  @media screen and (max-width: 749px) {
+    
+    .{{id}}-multicolumn .page-width {
+      padding: 0;
+    }
+
+    .{{id}}-multicolumn-list {
+      margin: 0;
+      width: 100%;
+    }
+
+    .{{id}}-multicolumn-list__item {
+      margin: 0 0 1rem;
+      padding: 0;
+    }
+
+    .{{id}}-multicolumn-list:not(.slider) {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    .{{id}}-multicolumn-list.slider .{{id}}-multicolumn-list__item {
+      width: calc(100% - 3rem);
+    }
+
+    .{{id}}-multicolumn-list.slider .{{id}}-multicolumn-list__item + .{{id}}-multicolumn-list__item {
+      padding-left: 0.5rem;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    {%- if component.settings.show_line_separator -%}
+      .{{id}}-multicolumn-list__item:not(:first-child){
+        border-left: 1px solid #cecece;
+      }
+    {%- endif -%}
+    
+    .{{id}}-multicolumn-list.slider,
+    .{{id}}-multicolumn-list.grid--4-col-desktop {
+      padding: 0;
+      flex-wrap: nowrap
+    }
+
+    .{{id}}-multicolumn-list__item,
+    .grid--4-col-desktop .{{id}}-multicolumn-list__item {
+      /* padding-bottom: 0; */
+      flex:1
+    }
+
+    .grid--2-col-tablet .{{id}}-multicolumn-list__item {
+      /* margin-top: 1rem; */
+      max-width: 50%;
+    }
+
+    .background-none .grid--2-col-tablet .{{id}}-multicolumn-list__item {
+      margin-top: 0;
+    }
+
+    .grid--2-col-tablet .{{id}}-multicolumn-list__item:nth-of-type(-n + 2) {
+      margin-top: 0;
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .grid--2-col-tablet.grid--4-col-desktop .{{id}}-multicolumn-list__item {
+      max-width: 25%;
+    }
+
+    .grid--2-col-tablet.grid--4-col-desktop
+      .{{id}}-multicolumn-list__item:nth-of-type(-n + 4) {
+      margin-top: 0;
+    }
+  }
+
+  .background-none .{{id}}-multicolumn-card-spacing {
+    padding: 0;
+    margin: 0;
+  }
+
+  .{{id}}-multicolumn-card__info {
+    padding: 2.5rem 2.5rem;
+  }
+
+  .background-none .{{id}}-multicolumn-card__info {
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .background-none .{{id}}-multicolumn-card__image-wrapper + .{{id}}-multicolumn-card__info {
+    padding-top: 2.5rem;
+  }
+
+  .background-none .slider .{{id}}-multicolumn-card__info {
+    padding-left: 0.5rem;
+  }
+
+  .background-none
+    .slider
+    .{{id}}-multicolumn-card__image-wrapper
+    + .{{id}}-multicolumn-card__info {
+    padding-left: 1.5rem;
+  }
+
+  .background-none
+    .{{id}}-multicolumn-list:not(.slider)
+    .center
+    .{{id}}-multicolumn-card__info {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .background-none .{{id}}-multicolumn-card__image-wrapper {
+      margin-left: 1.5rem;
+      margin-right: 1.5rem;
+    }
+
+    .background-none .{{id}}-multicolumn-list .{{id}}-multicolumn-card__info,
+    .background-none
+      .{{id}}-multicolumn-list:not(.slider)
+      .center
+      .{{id}}-multicolumn-card__info {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+</style>
+<link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'component-slider.css' | asset_url | stylesheet_tag }}</noscript>
+
+<div class="{{id}}-multicolumn background-{{ component.settings.background_style }}{% if component.settings.title == blank %} no-heading{% endif %}">
+  <div class="page-width">
+    <div class="title-wrapper-with-link title-wrapper--self-padded-mobile{% if component.settings.title == blank %} title-wrapper-with-link--no-heading{% endif %}">
+      <h2 class="title">
+        {{ component.settings.title | escape }}
+      </h2>
+      {%- if component.settings.button_label != blank and component.settings.swipe_on_mobile -%}
+        <a href="{{ component.settings.button_link }}" class="link underlined-link large-up-hide">{{ component.settings.button_label | escape }}</a>
+      {%- endif -%}
+    </div>
+    <slider-component class="slider-mobile-gutter">
+      <ul class="{{id}}-multicolumn-list grid grid--1-col{% if component.blocks.size > 3 and component.settings.image_width != 'full' %} grid--2-col-tablet grid--4-col-desktop{% elsif component.blocks.size > 3 and component.settings.image_width == 'full' %} grid--2-col-tablet{% else %} grid--3-col-tablet{% endif %}{% if component.settings.swipe_on_mobile and component.blocks.size > 1 %} slider slider--mobile grid--peek{% endif %}"
+        id="Slider-{{ component.id }}"
+        role="list"
+      >
+        {%- liquid
+          assign highest_ratio = 0
+          for block in component.blocks
+            if block.settings.image.aspect_ratio > highest_ratio
+              assign highest_ratio = block.settings.image.aspect_ratio
+            endif
+          endfor
+        -%}
+        {%- for block in component.blocks -%}
+          <li class="{{id}}-multicolumn-list__item grid__item{% if component.settings.swipe_on_mobile %} slider__slide{% endif %}{% if component.settings.column_alignment == 'center' %} center{% endif %}" {{ block.shopify_attributes }}>
+            <div class="{{id}}-multicolumn-card">
+              {%- if block.settings.image != blank -%}
+                {% if component.settings.image_ratio == 'adapt' or component.settings.image_ratio == 'circle' %}
+                  {% assign spaced_image = true %}
+                {% endif %}
+                <div class="{{id}}-multicolumn-card__image-wrapper {{id}}-multicolumn-card__image-wrapper--{{ component.settings.image_width }}-width{% if component.settings.image_width != 'full' or spaced_image %} {{id}}-multicolumn-card-spacing{% endif %}">
+                  <div class="media media--transparent media--{{ component.settings.image_ratio }}"
+                   >
+                    <img
+                      srcset="{%- if block.settings.image.width >= 275 -%}{{ block.settings.image | img_url: '275x' }} 275w,{%- endif -%}
+                        {%- if block.settings.image.width >= 550 -%}{{ block.settings.image | img_url: '550x' }} 550w,{%- endif -%}
+                        {%- if block.settings.image.width >= 710 -%}{{ block.settings.image | img_url: '710x' }} 710w,{%- endif -%}
+                        {%- if block.settings.image.width >= 1420 -%}{{ block.settings.image | img_url: '1420x' }} 1420w,{%- endif -%}"
+                      src="{{ block.settings.image | img_url: '550x' }}"
+                      sizes="(min-width: 990px) {% if component.blocks.size <= 2 %}710px{% else %}550px{% endif %},
+                        (min-width: 750px) {% if component.blocks.size == 1 %}710px{% else %}550px{% endif %},
+                        calc(100vw - 30px)"
+                      alt="{{ block.settings.title }}"
+                      height="{{ block.settings.image.height }}"
+                      width="{{ block.settings.image.width }}"
+                      loading="lazy"
+                    >
+                  </div>
+                </div>
+              {%- endif -%}
+              <div class="{{id}}-multicolumn-card__info">
+                {%- if block.settings.title != blank -%}
+                  <h3>{{ block.settings.title | escape }}</h3>
+                {%- endif -%}
+                {%- if block.settings.text != blank -%}
+                  <div class="rte mt-3">{{ block.settings.text }}</div>
+                {%- endif -%}
+              </div>
+            </div>
+          </li>
+        {%- endfor -%}
+      </ul>
+
+      {%- if component.settings.swipe_on_mobile -%}
+        <div class="slider-buttons no-js-hidden medium-hide{% if component.blocks.size < 2 %} small-hide{% endif %}">
+          <div class="slider-counter caption">
+            <span class="slider-counter--current">1</span>
+            <span aria-hidden="true"> / </span>
+            <span class="visually-hidden">{{ 'accessibility.of' | t }}</span>
+            <span class="slider-counter--total">{{ component.blocks.size }}</span>
+          </div>
+          <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="{{ 'accessibility.previous_slide' | t }}">{% render 'icon-caret' %}</button>
+          <button type="button" class="slider-button slider-button--next" name="next" aria-label="{{ 'accessibility.next_slide' | t }}">{% render 'icon-caret' %}</button>
+        </div>
+      {%- endif -%}
+    </slider-component>
+    <div class="center{% if component.settings.swipe_on_mobile %} small-hide medium-hide{% endif %}">
+      {%- if component.settings.button_label != blank -%}
+        <a class="button button--primary"{% if component.settings.button_link == blank %} aria-disabled="true" role="link"{% else %} href="{{ component.settings.button_link }}"{% endif %}>
+          {{ component.settings.button_label | escape }}
+        </a>
+      {%- endif-%}
+    </div>
+  </div>
+</div>
+

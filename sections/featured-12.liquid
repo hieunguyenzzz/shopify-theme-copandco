@@ -1,0 +1,79 @@
+<div class="page-width my-24 space-x-24 flex items-center`">
+    <div class="flex-1  justify-center relative">
+        {% render '[section]-sub-heading'  class: 'mt-8' %}
+        {% render '[section]-heading'  class: 'mt-8' %}
+        {% render '[section]-description'  class: 'mt-8' %}
+        <div class="mt-12 space-y-3">
+            <div class="text-lg font-semibold">SUBTILE</div>
+            <p>
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+                euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad
+                minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex
+                ea commodo consequat.
+            </p>
+            <div class="text-lg font-semibold">SUBTILE</div>
+            <p>
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+                euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad
+                minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex
+                ea commodo consequat.
+            </p>
+        </div>
+        {% render '[section]-button'  class: 'mt-6' %}
+    </div>
+    <div class="flex-1 flex relative">
+        <div></div>
+        {% render '[section]-image-full'  class: '' %}
+    </div>
+    
+   
+</div>
+{% schema %}
+{
+    "name": "Featured 12",
+    "tag": "section",
+    "settings": [
+        {
+        "type":"text",
+        "id":"heading",
+        "label":"Heading",
+        "default":"Everyday Jewelry Essential"
+        },
+        {
+        "type":"text",
+        "id":"sub_heading",
+        "label":"Sub Heading",
+        "default":"BY YOU"
+        },
+        {
+        "type":"richtext",
+        "id":"description",
+        "label":"Description",
+        "default":"<p>We design jewelry that you can wear every single day & complete your look for every occasion</p>"
+        },{
+        "type": "text",
+        "id": "buttonText",
+        "label": "Button Text",
+        "default": "LEAR MORE"
+        }, 
+        {
+        "type": "url",
+        "id": "buttonUrl",
+        "label": "Button Url",
+        "default": "/"
+        },
+        {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image background"
+        }
+    ],
+    
+    "presets": [
+        {
+            "name": "Featured 12",
+            "blocks": []
+        }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,60 @@
+{% comment %}
+    Renders a product card
+
+    Accepts:
+    - product_card_product: {Object} Product Liquid object (optional)
+    - media_size: {String} Size of the product image card. Values are "square" and "portrait". Default is "square" (optional)
+    - show_secondary_image: {Boolean} Show the secondary image on hover. Default: false (optional)
+    - add_image_padding: {Boolean} Enables padding on the image to space out the grid
+    - show_vendor: {Boolean} Show the product vendor. Default: false
+
+    Usage:
+    {% render 'localization-form' %}
+{% endcomment %}
+
+<noscript>
+    {%- form 'localization', id: 'CountryFormNoScript', class: 'localization-form' -%}
+        <div class="localization-form__select">
+            <h2 class="visually-hidden" id="FooterCountryLabelNoScript">{{ 'localization.country_label' | t }}</h2>
+            <select aria-labelledby="FooterCountryLabelNoScript" class="localization-selector link" name="country_code">
+                {%- for country in localization.available_countries -%}
+                    <option value="{{ country.iso_code }}" {%- if country.iso_code == localization.country.iso_code %} selected {% endif %}>
+                        ({{ country.currency.iso_code }}
+                        {{ country.currency.symbol }})
+                    </option>
+                {%- endfor -%}
+            </select>
+            {% render 'icon-caret' %}
+        </div>
+        <button class="button button--tertiary">{{ 'localization.update_country' | t }}</button>
+    {%- endform -%}
+</noscript>
+<localization-form>
+    {%- form 'localization', id: 'CountryForm'  -%}
+        <div class="no-js-hidden">
+            {% comment %} <h2 class="caption-large" id="FooterCountryLabel">{{ 'localization.country_label' | t }}</h2> {% endcomment %}
+            <div class="group flex items-center h-[100px]  relative">
+                <button aria-controls="FooterCountryList" aria-describedby="FooterCountryLabel" aria-expanded="false" class="flex space-x-2 items-center px-2 py-1 border border-black" type="button">
+                    {{ localization.country.currency.symbol }}
+                    {{ localization.country.currency.iso_code }}
+                    <div class="text-lg ml-2">{% render 'icon-caret' %}</div>
+                </button>
+                <div class="absolute top-0 pt-[100px] lg:pt-[100px] pointer-events-none group-hover:pointer-events-auto opacity-0 group-hover:block group-hover:opacity-100 mt-8 group-hover:mt-0 transition-all duration-300 ease-in-out right-0">
+                    <div id="CountryList" role="list">
+                        <ul class="text-xs shadow-lg bg-white flex flex-col top-header px-6 py-3 text-black">
+                            {%- for country in localization.available_countries -%}
+                                <li class="leading-extra-loose flex flex-col items-start py-2" tabindex="-1">
+                                    <a class="inline-block text-effect-1 truncate text-h7 {% if country.iso_code == localization.country.iso_code %} text-primary{% endif %} focus-inset" href="#" {% if country.iso_code == localization.country.iso_code %} aria-current="true" {% endif %} data-value="{{ country.iso_code }}">
+                                        <span class="localization-form__currency">{{ country.currency.symbol }}
+                                            {{ country.currency.iso_code }}</span>
+                                    </a>
+                                </li>
+                            {%- endfor -%}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="country_code" value="{{ localization.country.iso_code }}">
+        </div>
+    {%- endform -%}
+</localization-form>

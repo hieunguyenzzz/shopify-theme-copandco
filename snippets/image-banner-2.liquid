@@ -1,0 +1,366 @@
+{%- assign id = block.id |default: section.id -%}
+<style>
+  .{{id}}-banner {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  min-height: initial;
+}
+.{{id}}-banner__sub-heading{
+  display: inline-block;
+  line-height: 30px;
+    height: 30px;
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 30px;
+    padding-left: 14px;
+    padding-right: 14px;
+    font-size: 12px;
+    border-radius: 15px;
+    background-color: #171717;
+    color: #ffffff;
+
+}
+.{{id}}-banner__sub-heading span{
+  bottom: -1px;
+  position: relative;
+    font-weight: 700;
+    position: relative;
+    z-index: 10;
+}
+@media screen and (max-width: 949px) {
+  .{{id}}-banner:not(.{{id}}-banner--stacked) {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (min-width: 950px) {
+  .{{id}}-banner {
+    min-height: calc(100vh - 130px);
+    flex-direction: row;
+  }
+}
+
+@media screen and (max-width: 949px) {
+  .{{id}}-banner--stacked {
+    height: auto;
+  }
+
+  .{{id}}-banner--stacked .{{id}}-banner__media {
+    flex-direction: column;
+  }
+}
+
+.{{id}}-banner__media {
+  /* height: 100%; */
+  left: 0;
+  top: 0;
+  width: 100%;
+  position: relative;
+}
+
+.{{id}}-banner__media-half {
+  width: 50%;
+}
+
+.{{id}}-banner__media-half + .{{id}}-banner__media-half {
+  right: 0;
+  left: auto;
+}
+
+@media screen and (max-width: 949px) {
+  .{{id}}-banner--stacked .{{id}}-banner__media-half {
+    width: 100%;
+  }
+
+  .{{id}}-banner--stacked .{{id}}-banner__media-half + .{{id}}-banner__media-half {
+    order: 1;
+  }
+
+  .{{id}}-banner:not(.{{id}}-banner--adapt):not(.{{id}}-banner--stacked) > .{{id}}-banner__media {
+    height: 39rem;
+  }
+}
+
+@media screen and (min-width: 950px) {
+  .{{id}}-banner__media {
+    /* position: absolute; */
+    /* height: 100%; */
+  }
+}
+
+.{{id}}-banner--adapt {
+  height: auto;
+}
+
+@media screen and (max-width: 949px) {
+  .{{id}}-banner--stacked:not(.{{id}}-banner--adapt) .{{id}}-banner__media {
+    height: 39rem;
+  }
+
+  .{{id}}-banner::before {
+    display: none !important;
+  }
+
+  .{{id}}-banner--stacked .{{id}}-banner__media-image-half {
+    width: 100%;
+  }
+}
+
+.{{id}}-banner__media .placeholder-svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.{{id}}-banner__content {
+  padding: 0;
+  display: flex;
+  position: relative;
+  width: 100%;
+  justify-content: center;
+}
+
+@media screen and (min-width: 950px) {
+  .{{id}}-banner__content {
+    padding-bottom: 5rem;
+    padding-top: 5rem;
+  }
+}
+
+.{{id}}-banner__box {
+  border: 0;
+  padding: 8rem 3.5rem;
+  position: relative;
+  height: fit-content;
+  align-items: flex-start;
+  text-align: left;
+  width: 100%;
+}
+
+.{{id}}-banner__box > * + .{{id}}-banner__buttons {
+  margin: 0 auto;
+  margin-top: 2.3rem;
+}
+
+.{{id}}-banner__box > * + .{{id}}-banner__buttons--multiple {
+  display: flex;
+  max-width: 45rem;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+}
+
+@media screen and (min-width: 950px) {
+  .{{id}}-banner__box > * + .{{id}}-banner__buttons {
+    margin-top: 2rem;
+  }
+}
+
+.{{id}}-banner__content .button + .button {
+  margin-top: 1.5rem;
+}
+
+.{{id}}-banner__content .button {
+  height: auto;
+  margin-right: 2rem;
+}
+
+.{{id}}-banner__box > * + .{{id}}-banner__text {
+  margin-top: 1.5rem;
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+@media screen and (min-width: 950px) {
+  .{{id}}-banner__box > * + .{{id}}-banner__text {
+    margin-top: 2rem;
+  }
+}
+
+.{{id}}-banner__box > * + * {
+  margin-top: 1rem;
+}
+
+.{{id}}-banner__box > *:first-child {
+  margin-top: 0;
+}
+
+@media screen and (max-width: 949px) {
+  .{{id}}-banner__content .button {
+    flex-grow: 1;
+  }
+
+  .{{id}}-banner--stacked .{{id}}-banner__box {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 950px) {
+  .{{id}}-banner__box {
+    padding: 8rem;
+  }
+
+  .{{id}}-banner__box > .{{id}}-banner__buttons:only-child .button {
+    margin-top: 0;
+  }
+  .{{id}}-banner__heading {
+    font-size: 6rem;
+  }
+}
+
+.{{id}}-banner__heading > *,
+.{{id}}-banner__text > * {
+  word-wrap: break-word;
+}
+
+.{{id}}-banner__heading {
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+</style>
+
+{%- if section.settings.adapt_height_first_image and section.settings.image != blank -%}
+  {%- style -%}
+
+#Banner-{{id}}: : before, #Banner-{{id}}.{{id}}-banner__media::before {
+    padding-bottom: {{1 | divided_by: section.settings.image.aspect_ratio | times: 100}}%;
+    content: '';
+    display: block;
+}
+
+{%- endstyle -%}
+{%- endif -%}
+
+<div id="Banner-{{ id }}" class="{{id}}-banner{% if section.settings.stack_images_on_mobile and section.settings.image != blank and section.settings.image_2 != blank%} {{id}}-banner--stacked{% endif %}{% if section.settings.adapt_height_first_image and section.settings.image != blank %} {{id}}-banner--adapt{% endif %}">
+  <div class="{{id}}-banner__content page-width  color-{{ section.settings.color_scheme }}" style="align-items: {{ section.settings.desktop_text_box_position }};">
+    <div class="{{id}}-banner__box">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'sub_heading' -%}
+              <h3 class="{{id}}-banner__sub-heading" {{ block.shopify_attributes }}>
+                <span>{{ block.settings.sub_heading | escape }}</span>
+              </h3>
+          {%- when 'heading' -%}
+            <h2 class="{{id}}-banner__heading h1" {{ block.shopify_attributes }}>
+              <span>{{ block.settings.heading | escape }}</span>
+            </h2>
+          {%- when 'text' -%}
+            <div class="{{id}}-banner__text" {{ block.shopify_attributes }}>
+              <span>{{ block.settings.text | escape }}</span>
+            </div>
+          {%- when 'buttons' -%}
+            <div class="{{id}}-banner__buttons{% if block.settings.button_label_1 != blank and block.settings.button_link_1 != blank and block.settings.button_label_2 != blank and block.settings.button_link_2 != blank %} {{id}}-banner__buttons--multiple{% endif %}" {{ block.shopify_attributes }}>
+              {%- if block.settings.button_label_1 != blank -%}
+                <a{% if block.settings.button_link_1 != blank %} href="{{ block.settings.button_link_1 }}"{% endif %} class="button{% if block.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %}"{% if block.settings.button_link_1 == blank %} aria-disabled="true"{% endif %}>{{ block.settings.button_label_1 | escape }}</a>
+              {%- endif -%}
+              {%- if block.settings.button_label_2 != blank -%}
+                <a{% if block.settings.button_link_2 != blank %} href="{{ block.settings.button_link_2 }}"{% endif %} class="button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"{% if block.settings.button_link_2 == blank %} aria-disabled="true"{% endif %}>{{ block.settings.button_label_2 | escape }}</a>
+              {%- endif -%}
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+  {%- if section.settings.image != blank -%}
+    <div class="{{id}}-banner__media media{% if section.settings.image == blank and section.settings.image_2 == blank %} placeholder{% endif %}{% if section.settings.image_2 != blank %} {{id}}-banner__media-half{% endif %}">
+      <img srcset="{%- if section.settings.image.width >= 375 -%}{{ section.settings.image | img_url: '375x' }} 375w,{%- endif -%}
+        {%- if section.settings.image.width >= 750 -%}{{ section.settings.image | img_url: '750x' }} 750w,{%- endif -%}
+        {%- if section.settings.image.width >= 1100 -%}{{ section.settings.image | img_url: '1100x' }} 1100w,{%- endif -%}
+        {%- if section.settings.image.width >= 1500 -%}{{ section.settings.image | img_url: '1500x' }} 1500w,{%- endif -%}
+        {%- if section.settings.image.width >= 1780 -%}{{ section.settings.image | img_url: '1780x' }} 1780w,{%- endif -%}
+        {%- if section.settings.image.width >= 2000 -%}{{ section.settings.image | img_url: '2000x' }} 2000w,{%- endif -%}
+        {%- if section.settings.image.width >= 2800 -%}{{ section.settings.image | img_url: '2800x' }} 2800w{%- endif -%}"
+        sizes="{% if section.settings.image_2 != blank and section.settings.stack_images_on_mobile %}(min-width: 950px) 50vw, 100vw{% elsif section.settings.image_2 != blank %}50vw{% else %}100vw{% endif %}"
+        src="{{ section.settings.image | img_url: '750x' }}"
+        loading="lazy"
+        alt="{{ section.settings.image.alt | escape }}"
+        width="{{ section.settings.image.width }}"
+        height="{{ section.settings.image.width | divided_by: section.settings.image.aspect_ratio }}"
+        {% if section.settings.image_2 != blank %}class="{{id}}-banner__media-image-half"{% endif %}
+      >
+    </div>
+  {%- elsif section.settings.image_2 == blank -%}
+    <div class="{{id}}-banner__media media{% if section.settings.image == blank and section.settings.image_2 == blank %} placeholder{% endif %}{% if section.settings.image_2 != blank %} {{id}}-banner__media-half{% endif %}">
+      {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+    </div>
+  {%- endif -%}
+  {%- if section.settings.image_2 != blank -%}
+    <div class="{{id}}-banner__media media{% if section.settings.image != blank %} {{id}}-banner__media-half{% endif %}">
+      <img srcset="{%- if section.settings.image_2.width >= 375 -%}{{ section.settings.image_2 | img_url: '375x' }} 375w,{%- endif -%}
+        {%- if section.settings.image_2.width >= 750 -%}{{ section.settings.image_2 | img_url: '750x' }} 750w,{%- endif -%}
+        {%- if section.settings.image_2.width >= 1100 -%}{{ section.settings.image_2 | img_url: '1100x' }} 1100w,{%- endif -%}
+        {%- if section.settings.image_2.width >= 1500 -%}{{ section.settings.image_2 | img_url: '1500x' }} 1500w,{%- endif -%}
+        {%- if section.settings.image_2.width >= 1780 -%}{{ section.settings.image_2 | img_url: '1780x' }} 1780w,{%- endif -%}
+        {%- if section.settings.image_2.width >= 2000 -%}{{ section.settings.image_2 | img_url: '2000x' }} 2000w,{%- endif -%}
+        {%- if section.settings.image_2.width >= 2800 -%}{{ section.settings.image_2 | img_url: '2800x' }} 2800w{%- endif -%}"
+        sizes="{% if section.settings.image != blank and section.settings.stack_images_on_mobile %}(min-width: 950px) 50vw, 100vw{% elsif section.settings.image != blank %}50vw{% else %}100vw{% endif %}"
+        src="{{ section.settings.image_2 | img_url: '750x' }}"
+        loading="lazy"
+        alt="{{ section.settings.image_2.alt | escape }}"
+        width="{{ section.settings.image_2.width }}"
+        height="{{ section.settings.image_2.width | divided_by: section.settings.image_2.aspect_ratio }}"
+        {% if section.settings.image != blank %}class="{{id}}-banner__media-image-half"{% endif %}
+      >
+    </div>
+  {%- endif -%}
+  
+</div>
+
+   
+
+<visible-animate data-selector=".{{id}}-banner">
+  <style>
+    .{{id}}-banner{
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 1s ; 
+    }
+  
+    .{{id}}-banner.visible{
+      visibility: visible;
+      opacity: 1;
+    }
+    .{{id}}-banner__box>*{
+      visibility: hidden;
+      opacity: 0;
+      transform:translateY(100%);
+      transition: opacity 0.7s ,transform 0.7s ; 
+    }
+    .{{id}}-banner__box>*:nth-child(2){
+      transition: opacity 0.7s 0.4s,transform 0.7s 0.4s; 
+    }
+    .{{id}}-banner__box>*:nth-child(3){
+      transition: opacity 0.9s 0.6s,transform 0.9s 0.6s; 
+    }
+    .{{id}}-banner__box>*:nth-child(4){
+      transition: opacity 1.2s 0.8s,transform 1.2s 0.8s; 
+    }
+    .{{id}}-banner.visible .{{id}}-banner__box>*{
+      transform:translateY(0);
+      visibility: visible;
+      opacity: 1;
+    }
+    .{{id}}-banner  .media{
+      overflow: hidden;
+    }
+    .{{id}}-banner  .media img{
+      visibility: hidden;
+      opacity: 0;
+      transform:rotate(180deg);
+      transition: opacity 0.7s ,transform 1.5s  ; 
+      transform-origin: bottom right; 
+    }
+    .{{id}}-banner.visible .media img{
+      transform:rotate(0);
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
+</visible-animate>

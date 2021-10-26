@@ -1,0 +1,192 @@
+<div id="{{ section.id }}" class="mt-16">
+    <div class="page-width flex items-center">
+        <div class="flex-1 px-12">
+            <div class="mb-2 text-xl">{{section.settings.sub_heading}}</div>
+            <h2 class="text-6xl">{{section.settings.heading}}</h2>
+            {% render 'button' url: section.settings.buttonUrl text: section.settings.buttonText class: 'mt-6' %}
+        </div>
+        <div class="flex-1 py-4">
+            <div>{{section.settings.description}}</div>
+        </div>
+    </div>
+    <div class="mt-8 relative">
+        <scrolling-carousel>
+            {% if section.blocks.size == 0 %}
+                <ul class="carousel carousel-center space-x-6 page-width">
+                    {% for i in (1..6) %}
+                        <li class="carousel-item py-8">
+                            <div class="w-[40vw] lg:w-[20vw] relative hover:shadow-lg transition-transform hover:scale-110">
+                                <div class="pt-[145%]"></div>
+                                <div class="w-full h-full flex absolute inset-0 justify-center items-center bg-gray-100">
+                                    {{ 'collection-3' | placeholder_svg_tag }}
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                {% case section.blocks.size %}
+                    {% when 1 %}
+                        <ul class="page-width tw-grid w-full gap-10" role="list">
+                    {% when 2 %}
+                        <ul class="page-width tw-grid md:grid-cols-2 w-full gap-10" role="list">
+                    {% when 3 %}
+                        <ul class="page-width tw-grid lg:grid-cols-3 w-full gap-10" role="list">
+                    {% when 4 %}
+                        <ul class="page-width tw-grid md:grid-cols-2 lg:grid-cols-4 w-full gap-10" role="list">
+                    {% else %}
+                        <ul class="carousel carousel-center space-x-6 page-width" role="list">
+                {% endcase %}
+                {%- for block in section.blocks -%}
+                    <li class="carousel-item py-8 relative group cursor-pointer">
+                        <a href="{{block.settings.url}}" class="relative">
+                            <div class="w-[40vw] lg:w-[20vw] relative group-hover:shadow-lg transition-transform group-hover:scale-110">
+                                <div class="pt-[145%]"></div>
+                                {% render 'image-full' image: block.settings.image %}
+                            </div>
+                            <div class="absolute left-0 bottom-12 transform translate-y-1/2 duration-500 group-hover:bottom-1/2 transition-all text-center w-full flex justify-center items-center">
+                                <h4 class="text-2xl uppercase text-white">
+                                    {{block.settings.heading}}
+                                </h4>
+                            </div>
+                        </a>
+                        
+                    </li>
+                {%- endfor -%}
+                </ul>
+            {% endif %}
+            <scrolling-arrow-left hidden>
+                <button class=" absolute bottom-1/2 left-6 w-16 h-16 rounded-full bg-base-100 bg-opacity-30 hover:bg-opacity-100 hover:shadow  flex justify-center items-center text-4xl translate-y-1/2  transform rotate-180">
+                    <svg width="1em" height="1em" fill="none" stroke-width="0.03em" stroke="currentColor" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8.14 14.74"><g ><polyline  points="0.74 14.07 6.79 7.41 0.74 0.67"/></g></svg>
+                </button>
+            </scrolling-arrow-left>
+            <scrolling-arrow-right hidden>
+                <button class=" absolute bottom-1/2 right-6 w-16 h-16 rounded-full bg-base-100 bg-opacity-30 hover:bg-opacity-100 hover:shadow  flex justify-center items-center text-4xl translate-y-1/2">
+                    <svg width="1em" height="1em" fill="none" stroke-width="0.03em" stroke="currentColor" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8.14 14.74"><g ><polyline points="0.74 14.07 6.79 7.41 0.74 0.67"/></g></svg>
+                </button>
+            </scrolling-arrow-right>
+        </scrolling-carousel>
+        
+    </div>
+</div>
+{% javascript %}
+
+class ScrollingCarousel extends HTMLElement {
+    constructor() {
+        super();
+        let timer = null
+        const start = () => {
+            const sroller = this.querySelector('ul')
+            const arrowLeft = this.querySelector('scrolling-arrow-left')
+            const arrowRight = this.querySelector('scrolling-arrow-right')
+            arrowRight.addEventListener('click', () => {
+                sroller.scrollLeft = sroller.scrollLeft + sroller.clientWidth
+            })
+            arrowLeft.addEventListener('click', () => {
+                sroller.scrollLeft = sroller.scrollLeft - sroller.clientWidth
+            })
+
+            const valid = () => {
+                if (sroller.scrollLeft === 0) {
+                    arrowLeft.setAttribute('hidden', true)
+                } else {
+                    arrowLeft.removeAttribute('hidden')
+                }
+                if (sroller.scrollLeft + sroller.clientWidth === sroller.scrollWidth) {
+                    arrowRight.setAttribute('hidden', true)
+                } else {
+                    arrowRight.removeAttribute('hidden')
+                }
+            }
+            sroller.addEventListener('scroll', () => {
+                if (timer !== null) {
+                    clearTimeout(timer);
+                }
+                timer = setTimeout(valid, 150);
+            }, false);
+
+            valid()
+
+        }
+        const handleIntersection = (entries, observer) => {
+            if (!entries[0].isIntersecting) 
+                return;
+            
+
+            observer.unobserve(this);
+            start()
+        }
+        new IntersectionObserver(handleIntersection.bind(this), {
+            rootMargin: '0px 0px 500px 0px'
+        }).observe(this);
+    }
+}
+customElements.define('scrolling-carousel', ScrollingCarousel);
+
+{% endjavascript %}
+
+{% schema %}
+
+{
+    "name": "Featured 2",
+    "tag": "section",
+    "settings": [
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading",
+            "default": "Categories"
+        }, {
+            "type": "text",
+            "id": "sub_heading",
+            "label": "Sub Heading",
+            "default": "SHOP BY"
+        }, {
+            "type": "richtext",
+            "id": "description",
+            "label": "Description",
+            "default": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, </p>"
+        }, {
+            "type": "text",
+            "id": "buttonText",
+            "label": "Button Text",
+            "default": "SHOP ALL"
+        }, {
+            "type": "url",
+            "id": "buttonUrl",
+            "label": "Button Url",
+            "default": "/"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "category",
+            "name": "category",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+                }, {
+                    "type": "text",
+                    "id": "heading",
+                    "label": "Heading",
+                    "default": "CATEGORY"
+                }, {
+                    "type": "url",
+                    "id": "id",
+                    "label": "Url",
+                    "default": "/"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Featured 2",
+            "blocks": []
+        }
+    ]
+}
+
+{% endschema %}

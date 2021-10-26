@@ -1,0 +1,64 @@
+<div id="{{ section.id }}" class="mt-16 page-width tw-grid grid-cols-2  gap-x-12">
+    <div class="flex-1 relative">
+        {% render '[section]-image-full'  class: '' %}
+    </div>
+    <div class="p-16 border border-black flex-1">
+        {% render '[section]-heading'  class: '' %}
+        {% render '[section]-sub-heading'  class: 'mt-8' %}
+        {% render '[section]-description'  class: 'mt-8' %}
+        {% render '[section]-button'  class: 'mt-6' %}
+    </div>
+</div>
+
+{% schema %} {
+    "name":"Featured 5",
+    "tag":"section",
+    "settings":[
+       {
+          "type":"text",
+          "id":"heading",
+          "label":"Heading",
+          "default":"End of season Sale"
+       },
+       {
+          "type":"text",
+          "id":"sub_heading",
+          "label":"Sub Heading",
+          "default":"UP TO 50%"
+       },
+       {
+          "type":"richtext",
+          "id":"description",
+          "label":"Description",
+          "default":"<p>It’s time to sale. 10 - 50% off on selected items.</p><p>Ends 5 September.</p>"
+       },{
+            "type": "text",
+            "id": "buttonText",
+            "label": "Button Text",
+            "default": "SHOP NOW"
+        }, 
+       {
+            "type": "url",
+            "id": "buttonUrl",
+            "label": "Button Url",
+            "default": "/"
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image background"
+        }
+    ],
+    "blocks":[
+       
+    ],
+    "presets":[
+       {
+          "name":"Featured 5",
+          "blocks":[
+             
+          ]
+       }
+    ]
+ } 
+ {% endschema %}
