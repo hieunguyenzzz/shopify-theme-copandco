@@ -1,147 +1,136 @@
 {
-    "sections": {
-      "featured-banner": {
-        "type": "featured-banner",
-        "settings": {
-          "heading": "Everyday Jewelry Essentials",
-          "description": "<p>Inspired by all of the little thing in our life <\/p><p>Complete your look for every occasion<\/p>",
-          "buttonText": "SHOP ALL",
-          "buttonUrl": "\/"
-        }
-      },
-      "featured-1": {
-        "type": "featured-1",
-        "settings": {
-          "heading": "New Collection",
-          "sub_heading": "FALL WINTER 2021",
-          "description": "<p>Integer in luctus ante. Praesent tellus ligula, quis lobortis velit lacinia luctus.<\/p>"
-        }
-      },
-      "featured-2": {
-        "type": "featured-2",
-        "settings": {
-          "heading": "Categories",
-          "sub_heading": "SHOP BY",
-          "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, <\/p>"
-        }
-      },
-      "featured-3": {
-        "type": "featured-3",
-        "settings": {
-          "heading": "Categories",
-          "sub_heading": "SHOP BY",
-          "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, <\/p>"
-        }
-      },
-      "featured-4": {
-        "type": "featured-4",
-        "settings": {
-          "heading": "DREAMCATCHER\nfor dreamer",
-          "sub_heading": "COLLECTION",
-          "description": "<p>Make your dream come true by wearing our products<\/p>"
-        }
-      },
-      "featured-5": {
-        "type": "featured-5",
-        "settings": {
-          "heading": "End of season Sale",
-          "sub_heading": "UP TO 50%",
-          "description": "<p>It’s time to sale. 10 - 50% off on selected items.<\/p><p>Ends 5 September.<\/p>"
-        }
-      },
-      "featured-6": {
-        "type": "featured-6",
-        "settings": {
-          "heading": "DON’T MISS OUR HOT SUMMER SALE"
-        }
-      },
-      "featured-7": {
-        "type": "featured-7",
-        "settings": {
-          "heading": "Must-have items",
-          "subHeading": "",
-          "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet<\/p>",
-          "buttonText": "SHOP ALL",
-          "buttonUrl": "\/"
-        }
-      },
-      "featured-8": {
-        "type": "featured-8",
-        "settings": {
-         
-        }
-      },
-      "featured-9": {
-        "type": "featured-9",
-        "settings": {
-          
-        }
-      },
-      "featured-10": {
-        "type": "featured-10",
-        "settings": {
-          
-        }
-      },
-      "featured-11": {
-        "type": "featured-11",
-        "settings": {
-          
-        }
-      },
-      "featured-12": {
-        "type": "featured-12",
-        "settings": {
-          
-        }
-      },
-      "featured-13": {
-        "type": "featured-13",
-        "settings": {
-          
-        }
-      },
-      "featured-14": {
-        "type": "featured-14",
-        "settings": {
-          
-        }
-      },"featured-15": {
-        "type": "featured-15",
-        "settings": {
-          
-        }
-      },
-      "featured-newsletter": {
-        "type": "featured-newsletter",
-        "settings": {
-          
-        }
-      },"featured-instagram": {
-        "type": "featured-instagram",
-        "settings": {
-          
-        }
+  "sections": {
+    "featured-banner": {
+      "type": "featured-banner",
+      "settings": {
+        "heading": "Everyday Jewelry Essentials",
+        "description": "<p>Inspired by all of the little thing in our life <\/p><p>Complete your look for every occasion<\/p>",
+        "buttonText": "SHOP ALL",
+        "buttonUrl": "\/"
       }
     },
-    "order": [
-      "featured-banner",
-      "featured-1",
-      "featured-2",
-      "featured-3",
-      "featured-4",
-      "featured-5",
-      "featured-6",
-      "featured-7",
-      "featured-8",
-      "featured-9",
-      "featured-10",
-      "featured-11",
-      "featured-12",
-      "featured-13",
-      "featured-14",
-      "featured-15",
-      "featured-newsletter",
-      "featured-instagram"
-    ]
-  }
+    "featured-1": {
+      "type": "featured-1",
+      "settings": {
+        "heading": "New Collection",
+        "sub_heading": "FALL WINTER 2021",
+        "description": "<p>Integer in luctus ante. Praesent tellus ligula, quis lobortis velit lacinia luctus.<\/p>"
+      }
+    },
+    "featured-2": {
+      "type": "featured-2",
+      "settings": {
+        "heading": "Categories",
+        "sub_heading": "SHOP BY",
+        "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, <\/p>"
+      }
+    },
+    "featured-3": {
+      "type": "featured-3",
+      "settings": {
+        "heading": "Categories",
+        "sub_heading": "SHOP BY",
+        "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, <\/p>"
+      }
+    },
+    "featured-4": {
+      "type": "featured-4",
+      "settings": {
+      }
+    },
+    "featured-5": {
+      "type": "featured-5",
+      "settings": {
+        "heading": "End of season Sale",
+        "sub_heading": "UP TO 50%",
+        "description": "<p>It’s time to sale. 10 - 50% off on selected items.<\/p><p>Ends 5 September.<\/p>"
+      }
+    },
+    "featured-6": {
+      "type": "featured-6",
+      "settings": {
+        "heading": "DON’T MISS OUR HOT SUMMER SALE"
+      }
+    },
+    "featured-7": {
+      "type": "featured-7",
+      "settings": {
+        "heading": "Must-have items",
+        "subHeading": "",
+        "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet<\/p>",
+        "buttonText": "SHOP ALL",
+        "buttonUrl": "\/"
+      }
+    },
+    "featured-8": {
+      "type": "featured-8",
+      "settings": {
+      }
+    },
+    "featured-9": {
+      "type": "featured-9",
+      "settings": {
+      }
+    },
+    "featured-10": {
+      "type": "featured-10",
+      "settings": {
+      }
+    },
+    "featured-11": {
+      "type": "featured-11",
+      "settings": {
+      }
+    },
+    "featured-12": {
+      "type": "featured-12",
+      "settings": {
+      }
+    },
+    "featured-13": {
+      "type": "featured-13",
+      "settings": {
+      }
+    },
+    "featured-14": {
+      "type": "featured-14",
+      "settings": {
+      }
+    },
+    "featured-15": {
+      "type": "featured-15",
+      "settings": {
+      }
+    },
+    "featured-newsletter": {
+      "type": "featured-newsletter",
+      "settings": {
+      }
+    },
+    "featured-instagram": {
+      "type": "featured-instagram",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "featured-banner",
+    "featured-1",
+    "featured-2",
+    "featured-3",
+    "featured-4",
+    "featured-5",
+    "featured-6",
+    "featured-7",
+    "featured-8",
+    "featured-9",
+    "featured-10",
+    "featured-11",
+    "featured-12",
+    "featured-13",
+    "featured-14",
+    "featured-15",
+    "featured-newsletter",
+    "featured-instagram"
+  ]
+}
