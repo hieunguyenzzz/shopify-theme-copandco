@@ -1,100 +1,68 @@
+   
 
-{% case section.settings.type %}
-    {% when 'type_1' %}
-        {% render 'main-collection-product-grid' %}
-    {%- when 'type_2' -%}
-        {% render 'main-collection-product-grid-2' %}
-    {% else %}
-    {% render 'main-collection-product-grid' %}
-{% endcase %}
+<form id="filter-box" class="w-full pointer-events-none mt-6">
+    <div class="page-width bg-base-100 pointer-events-auto">
+      <div class="text-center  flex justify-end space-x-6">
+        <div class="py-1 border-b border-neutral flex items-center">
+          <div class="font-bold">FILTER</div>
+          <div class="px-6">(0)</div>
+          <div class="flex items-center">
+            {% include 'icon-minus' %}
+          </div>
+        </div>
+        <div class="py-1 border-b border-neutral flex items-center">
+          <div class="font-bold">SORT BY</div>
+          <div class="px-6">All products</div>
+          <div class="flex items-center">
+            {% include 'icon-plus' %}
+          </div>
+        </div>
+      </div>
+      <div class="w-full mt-10 flex space-x-6">
+        {% for i in (1..3) %}
+          <div class="flex-1">
+            <div class="font-heading text-3xl border-black">Collection</div>
+            <div class="h-px w-full bg-neutral mt-3"></div>
+            <ul class="flex flex-col space-y-4 mt-6">
+              <li>
+                <div class="text-effect-1">
+                  All collections
+                </div>
+              </li>
+              <li>
+                <div class="text-effect-1">
+                  All collections
+                </div>
+              </li>
+              <li>
+                <div class="text-effect-1">
+                  All collections
+                </div>
+              </li>
+              <li>
+                <div class="text-effect-1">
+                  All collections
+                </div>
+              </li>
+              <li>
+                <div class="text-effect-1">
+                  All collections
+                </div>
+              </li>
+            </ul>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+</form>
 
 {% schema %}
 
 {
-    "name": "t:sections.main-collection-product-grid.name",
+    "name": "Collection",
     "class": "spaced-section spaced-section--full-width",
     "settings": [
-        {
-            "type": "select",
-            "id": "type",
-            "label": "type",
-            "default": "type_1",
-            "options": [
-                {
-                    "value": "type_1",
-                    "label": "type 1"
-                }, {
-                    "value": "type_2",
-                    "label": "type 2"
-                }
-            ]
-        }, {
-            "type": "link_list",
-            "id": "menu",
-            "label": "menu"
-        }, {
-            "type": "range",
-            "id": "products_per_page",
-            "min": 8,
-            "max": 24,
-            "step": 4,
-            "default": 16,
-            "label": "t:sections.main-collection-product-grid.settings.products_per_page.label"
-        }, {
-            "type": "header",
-            "content": "t:sections.main-collection-product-grid.settings.header__3.content"
-        }, {
-            "type": "select",
-            "id": "image_ratio",
-            "options": [
-                {
-                    "value": "adapt",
-                    "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__1.label"
-                }, {
-                    "value": "portrait",
-                    "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__2.label"
-                }, {
-                    "value": "square",
-                    "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__3.label"
-                }
-            ],
-            "default": "adapt",
-            "label": "t:sections.main-collection-product-grid.settings.image_ratio.label"
-        }, {
-            "type": "checkbox",
-            "id": "show_secondary_image",
-            "default": false,
-            "label": "t:sections.main-collection-product-grid.settings.show_secondary_image.label"
-        }, {
-            "type": "checkbox",
-            "id": "add_image_padding",
-            "default": false,
-            "label": "t:sections.main-collection-product-grid.settings.add_image_padding.label"
-        }, {
-            "type": "checkbox",
-            "id": "show_image_outline",
-            "default": true,
-            "label": "t:sections.main-collection-product-grid.settings.show_image_outline.label"
-        }, {
-            "type": "checkbox",
-            "id": "show_vendor",
-            "default": false,
-            "label": "t:sections.main-collection-product-grid.settings.show_vendor.label"
-        }, {
-            "type": "header",
-            "content": "t:sections.main-collection-product-grid.settings.header__1.content"
-        }, {
-            "type": "checkbox",
-            "id": "enable_filtering",
-            "default": true,
-            "label": "t:sections.main-collection-product-grid.settings.enable_filtering.label",
-            "info": "t:sections.main-collection-product-grid.settings.enable_filtering.info"
-        }, {
-            "type": "checkbox",
-            "id": "enable_sorting",
-            "default": true,
-            "label": "t:sections.main-collection-product-grid.settings.enable_sorting.label"
-        }
+        
     ]
 }
 

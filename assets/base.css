@@ -504,21 +504,6 @@ table:not([class]) th {
   opacity: 0.7;
 }
 
-a:empty,
-ul:empty,
-dl:empty,
-div:empty,
-section:empty,
-article:empty,
-p:empty,
-h1:empty,
-h2:empty,
-h3:empty,
-h4:empty,
-h5:empty,
-h6:empty {
-  /* display: none; */
-}
 
 .link,
 .customer a {
@@ -1693,7 +1678,6 @@ input[type="checkbox"] {
   position: relative;
   height: 100%;
   transition: transform 0.15s ease-out;
-  background-color: rgb(var(--color-base-background-2),0.85);
 }
 
 .header-wrapper--border-bottom {

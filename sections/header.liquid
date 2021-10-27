@@ -84,18 +84,14 @@
   }
 </style>
 <style>
-  {
-    % if section.settings.enable_sticky_header %
-  }
+  { % if section.settings.enable_sticky_header % }
 
   #shopify-section-header {
     position: sticky;
     top: 0;
   }
 
-  {
-    % endif %
-  }
+  { % endif % }
 
   header-drawer {
     justify-self: start;
@@ -262,10 +258,8 @@
     </details-modal>
     {%- endif -%}
 
-    {%- if request.page_type == 'index' -%}
     <h1 class="header__heading flex justify-center">
       <a href="{{ routes.root_url }}" class="header__heading-link link  focus-inset w-[120px]  py-4">
-        {%- endif -%}
       {%- if section.settings.logo != blank -%}
         {%- assign image_size = section.settings.logo_width | append: 'x' -%}
         <img
@@ -279,10 +273,8 @@
           width="256" height="131"
           alt="{{ shop_name | escape }}">
       {% endif %}
-      {%- if request.page_type == 'index' -%}
       </a>
     </h1>
-    {%- endif -%}
 
     {%- if section.settings.menu != blank -%}
     <nav class=" h-full hidden xl:!block">
@@ -301,18 +293,46 @@
               class=" h-full focus-inset text-effect-1 text-gray-600 hover:text-black font-semibold uppercase flex items-center ">
               <span >Shop</span>
             </div>
-            <ul
-              class=" transform invisible absolute top-[100%] left-0  opacity-0 transition-opacity duration-500 group-hover:visible group-hover:opacity-100 bg-black text-white py-3"
-              role="list" tabindex="-1">
-              {%- for collection in collections -%}
-              <li class="group-one relative">
-                <a href="{{ collection.url }}"
-                  class="flex truncate px-6 py-3 min-w-[200px] font-semibold text-gray-400 hover:text-white text-xl">
-                  {{ collection.title | escape }}
-                </a>
-              </li>
-              {%- endfor -%}
-            </ul>
+            <div class="fixed border-t border-b border-black top-header left-0 w-full pointer-events-none opacity-0 transform invisible  transition-opacity duration-500 group-hover:visible group-hover:opacity-100 ">
+              <div class="page-width py-12 pb-20 bg-base-100 pointer-events-auto">
+                <div class="text-center tracking-[0.5em] text-lg">SHOP BY</div>
+                <div class="w-full mt-10 flex space-x-6">
+                  {% for i in (1..3) %}
+                    <div class="flex-1">
+                      <div class="font-heading text-3xl border-black">Collection</div>
+                      <div class="h-px w-full bg-neutral mt-3"></div>
+                      <ul class="flex flex-col space-y-4 mt-6">
+                        <li>
+                          <div class="text-effect-1">
+                            All collections
+                          </div>
+                        </li>
+                        <li>
+                          <div class="text-effect-1">
+                            All collections
+                          </div>
+                        </li>
+                        <li>
+                          <div class="text-effect-1">
+                            All collections
+                          </div>
+                        </li>
+                        <li>
+                          <div class="text-effect-1">
+                            All collections
+                          </div>
+                        </li>
+                        <li>
+                          <div class="text-effect-1">
+                            All collections
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
           </div>
         </li>
         {%- for link in section.settings.menu.links -%}
@@ -424,6 +444,7 @@
           </label>
         </div>
     </div>
+  
   </header>
 </{% if section.settings.enable_sticky_header %}sticky-header{% else %}div{% endif %}>
 <div id="menu-drawer" class="menu-drawer motion-reduce bg-black text-gray-400 overflow-y-scroll" tabindex="-1">
@@ -615,6 +636,10 @@
 {%- render 'cart-notification' -%}
 {%- endif -%}
 
+
+
+
+
 {% javascript %}
 
 class StickyHeader extends HTMLElement {
@@ -742,7 +767,7 @@ customElements.define('sticky-header', StickyHeader);
         {
             "type": "checkbox",
             "id": "show_line_separator",
-            "default": false,
+            "default": true,
             "label": "t:sections.header.settings.show_line_separator.label"
         },
         {
