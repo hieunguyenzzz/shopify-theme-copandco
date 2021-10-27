@@ -1,50 +1,5 @@
 {
   "sections": {
-    "banner": {
-      "type": "banner-slider",
-      "blocks": {
-        "c36dfd8b-7000-4dbb-8100-d57953fb77c1": {
-          "type": "item",
-          "settings": {
-            "heading": "The Back To School Collection",
-            "image_picker": "shopify:\/\/shop_images\/slider-school_mini-1.jpg",
-            "url": "\/",
-            "button_text": "View schoolwear",
-            "video_url": "https:\/\/vimeo.com\/45947074",
-            "video_button_text": "Play video"
-          }
-        },
-        "27192f96-d1dc-4788-8871-77700adea492": {
-          "type": "item",
-          "settings": {
-            "heading": "Fine Quality Knitwear For Women & Men",
-            "image_picker": "shopify:\/\/shop_images\/slider-knitwear_mini-1.jpg",
-            "url": "\/",
-            "button_text": "View knitwear",
-            "video_url": "https:\/\/vimeo.com\/45947074",
-            "video_button_text": "Play video"
-          }
-        },
-        "b5f7439c-222a-4fdb-a76e-8b0a53745ea8": {
-          "type": "item",
-          "settings": {
-            "heading": "The New A \/ W Shirts",
-            "image_picker": "shopify:\/\/shop_images\/slider-shirts.jpg",
-            "url": "\/",
-            "button_text": "View shirts",
-            "video_url": "",
-            "video_button_text": "Play video"
-          }
-        }
-      },
-      "block_order": [
-        "c36dfd8b-7000-4dbb-8100-d57953fb77c1",
-        "27192f96-d1dc-4788-8871-77700adea492",
-        "b5f7439c-222a-4fdb-a76e-8b0a53745ea8"
-      ],
-      "settings": {
-      }
-    },
     "product-grid": {
       "type": "main-collection-product-grid",
       "settings": {
@@ -62,7 +17,6 @@
     }
   },
   "order": [
-    "banner",
     "product-grid"
   ]
 }

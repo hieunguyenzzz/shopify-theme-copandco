@@ -1,18 +1,15 @@
-{%- capture divider -%}
-<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="12px" width="12px" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 8 4.646 2.354a.5.5 0 010-.708z" clip-rule="evenodd"></path></svg>
-{%- endcapture -%}
 {% unless request.page_type == 'index' or request.page_type == 'cart' %}
-    <nav aria-label="breadcrumbs" class=" pt-md mb-6 text-subtitle  text-gray-500 flex flex-wrap items-baseline space-x-3" role="navigation">
-        <a class="text-effect-1" href="/collections/all" title="Shop" id="breadcrumb-home">Shop</a>
+    <nav aria-label="breadcrumbs" class="container pt-md mb-6 text-subtitle uppercase" role="navigation">
+        <a class="text-effect-1" href="/collections/new-arrivals" title="Shop" id="breadcrumb-home">Shop</a>
         {% if request.page_type == 'product' %}
             {%- if collection.url -%}
-                <span aria-hidden="true" class="divider ml-1"> {{divider}} </span>
+                <span aria-hidden="true" class=" ml-1">/</span>
                 <span class="text-effect-1">{{ collection.title | link_to: collection.url }}</span>
             {%- endif -%}
-            <span aria-hidden="true" class="divider ml-1"> {{divider}} </span>
+            <span aria-hidden="true" class=" ml-1">/</span>
             <span class="breadcrumb--truncate">{{ product.title }}</span>
         {% elsif request.page_type == 'collection' and collection.handle %}
-            <span aria-hidden="true" class="divider ml-1"> {{divider}} </span>
+            <span aria-hidden="true" class=" ml-1">/</span>
 
             {% if current_tags %}
 
@@ -24,7 +21,7 @@
 
                 {{ collection.title | link_to: url }}
 
-                <span aria-hidden="true" class="divider ml-1"> {{divider}} </span>
+                <span aria-hidden="true" class=" ml-1">/</span>
 
                 {% for tag in current_tags %}
 
@@ -33,14 +30,14 @@
                     {% unless cat == tag %}
                         {% if cat_array contains cat %}
                             {% assign is_advanced_tag = true %}
-                            <span class=" font-bold">
+                            <span>
                                 {{ tag | remove_first: cat | remove_first: '_' }}
                             </span>
                         {% endif %}
                     {% endunless %}
 
                     {% if is_advanced_tag == false %}
-                        <span class=" font-bold">
+                        <span>
                             {{ tag }}
                         </span>
                     {% endif %}
@@ -52,39 +49,39 @@
                 {% endfor %}
 
             {% else %}
-                <span  class=" font-bold">{{ collection.title }}</span>
+                <span>{{ collection.title }}</span>
             {% endif %}
 
         {% elsif request.page_type == 'blog' %}
 
-            <span aria-hidden="true" class="divider ml-1"> {{divider}} </span>
+            <span aria-hidden="true" class=" ml-1">/</span>
             {% if current_tags %}
                 {{ blog.title | link_to: blog.url }}
-                <span aria-hidden="true" class="divider ml-1"> {{divider}} </span>
-                <span class=" font-bold">{{ current_tags | join: " + " }}</span>
+                <span aria-hidden="true" class=" ml-1">/</span>
+                <span>{{ current_tags | join: " + " }}</span>
             {% else %}
-                <span class=" font-bold">{{ blog.title }}</span>
+                <span>{{ blog.title }}</span>
             {% endif %}
 
         {% elsif request.page_type == 'article' %}
 
-            <span aria-hidden="true" class="divider ml-1"> {{divider}} </span>
+            <span aria-hidden="true" class=" ml-1">/</span>
             {{ blog.title | link_to: blog.url }}
-            <span aria-hidden="true" class="divider ml-1"> {{divider}} </span>
-            <span class=" font-bold">{{ article.title }}</span>
+            <span aria-hidden="true" class=" ml-1">/</span>
+            <span>{{ article.title }}</span>
 
         {% elsif request.page_type == 'page' %}
 
-            <span aria-hidden="true" class="divider ml-1"> {{divider}} </span>
-            <span class=" font-bold">{{ page.title }}</span>
+            <span aria-hidden="true" class=" ml-1">/</span>
+            <span>{{ page.title }}</span>
         {% elsif request.page_type == 'search' %}
 
-            <span aria-hidden="true" class="divider ml-1"> {{divider}} </span>
-            <spa class=" font-bold">search</span>
+            <span aria-hidden="true" class=" ml-1">/</span>
+            <span>search</span>
         {% else %}
 
-            <span aria-hidden="true" class="divider ml-1"> {{divider}} </span>
-            <span class=" font-bold">{{ page_title }}</span>
+            <span aria-hidden="true" class=" ml-1">/</span>
+            <span>{{ page_title }}</span>
 
         {% endif %}
     </nav>
@@ -94,9 +91,9 @@
             theme.breadcrumbs = {};
             theme.breadcrumbs.collection = JSON.parse(sessionStorage.breadcrumb);
             var showCollection = false;{%- if request.page_type == "product" -%}
-                var breadcrumbHTML = "<span class=\"divider ml-1\" aria-hidden=\"true\">&nbsp;/&nbsp;</span><a href=\"" + theme
+                var breadcrumbHTML = "<span class=\" ml-1\" aria-hidden=\"true\">&nbsp;/&nbsp;</span><a href=\"" + theme
                     .breadcrumbs
-                    .collection
+                    .collectiona
                     .link + "\" title=\"" + theme
                     .breadcrumbs
                     .collection
