@@ -1,5 +1,5 @@
 <div id="{{ section.id }}" class="mt-16">
-    <div class="page-width flex items-center">
+    <div class="container mx-auto flex items-center">
         <div class="flex-1 px-12">
             <div class="mb-2 text-xl">{{section.settings.sub_heading}}</div>
             <h2 class="text-6xl">{{section.settings.heading}}</h2>
@@ -12,7 +12,7 @@
     <div class="mt-8 relative">
         <scrolling-carousel>
             {% if section.blocks.size == 0 %}
-                <ul class="carousel carousel-center space-x-6 page-width">
+                <ul class="carousel carousel-center space-x-6 container mx-auto">
                     {% for i in (1..6) %}
                     <li class="carousel-item py-8 relative group cursor-pointer">
                         <a href="/" class="relative">
@@ -33,15 +33,15 @@
                 {% else %}
                 {% case section.blocks.size %}
                     {% when 1 %}
-                        <ul class="page-width tw-grid w-full gap-10" role="list">
+                        <ul class="container mx-auto tw-grid w-full gap-10" role="list">
                     {% when 2 %}
-                        <ul class="page-width tw-grid md:grid-cols-2 w-full gap-10" role="list">
+                        <ul class="container mx-auto tw-grid md:grid-cols-2 w-full gap-10" role="list">
                     {% when 3 %}
-                        <ul class="page-width tw-grid lg:grid-cols-3 w-full gap-10" role="list">
+                        <ul class="container mx-auto tw-grid lg:grid-cols-3 w-full gap-10" role="list">
                     {% when 4 %}
-                        <ul class="page-width tw-grid md:grid-cols-2 lg:grid-cols-4 w-full gap-10" role="list">
+                        <ul class="container mx-auto tw-grid md:grid-cols-2 lg:grid-cols-4 w-full gap-10" role="list">
                     {% else %}
-                        <ul class="carousel carousel-center space-x-6 page-width" role="list">
+                        <ul class="carousel carousel-center space-x-6 container mx-auto" role="list">
                 {% endcase %}
                 {%- for block in section.blocks -%}
                     <li class="carousel-item py-8 relative group cursor-pointer">

@@ -1,5 +1,5 @@
 {% unless request.page_type == 'index' or request.page_type == 'cart' %}
-    <nav aria-label="breadcrumbs" class="container pt-md mb-6 text-subtitle uppercase" role="navigation">
+    <nav aria-label="breadcrumbs" class=" pt-md mb-6 text-subtitle uppercase" role="navigation">
         <a class="text-effect-1" href="/collections/new-arrivals" title="Shop" id="breadcrumb-home">Shop</a>
         {% if request.page_type == 'product' %}
             {%- if collection.url -%}

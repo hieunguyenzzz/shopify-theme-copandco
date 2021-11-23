@@ -118,7 +118,7 @@
 
   @media screen and (max-width: 749px) {
     
-    .{{id}}-multicolumn .page-width {
+    .{{id}}-multicolumn .container mx-auto {
       padding: 0;
     }
 
@@ -249,7 +249,7 @@
 <noscript>{{ 'component-slider.css' | asset_url | stylesheet_tag }}</noscript>
 
 <div class="{{id}}-multicolumn background-{{ component.settings.background_style }}{% if component.settings.title == blank %} no-heading{% endif %}">
-  <div class="page-width">
+  <div class="container mx-auto">
     <div class="title-wrapper-with-link title-wrapper--self-padded-mobile{% if component.settings.title == blank %} title-wrapper-with-link--no-heading{% endif %}">
       <h2 class="title">
         {{ component.settings.title | escape }}

@@ -1,12 +1,12 @@
 {% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
 <div class="py-12 space-y-12">
-  <div class="page-width">
+  <div class="container mx-auto">
     {% render 'breadscumb' %}
   </div>
-  <div class="page-width space-y-6 lg:space-y-16">
+  <div class="container mx-auto space-y-6 lg:space-y-16">
     <div class="text-center">
-      <h1 class="text-center text-6xl">{{product.title}}</h1>
-      <div class="text-3xl">
+      <h1 class="text-center text-5xl lg:text-7xl font-thin">{{product.title}}</h1>
+      <div class="text-4xl">
         {%- render 'price', product: product, use_variant: true, show_badges: true, price_class: 'price--large' -%}
       </div>
     </div>

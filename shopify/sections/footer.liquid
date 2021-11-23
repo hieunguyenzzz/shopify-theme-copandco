@@ -19,7 +19,7 @@
 <footer class="footer font-semibold ">
     <div class="w-full">
         {%- if section.blocks.size > 0 or section.settings.newsletter_enable or section.settings.show_social -%}
-        <div class="footer__content-top page-width lg:flex py-12 w-full">
+        <div class="footer__content-top container mx-auto lg:flex py-12 w-full">
             {%- if section.blocks.size > 0 -%}
                 {%- liquid
                     if section.blocks.size == 9
@@ -112,11 +112,11 @@
             </div>
         </div>
     {%- endif -%}
-    <div class="page-width w-full">
+    <div class="container mx-auto w-full">
         <!-- <div class=" h-px !block bg-gray-400"></div> -->
     </div>
     <div class="footer__content-bottom w-full">
-        <div class="footer__content-bottom-wrapper page-width justify-center">
+        <div class="footer__content-bottom-wrapper container mx-auto justify-center">
             <div class="footer__column footer__localization">
                 {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
                     <noscript>

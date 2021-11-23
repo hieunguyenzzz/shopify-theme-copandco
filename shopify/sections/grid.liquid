@@ -4,7 +4,7 @@
     }
 </style>
 <div class="">
-    <div class="page-width space-y-10">
+    <div class="container mx-auto space-y-10">
         {% if section.settings.title != blank %}
             <div class="flex space-x-6 w-full">
                 <h2 class="text-4xl  flex-1 items-baseline">
@@ -35,7 +35,7 @@
         
             {%- for block in section.blocks -%}
                 <li {{ block.shopify_attributes }} class="">
-                    <a href="{{block.settings.url}}" class="page-width relative h-[326px] group flex flex-col items-center justify-center ">
+                    <a href="{{block.settings.url}}" class="container mx-auto relative h-[326px] group flex flex-col items-center justify-center ">
                         <img srcset="{%- if block.settings.image.width >= 165 -%}{{ block.settings.image | img_url: '165x' }} 165w,{%- endif -%} {%- if block.settings.image.width >= 330 -%}{{ block.settings.image | img_url: '330x' }} 330w,{%- endif -%} {%- if block.settings.image.width >= 535 -%}{{ block.settings.image | img_url: '535x' }} 535w,{%- endif -%} {%- if block.settings.image.width >= 720 -%}{{ block.settings.image | img_url: '720x' }} 720w,{%- endif -%} {%- if block.settings.image.width >= 940 -%}{{ block.settings.image | img_url: '940x' }} 940w,{%- endif -%} {%- if block.settings.image.width >= 1440 -%}{{ block.settings.image | img_url: '1440x' }} 1440w,{%- endif -%} {%- if block.settings.image.width >= 1880 -%}{{ block.settings.image | img_url: '1880x' }} 1880w{%- endif -%}" src="{{ block.settings.image | img_url: '533x' }}" sizes="(min-width: 1100px){% if section.blocks.size > 1 %}535px{% else %}940px{% endif %}, (min-width: 750px) {% if section.blocks.size > 1 %}calc((100vw - 10rem) / 2){% else %}calc(100vw - 10rem){% endif %}, calc(100vw - 3rem)" alt="{{ block.settings.heading | escape }}" height="{{ block.settings.image.height }}" width="{{ block.settings.image.width }}" loading="lazy" class="motion-reduce absolute inset-0 object-cover w-full h-full z-[-1]">
                         <div class="absolute !block inset-0 w-full h-full z-[-1] opacity-20 group-hover:opacity-40 bg-black transition-opacity"></div>
                         <div class="space-y-6 text-center text-white">
