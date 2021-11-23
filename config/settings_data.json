@@ -4,13 +4,14 @@
     "sections": {
       "announcement-bar": {
         "type": "announcement-bar",
-        "settings": {}
+        "settings": {
+        }
       },
       "header": {
         "type": "header",
         "settings": {
           "full_width": true,
-          "logo": "shopify:\/\/shop_images\/logo-dark.png",
+          "logo": "shopify:\/\/shop_images\/jewelry-02.png",
           "logo_width": 100,
           "logo_position": "middle-left",
           "menu": "main-menu",
@@ -52,6 +53,8 @@
         }
       }
     },
-    "content_for_index": []
+    "content_for_index": [
+
+    ]
   }
 }
