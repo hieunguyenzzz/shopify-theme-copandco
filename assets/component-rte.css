@@ -1,5 +1,5 @@
 .rte:after {
-  clear: both;
+  /* clear: both; */
   content: '';
   display: block;
 }
