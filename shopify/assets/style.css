@@ -3887,6 +3887,10 @@ html {
   transition-duration: 300ms;
 }
 
+.duration-1000 {
+  transition-duration: 1000ms;
+}
+
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -3901,6 +3905,13 @@ html {
 .animate__fadeIn {
   -webkit-animation-name: fadeIn;
           animation-name: fadeIn;
+}
+
+.animate__bounceIn {
+  -webkit-animation-name: bounceIn;
+          animation-name: bounceIn;
+  -webkit-animation-duration: 750ms;
+          animation-duration: 750ms;
 }
 
 @-webkit-keyframes fadeIn {
@@ -4138,6 +4149,16 @@ html {
 .group:hover .group-hover\3Ashadow-lg,.group-two:hover .group-two-hover\:shadow-lg,.group-one:hover .group-one-hover\:shadow-lg {
   --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.group:hover .group-hover\3Ashadow,.group-two:hover .group-two-hover\:shadow,.group-one:hover .group-one-hover\:shadow {
+  --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.group:hover .group-hover\3A brightness-50,.group-two:hover .group-two-hover\:brightness-50,.group-one:hover .group-one-hover\:brightness-50 {
+  --tw-brightness: brightness(.5);
+  filter: var(--tw-filter);
 }
 
 .group:focus .group-focus\3A block,.group-two:focus .group-two-focus\:block,.group-one:focus .group-one-focus\:block {

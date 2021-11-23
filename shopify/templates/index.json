@@ -6,7 +6,10 @@
         "heading": "Everyday Jewelry Essentials",
         "description": "<p>Inspired by all of the little thing in our life <\/p><p>Complete your look for every occasion<\/p>",
         "buttonText": "SHOP ALL",
-        "buttonUrl": "\/"
+        "buttonUrl": "\/",
+        "circleText": "every day jewelry estnesials•",
+        "text2": "quisque ultricies ligula lectus",
+        "text3": "a varius lorem tristique quis"
       }
     },
     "featured-1": {
@@ -14,15 +17,68 @@
       "settings": {
         "heading": "New Collection",
         "sub_heading": "FALL WINTER 2021",
-        "description": "<p>Integer in luctus ante. Praesent tellus ligula, quis lobortis velit lacinia luctus.<\/p>"
+        "description": "<p>Integer in luctus ante. Praesent tellus ligula, quis lobortis velit lacinia luctus.<\/p>",
+        "buttonText": "SHOP ALL",
+        "buttonUrl": "\/"
       }
     },
     "featured-2": {
       "type": "featured-2",
+      "blocks": {
+        "938843e4-b554-4610-acd7-c986700ffc71": {
+          "type": "category",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/jewelry-08.jpg",
+            "heading": "CATEGORY",
+            "id": "\/"
+          }
+        },
+        "c481cbc2-6442-40db-a3a1-8d0512c1905b": {
+          "type": "category",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/jewelry-05.jpg",
+            "heading": "CATEGORY",
+            "id": "\/"
+          }
+        },
+        "fecae2ac-f0d4-4c2e-8a53-b59ae552b9e1": {
+          "type": "category",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/jewelry-10.jpg",
+            "heading": "CATEGORY",
+            "id": "\/"
+          }
+        },
+        "0ebab7f7-002d-4d39-ae6c-b831e0a8fd40": {
+          "type": "category",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/jewelry-11.jpg",
+            "heading": "CATEGORY",
+            "id": "\/"
+          }
+        },
+        "4259dfcf-bfea-4e6b-ad5b-fa19cff1ee4d": {
+          "type": "category",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/jewelry-02.jpg",
+            "heading": "CATEGORY",
+            "id": "\/"
+          }
+        }
+      },
+      "block_order": [
+        "938843e4-b554-4610-acd7-c986700ffc71",
+        "c481cbc2-6442-40db-a3a1-8d0512c1905b",
+        "fecae2ac-f0d4-4c2e-8a53-b59ae552b9e1",
+        "0ebab7f7-002d-4d39-ae6c-b831e0a8fd40",
+        "4259dfcf-bfea-4e6b-ad5b-fa19cff1ee4d"
+      ],
       "settings": {
         "heading": "Categories",
         "sub_heading": "SHOP BY",
-        "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, <\/p>"
+        "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, <\/p>",
+        "buttonText": "SHOP ALL",
+        "buttonUrl": "\/"
       }
     },
     "featured-3": {
@@ -30,12 +86,19 @@
       "settings": {
         "heading": "Categories",
         "sub_heading": "SHOP BY",
-        "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, <\/p>"
+        "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, <\/p>",
+        "buttonText": "SHOP ALL",
+        "buttonUrl": "\/"
       }
     },
     "featured-4": {
       "type": "featured-4",
       "settings": {
+        "heading": "DREAMCATCHER\nfor dreamer",
+        "sub_heading": "COLLECTION",
+        "description": "<p>Make your dream come true by wearing our products<\/p>",
+        "buttonText": "SHOP NOW",
+        "buttonUrl": "\/"
       }
     },
     "featured-5": {
@@ -43,7 +106,9 @@
       "settings": {
         "heading": "End of season Sale",
         "sub_heading": "UP TO 50%",
-        "description": "<p>It’s time to sale. 10 - 50% off on selected items.<\/p><p>Ends 5 September.<\/p>"
+        "description": "<p>It’s time to sale. 10 - 50% off on selected items.<\/p><p>Ends 5 September.<\/p>",
+        "buttonText": "SHOP NOW",
+        "buttonUrl": "\/"
       }
     },
     "featured-6": {
@@ -65,51 +130,95 @@
     "featured-8": {
       "type": "featured-8",
       "settings": {
+        "heading": "Highway to the soul",
+        "sub_heading": "INTRODUCING",
+        "description": "<p><b>Fall & Winter 2021 Collection<\/b><\/p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<\/p><p>Pellentesque sollicitudin iaculis faucibus.<\/p>",
+        "buttonText": "SHOP NOW",
+        "buttonUrl": "\/"
       }
     },
     "featured-9": {
       "type": "featured-9",
       "settings": {
+        "heading": "End of season Sale",
+        "sub_heading": "UP TO 50%",
+        "description": "<p>It’s time to sale. 10 - 50% off on selected items.<\/p><p>Ends 5 September.<\/p>",
+        "buttonText": "SHOP NOW",
+        "buttonUrl": "\/"
       }
     },
     "featured-10": {
       "type": "featured-10",
       "settings": {
+        "heading": "Rated excellent",
+        "sub_heading": "BY YOU",
+        "description": "<p>It’s time to sale. 10 - 50% off on selected items.<\/p><p>Ends 5 September.<\/p>",
+        "buttonText": "SHOP NOW",
+        "buttonUrl": "\/"
       }
     },
     "featured-11": {
       "type": "featured-11",
       "settings": {
+        "heading": "This is a title",
+        "sub_heading": "COLLECTION",
+        "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam,<\/p>",
+        "buttonText": "SHOP NOW",
+        "buttonUrl": "\/"
       }
     },
     "featured-12": {
       "type": "featured-12",
       "settings": {
+        "heading": "Everyday Jewelry Essential",
+        "sub_heading": "BY YOU",
+        "description": "<p>We design jewelry that you can wear every single day & complete your look for every occasion<\/p>",
+        "buttonText": "LEAR MORE",
+        "buttonUrl": "\/"
       }
     },
     "featured-13": {
       "type": "featured-13",
       "settings": {
+        "heading": "Handcrafted jewelry",
+        "sub_heading": "SUBTITLE",
+        "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.<\/p>",
+        "buttonText": "LEAR MORE",
+        "buttonUrl": "\/"
       }
     },
     "featured-14": {
       "type": "featured-14",
       "settings": {
+        "heading": "Handcrafted jewelry",
+        "sub_heading": "SUBTITLE",
+        "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.<\/p>",
+        "buttonText": "LEAR MORE",
+        "buttonUrl": "\/"
       }
     },
     "featured-15": {
       "type": "featured-15",
       "settings": {
+        "heading": "Handcrafted jewelry",
+        "sub_heading": "NEW BLOG",
+        "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.<\/p>",
+        "buttonText": "LEAR MORE",
+        "buttonUrl": "\/"
       }
     },
     "featured-newsletter": {
       "type": "featured-newsletter",
       "settings": {
+        "heading": "Join our\nNewsletter",
+        "description": "<p>Subscribe to see the lasted updates. We also offer free shipping for your first order<\/p>",
+        "buttonText": "Submit"
       }
     },
     "featured-instagram": {
       "type": "featured-instagram",
       "settings": {
+        "heading": "FOLLOW US ON INSTAGRAM"
       }
     }
   },

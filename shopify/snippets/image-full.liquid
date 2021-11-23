@@ -1,6 +1,6 @@
 
 {% if image %}
-<img class="object-cover w-full h-full absolute inset-0 "
+<img class="object-cover w-full h-full absolute inset-0 {{class}}"
         srcset="{%- if image.width >= 375 -%}{{ image | img_url: '375x' }} 375w,{%- endif -%}
           {%- if image.width >= 750 -%}{{ image | img_url: '750x' }} 750w,{%- endif -%}
           {%- if image.width >= 1100 -%}{{ image | img_url: '1100x' }} 1100w,{%- endif -%}

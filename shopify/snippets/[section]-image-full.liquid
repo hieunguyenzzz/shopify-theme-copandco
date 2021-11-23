@@ -20,7 +20,7 @@
         width="{{ image.width }}"
         height="{{ image.width | divided_by: image.aspect_ratio }}">
 {% else %}
-  <div class="w-full h-full flex absolute inset-0 justify-center items-center bg-gray-100 brightness-50">
+  <div class="w-full h-full flex absolute inset-0 overflow-hidden p-12 justify-center items-center bg-gray-100 brightness-50">
     {{ 'collection-3' | placeholder_svg_tag }}
   </div>
 {% endif %}
