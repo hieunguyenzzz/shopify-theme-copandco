@@ -2842,6 +2842,10 @@ html {
   left: 1.25rem;
 }
 
+.right-4 {
+  right: 1rem;
+}
+
 .isolate {
   isolation: isolate;
 }
@@ -2952,12 +2956,12 @@ html {
   margin-top: -1rem;
 }
 
-.ml-1 {
-  margin-left: 0.25rem;
-}
-
 .ml-6 {
   margin-left: 1.5rem;
+}
+
+.ml-1 {
+  margin-left: 0.25rem;
 }
 
 .ml-2 {
@@ -3064,6 +3068,10 @@ html {
   height: 6rem;
 }
 
+.h-6 {
+  height: 1.5rem;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
@@ -3120,6 +3128,10 @@ html {
   width: 160px;
 }
 
+.w-\[300px\] {
+  width: 300px;
+}
+
 .w-\[120px\] {
   width: 120px;
 }
@@ -3148,6 +3160,10 @@ html {
   width: 50px;
 }
 
+.w-6 {
+  width: 1.5rem;
+}
+
 .min-w-\[200px\] {
   min-width: 200px;
 }
@@ -3174,6 +3190,10 @@ html {
 
 .max-w-6xl {
   max-width: 72rem;
+}
+
+.max-w-4xl {
+  max-width: 56rem;
 }
 
 .max-w-\[300px\] {
@@ -3209,6 +3229,11 @@ html {
 
 .translate-x-6 {
   --tw-translate-x: 1.5rem;
+  transform: var(--tw-transform);
+}
+
+.translate-x-1\/2 {
+  --tw-translate-x: 50%;
   transform: var(--tw-transform);
 }
 
@@ -3308,6 +3333,10 @@ html {
 
 .gap-px {
   gap: 1px;
+}
+
+.gap-3 {
+  gap: 0.75rem;
 }
 
 .gap-4 {
@@ -3430,22 +3459,16 @@ html {
   margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
 
-.space-x-2 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
-  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
-}
-
-.space-y-20 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(5rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(5rem * var(--tw-space-y-reverse));
-}
-
 .space-y-24 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(6rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(6rem * var(--tw-space-y-reverse));
+}
+
+.space-x-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
 .overflow-auto {
@@ -3526,11 +3549,6 @@ html {
 .border-neutral {
   --tw-border-opacity: 1;
   border-color: hsla(var(--n) / var(--tw-border-opacity));
-}
-
-.border-white {
-  --tw-border-opacity: 1;
-  border-color: rgba(255, 255, 255, var(--tw-border-opacity));
 }
 
 .bg-black {
@@ -3704,6 +3722,11 @@ html {
   padding-right: 1.5rem;
 }
 
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
 .py-1 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
@@ -3712,11 +3735,6 @@ html {
 .px-\[1rem\] {
   padding-left: 1rem;
   padding-right: 1rem;
-}
-
-.px-2 {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
 }
 
 .pt-\[3\%\] {
@@ -3757,6 +3775,14 @@ html {
 
 .pl-8 {
   padding-left: 2rem;
+}
+
+.pt-12 {
+  padding-top: 3rem;
+}
+
+.pb-24 {
+  padding-bottom: 6rem;
 }
 
 .pt-\[100px\] {
@@ -4132,6 +4158,10 @@ html {
   width: 20rem;
 }
 
+.focus-within\:w-full:focus-within {
+  width: 100%;
+}
+
 .focus-within\:border-white:focus-within {
   --tw-border-opacity: 1;
   border-color: rgba(255, 255, 255, var(--tw-border-opacity));
@@ -4344,6 +4374,11 @@ html {
     padding-left: calc(50vw + 4rem - 384px);
     padding-right: calc(50vw + 4rem - 384px);
   }
+
+  .md\:px-\[calc\(50vw\+2rem-384px\)\] {
+    padding-left: calc(50vw + 2rem - 384px);
+    padding-right: calc(50vw + 2rem - 384px);
+  }
 }
 
 @media (min-width: 1024px) {
@@ -4362,6 +4397,14 @@ html {
 
   .lg\:left-auto {
     left: auto;
+  }
+
+  .lg\:-right-2 {
+    right: -0.5rem;
+  }
+
+  .lg\:top-0 {
+    top: 0px;
   }
 
   .lg\:order-2 {
@@ -4432,6 +4475,10 @@ html {
     width: 41.666667%;
   }
 
+  .lg\:w-3 {
+    width: 0.75rem;
+  }
+
   .lg\:max-w-prose {
     max-width: 65ch;
   }
@@ -4476,6 +4523,10 @@ html {
     gap: 3rem;
   }
 
+  .lg\:gap-10 {
+    gap: 2.5rem;
+  }
+
   .lg\:space-y-16 > :not([hidden]) ~ :not([hidden]) {
     --tw-space-y-reverse: 0;
     margin-top: calc(4rem * calc(1 - var(--tw-space-y-reverse)));
@@ -4488,6 +4539,10 @@ html {
     margin-left: calc(3rem * calc(1 - var(--tw-space-x-reverse)));
   }
 
+  .lg\:bg-transparent {
+    background-color: transparent;
+  }
+
   .lg\:py-24 {
     padding-top: 6rem;
     padding-bottom: 6rem;
@@ -4496,6 +4551,16 @@ html {
   .lg\:px-\[calc\(50vw\+4rem-512px\)\] {
     padding-left: calc(50vw + 4rem - 512px);
     padding-right: calc(50vw + 4rem - 512px);
+  }
+
+  .lg\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .lg\:px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
   }
 
   .lg\:pt-24 {
@@ -4521,6 +4586,18 @@ html {
   .lg\:text-7xl {
     font-size: 4.5rem;
     line-height: 1;
+  }
+
+  .lg\:focus-within\:w-80:focus-within {
+    width: 20rem;
+  }
+
+  .lg\:focus-within\:w-full:focus-within {
+    width: 100%;
+  }
+
+  .lg\:focus\:w-80:focus {
+    width: 20rem;
   }
 }
 
@@ -4661,4 +4738,5 @@ h5,
 
 .btn {
   white-space: nowrap;
+  flex-wrap: nowrap;
 }

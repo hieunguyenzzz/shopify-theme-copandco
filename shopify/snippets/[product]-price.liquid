@@ -52,11 +52,11 @@
           </span>
         </dd>
       </div>
-      <div class="price__sale line-through text-gray-400 {%- unless compare_at_price > price %} hidden {% endunless -%}">
+      <div class="price__sale {%- unless compare_at_price > price %} hidden {% endunless -%}">
         <dt class="price__compare">
           <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
         </dt>
-        <dd class="price__compare">
+        <dd class="price__compare line-through text-gray-400 ">
           <s class="price-item price-item--regular">
             {% if settings.currency_code_enabled %}
               {{ compare_at_price | money_with_currency }}
@@ -69,8 +69,8 @@
           <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.sale_price' | t }}</span>
         </dt>
         <dd {% if show_badges == false %}class="price__last"{% endif %}>
-          <span class="price-item price-item--sale">
-            {{ money_price }}
+          <span class="price-item price-item--sale font-bold visually-hidden visually-hidden--inline">
+            now {{ money_price }}
           </span>
         </dd>
       </div>

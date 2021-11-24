@@ -110,4 +110,5 @@ h5,
 }
 .btn {
   white-space: nowrap;
+  flex-wrap: nowrap;
 }
