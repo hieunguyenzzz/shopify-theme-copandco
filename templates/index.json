@@ -6,7 +6,12 @@
         "heading": "Everyday Jewelry Essentials",
         "description": "<p>Inspired by all of the little thing in our life <\/p><p>Complete your look for every occasion<\/p>",
         "buttonText": "SHOP ALL",
-        "buttonUrl": "\/"
+        "buttonUrl": "\/",
+        "circleText": "every day jewelry estnesials•",
+        "text2": "quisque ultricies ligula lectus",
+        "text3": "a varius lorem tristique quis",
+        "image_left": "shopify:\/\/shop_images\/jewelry-02.jpg",
+        "image_right": "shopify:\/\/shop_images\/jewelry-03.jpg"
       }
     },
     "featured-1": {
@@ -14,15 +19,80 @@
       "settings": {
         "heading": "New Collection",
         "sub_heading": "FALL WINTER 2021",
-        "description": "<p>Integer in luctus ante. Praesent tellus ligula, quis lobortis velit lacinia luctus.<\/p>"
+        "description": "<p>Integer in luctus ante. Praesent tellus ligula, quis lobortis velit lacinia luctus.<\/p>",
+        "buttonText": "SHOP ALL",
+        "buttonUrl": "\/",
+        "image1": "shopify:\/\/shop_images\/jewelry-04.jpg",
+        "image2": "shopify:\/\/shop_images\/jewelry-07.jpg",
+        "image3": "shopify:\/\/shop_images\/jewelry-05.jpg"
       }
     },
     "featured-2": {
       "type": "featured-2",
+      "blocks": {
+        "28d851c0-60b6-425c-92de-a29175bfbf8f": {
+          "type": "category",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/jewelry-09.jpg",
+            "heading": "CATEGORY",
+            "id": "\/"
+          }
+        },
+        "3c497aa2-40ff-4943-9b1b-325f244a2517": {
+          "type": "category",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/jewelry-08.jpg",
+            "heading": "CATEGORY",
+            "id": "\/"
+          }
+        },
+        "8d1ecf1a-167b-4ef1-a03d-3abb334920d4": {
+          "type": "category",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/jewelry-11.jpg",
+            "heading": "CATEGORY",
+            "id": "\/"
+          }
+        },
+        "d14959f3-be99-4b77-ba3a-c80ca64ffd8e": {
+          "type": "category",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/jewelry-06.jpg",
+            "heading": "CATEGORY",
+            "id": "\/"
+          }
+        },
+        "64074021-62e0-4c9c-8017-3c025fd94477": {
+          "type": "category",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/jewelry-10.jpg",
+            "heading": "CATEGORY",
+            "id": "\/"
+          }
+        },
+        "19030842-6d12-468e-8a47-614f39647d16": {
+          "type": "category",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/jewelry-05.jpg",
+            "heading": "CATEGORY",
+            "id": "\/"
+          }
+        }
+      },
+      "block_order": [
+        "28d851c0-60b6-425c-92de-a29175bfbf8f",
+        "3c497aa2-40ff-4943-9b1b-325f244a2517",
+        "8d1ecf1a-167b-4ef1-a03d-3abb334920d4",
+        "d14959f3-be99-4b77-ba3a-c80ca64ffd8e",
+        "64074021-62e0-4c9c-8017-3c025fd94477",
+        "19030842-6d12-468e-8a47-614f39647d16"
+      ],
       "settings": {
         "heading": "Categories",
         "sub_heading": "SHOP BY",
-        "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, <\/p>"
+        "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, <\/p>",
+        "buttonText": "SHOP ALL",
+        "buttonUrl": "\/"
       }
     },
     "featured-3": {
@@ -30,12 +100,9 @@
       "settings": {
         "heading": "Categories",
         "sub_heading": "SHOP BY",
-        "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, <\/p>"
-      }
-    },
-    "featured-4": {
-      "type": "featured-4",
-      "settings": {
+        "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, <\/p>",
+        "buttonText": "SHOP ALL",
+        "buttonUrl": "\/"
       }
     },
     "featured-5": {
@@ -43,17 +110,70 @@
       "settings": {
         "heading": "End of season Sale",
         "sub_heading": "UP TO 50%",
-        "description": "<p>It’s time to sale. 10 - 50% off on selected items.<\/p><p>Ends 5 September.<\/p>"
+        "description": "<p>It’s time to sale. 10 - 50% off on selected items.<\/p><p>Ends 5 September.<\/p>",
+        "buttonText": "SHOP NOW",
+        "buttonUrl": "\/",
+        "image": "shopify:\/\/shop_images\/jewelry-09.jpg"
       }
     },
     "featured-6": {
       "type": "featured-6",
+      "blocks": {
+        "afb0108e-62b6-45f3-b27f-0f30bc37627e": {
+          "type": "product",
+          "settings": {
+            "product": "14k-bloom-earrings"
+          }
+        },
+        "2a0e7065-5deb-487b-914f-57fe02e8480f": {
+          "type": "product",
+          "settings": {
+            "product": "14k-dangling-pendant-earrings-1"
+          }
+        },
+        "e78ecc69-aac4-4216-9f6a-0e3668bb8ac1": {
+          "type": "product",
+          "settings": {
+            "product": "18k-bloom-pendant"
+          }
+        }
+      },
+      "block_order": [
+        "afb0108e-62b6-45f3-b27f-0f30bc37627e",
+        "2a0e7065-5deb-487b-914f-57fe02e8480f",
+        "e78ecc69-aac4-4216-9f6a-0e3668bb8ac1"
+      ],
       "settings": {
         "heading": "DON’T MISS OUR HOT SUMMER SALE"
       }
     },
     "featured-7": {
       "type": "featured-7",
+      "blocks": {
+        "d1049ecf-1d5a-4c72-8577-788a4b6eaef3": {
+          "type": "product",
+          "settings": {
+            "product": "18k-interlinked-earrings"
+          }
+        },
+        "7d92d5a7-2767-4857-95e2-db9af782cdc8": {
+          "type": "product",
+          "settings": {
+            "product": "18k-fluid-lines-necklace"
+          }
+        },
+        "f2e5eec9-bd23-42c0-b13a-188802c150e6": {
+          "type": "product",
+          "settings": {
+            "product": "pendant-earrings"
+          }
+        }
+      },
+      "block_order": [
+        "d1049ecf-1d5a-4c72-8577-788a4b6eaef3",
+        "7d92d5a7-2767-4857-95e2-db9af782cdc8",
+        "f2e5eec9-bd23-42c0-b13a-188802c150e6"
+      ],
       "settings": {
         "heading": "Must-have items",
         "subHeading": "",
@@ -65,51 +185,105 @@
     "featured-8": {
       "type": "featured-8",
       "settings": {
+        "heading": "Highway to the soul",
+        "sub_heading": "INTRODUCING",
+        "description": "<p><strong>Fall & Winter 2021 Collection<\/strong><\/p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<\/p><p>Pellentesque sollicitudin iaculis faucibus.<\/p>",
+        "buttonText": "SHOP NOW",
+        "buttonUrl": "\/",
+        "image": "shopify:\/\/shop_images\/jewelry-03.jpg",
+        "image2": "shopify:\/\/shop_images\/jewelry-07.jpg"
       }
     },
     "featured-9": {
       "type": "featured-9",
       "settings": {
+        "heading": "End of season Sale",
+        "sub_heading": "UP TO 50%",
+        "description": "<p>It’s time to sale. 10 - 50% off on selected items.<\/p><p>Ends 5 September.<\/p>",
+        "buttonText": "SHOP NOW",
+        "buttonUrl": "\/",
+        "image": "shopify:\/\/shop_images\/jewelry-10.jpg"
       }
     },
     "featured-10": {
       "type": "featured-10",
       "settings": {
+        "heading": "Rated excellent",
+        "sub_heading": "BY YOU",
+        "description": "<p>It’s time to sale. 10 - 50% off on selected items.<\/p><p>Ends 5 September.<\/p>",
+        "buttonText": "SHOP NOW",
+        "buttonUrl": "\/",
+        "image": "shopify:\/\/shop_images\/jewelry-03.jpg"
       }
     },
     "featured-11": {
       "type": "featured-11",
       "settings": {
+        "heading": "This is a title",
+        "sub_heading": "COLLECTION",
+        "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam,<\/p>",
+        "buttonText": "SHOP NOW",
+        "buttonUrl": "\/",
+        "image": "shopify:\/\/shop_images\/jewelry-02.jpg"
       }
     },
     "featured-12": {
       "type": "featured-12",
       "settings": {
+        "heading": "Everyday Jewelry Essential",
+        "sub_heading": "BY YOU",
+        "description": "<p>We design jewelry that you can wear every single day & complete your look for every occasion<\/p>",
+        "buttonText": "LEAR MORE",
+        "buttonUrl": "\/",
+        "image": "shopify:\/\/shop_images\/jewelry-09.jpg"
       }
     },
     "featured-13": {
       "type": "featured-13",
       "settings": {
+        "heading": "Handcrafted jewelry",
+        "sub_heading": "SUBTITLE",
+        "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.<\/p>",
+        "buttonText": "LEAR MORE",
+        "buttonUrl": "\/",
+        "image": "shopify:\/\/shop_images\/jewelry-10.jpg"
       }
     },
     "featured-14": {
       "type": "featured-14",
       "settings": {
+        "heading": "Handcrafted jewelry",
+        "sub_heading": "SUBTITLE",
+        "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.<\/p>",
+        "buttonText": "LEAR MORE",
+        "buttonUrl": "\/",
+        "image": "shopify:\/\/shop_images\/jewelry-08.jpg"
       }
     },
     "featured-15": {
       "type": "featured-15",
       "settings": {
+        "heading": "Handcrafted jewelry",
+        "sub_heading": "NEW BLOG",
+        "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.<\/p>",
+        "buttonText": "LEAR MORE",
+        "buttonUrl": "\/",
+        "image": "shopify:\/\/shop_images\/jewelry-11.jpg"
       }
     },
     "featured-newsletter": {
       "type": "featured-newsletter",
       "settings": {
+        "heading": "Join our\nNewsletter",
+        "description": "<p>Subscribe to see the lasted updates. We also offer free shipping for your first order<\/p>",
+        "buttonText": "Submit",
+        "image": "shopify:\/\/shop_images\/jewelry-07.jpg"
       }
     },
     "featured-instagram": {
       "type": "featured-instagram",
       "settings": {
+        "heading": "FOLLOW US ON INSTAGRAM"
       }
     }
   },
@@ -118,7 +292,6 @@
     "featured-1",
     "featured-2",
     "featured-3",
-    "featured-4",
     "featured-5",
     "featured-6",
     "featured-7",
