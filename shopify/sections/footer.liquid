@@ -16,7 +16,7 @@
 <noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'disclosure.css' | asset_url | stylesheet_tag }}</noscript>
 
-<footer class="footer font-semibold ">
+<footer class="footer font-semibold bg-base-200">
     <div class="w-full">
         {%- if section.blocks.size > 0 or section.settings.newsletter_enable or section.settings.show_social -%}
         <div class="footer__content-top container mx-auto lg:flex py-12 w-full">
@@ -150,7 +150,7 @@
                                         </div>
                                         <div>{% render 'icon-caret' %}</div>
                                     </button>
-                                    <ul class="disclosure__list list-unstyled" hidden id="FooterCountryList" role="list">
+                                    <ul class="disclosure__list list-unstyled bg-base-100" hidden id="FooterCountryList" role="list">
                                         {%- for country in localization.available_countries -%}
                                             <li class="disclosure__item" tabindex="-1">
                                                 <a class="link link--text disclosure__link caption-large{% if country.iso_code == localization.country.iso_code %} disclosure__link--active{% endif %} focus-inset" href="#" {% if country.iso_code == localization.country.iso_code %} aria-current="true" {% endif %} data-value="{{ country.iso_code }}">
@@ -195,7 +195,7 @@
                                         {{ localization.language.endonym_name | capitalize }}
                                         {% render 'icon-caret' %}
                                     </button>
-                                    <ul class="disclosure__list list-unstyled" hidden id="FooterLanguageList" role="list">
+                                    <ul class="disclosure__list list-unstyled bg-base-100" hidden id="FooterLanguageList" role="list">
                                         {%- for language in localization.available_languages -%}
                                             <li class="disclosure__item" tabindex="-1">
                                                 <a class="link link--text disclosure__link caption-large{% if language.iso_code == localization.language.iso_code %} disclosure__link--active{% endif %} focus-inset" href="#" hreflang="{{ language.iso_code }}" lang="{{ language.iso_code }}" {% if language.iso_code == localization.language.iso_code %} aria-current="true" {% endif %} data-value="{{ language.iso_code }}">
@@ -225,7 +225,7 @@
                 {%- if section.settings.payment_enable -%}
                     <div class="footer__payment">
                         <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
-                        <ul class="list list-payment" role="list">
+                        <ul class="list list-payment text-5xl" role="list">
                             {%- for type in shop.enabled_payment_types -%}
                                 <li class="list-payment__item">
                                     {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}

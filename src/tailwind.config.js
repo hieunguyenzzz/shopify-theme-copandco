@@ -12,6 +12,7 @@ module.exports = {
     namedGroups: ['one', 'two'],
     extend: {
       container: {
+        maxWidth:[],
         padding: {
           DEFAULT: '1rem',
           sm: '2rem',
@@ -76,8 +77,8 @@ module.exports = {
           'neutral': '#000000',
           'neutral-focus': '#5f6166',
           'neutral-content': '#ffffff',
-          'base-100': '#fcf8f2',
-          'base-200': '#f6e8d5',
+          'base-100': '#ffffff',
+          'base-200': '#fcf8f2',
           'base-300': '#ecd1ac',
           'base-content': '#000000',
           'info': '#2094f3',

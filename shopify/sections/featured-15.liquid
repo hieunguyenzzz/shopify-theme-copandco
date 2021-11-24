@@ -16,7 +16,7 @@
 <div class="mt-6 relative">
     <scrolling-carousel-{{section.id}}>
         {% if section.blocks.size == 0 %}
-            <ul class="carousel carousel-center space-x-6 container mx-auto">
+            <ul class="carousel carousel-center space-x-6 {% render '[class]-container-full'  class: '' %}">
                 {% for i in (1..6) %}
                     <li class="carousel-item py-8 flex flex-col w-[40vw] lg:w-[25vw] ">
                         <div class="w-full relative hover:shadow-lg ">
@@ -115,8 +115,6 @@
             const handleIntersection = (entries, observer) => {
                 if (!entries[0].isIntersecting) 
                     return;
-                
-
                 observer.unobserve(this);
                 start()
             }

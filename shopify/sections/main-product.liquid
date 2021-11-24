@@ -1,232 +1,348 @@
 {% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
-<div class="py-12 space-y-12">
-  <div class="container mx-auto">
-    {% render 'breadscumb' %}
-  </div>
-  <div class="container mx-auto space-y-6 lg:space-y-16">
-    <div class="text-center">
-      <h1 class="text-center text-5xl lg:text-7xl font-thin">{{product.title}}</h1>
-      <div class="text-4xl">
-        {%- render 'price', product: product, use_variant: true, show_badges: true, price_class: 'price--large' -%}
-      </div>
+<div class="space-y-20">
+  <div class="py-12 space-y-12">
+    <div class="container mx-auto">
+      {% render 'breadscumb' %}
     </div>
-    <div class="flex-col items-center flex lg:flex-row gap-12 lg:items-end">
-      <div class="flex-1 lg:sticky bottom-24 order-2 lg:order-1 w-full space-y-6">
-        <div class="uppercase text-lg font-bold">Description</div>
-        <div class="whitespace-pre-line prose">
-          {{product.description}}
+    <div class="container mx-auto space-y-6 lg:space-y-16">
+      <div class="text-center">
+        <h1 class="text-center text-5xl lg:text-7xl font-thin">{{product.title | escape}}</h1>
+        <div class="text-4xl">
+          {%- render 'price', product: product, use_variant: true, show_badges: true, price_class: 'price--large' -%}
         </div>
       </div>
-      <div class="lg:w-5/12 relative overflow-hidden min-h-full order-1 lg:order-2 w-full">
-        <div class="lg:hidden relative">
-          <div class="absolute inset-0">
-            <product-slider>
-              <div class="keen-slider" id="my-keen-slider">
+      <div class="flex-col items-center flex lg:flex-row gap-12 lg:items-start">
+        <div class="flex-1 lg:sticky top-header lg:pt-24 order-2 lg:order-1 w-full space-y-6">
+          <div class="uppercase text-lg font-bold py-3">Description</div>
+          <div class="whitespace-pre-line prose">
+            {{product.description | strip_html }}
+          </div>
+          <div class="space-y-md  pointer-events-none">
+            <div class="w-full pointer-events-auto focus:pointer-events-none group flex flex-col items-start" tabindex="0">
+              <div class="border-b border-black space-x-3 flex items-center">
+                <div class="py-1 flex-1 text-left">
+                  <span class="font-bold capitalize ">Details</span>
+                </div>
+              </div>
+              <div class="h-0 pointer-events-auto group-focus:h-auto group-focus:block whitespace-pre-line overflow-hidden transition-all -mt-4 group-focus:mt-0">
+                <div>Sed in metus nec dui consequat vestibulum. In varius pretium nunc, sed bibendum mauris lacinia non. Praesent vel neque ut ligula porttitor vestibulum ac eu erat. Pellentesque quis turpis odio. Etiam auctor laoreet ligula, vel aliquam urna ornare sed. Praesent laoreet diam vitae lectus molestie pulvinar.</div>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-md  pointer-events-none">
+            <div class="w-full pointer-events-auto focus:pointer-events-none group flex flex-col items-start" tabindex="0">
+              <div class="border-b border-black space-x-3 flex items-center">
+                <div class="py-1 flex-1 text-left">
+                  <span class="font-bold capitalize ">Materials</span>
+                </div>
+              </div>
+              <div class="h-0 pointer-events-auto group-focus:h-auto group-focus:block whitespace-pre-line overflow-hidden transition-all -mt-4 group-focus:mt-0">
+                <div>Sed in metus nec dui consequat vestibulum. In varius pretium nunc, sed bibendum mauris lacinia non. Praesent vel neque ut ligula porttitor vestibulum ac eu erat. Pellentesque quis turpis odio. Etiam auctor laoreet ligula, vel aliquam urna ornare sed. Praesent laoreet diam vitae lectus molestie pulvinar.</div>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-md  pointer-events-none">
+            <div class="w-full pointer-events-auto focus:pointer-events-none group flex flex-col items-start" tabindex="0">
+              <div class="border-b border-black space-x-3 flex items-center">
+                <div class="py-1 flex-1 text-left">
+                  <span class="font-bold capitalize ">Shipping and returns</span>
+                </div>
+              </div>
+              <div class="h-0 pointer-events-auto group-focus:h-auto group-focus:block whitespace-pre-line overflow-hidden transition-all -mt-4 group-focus:mt-0">
+                <div>Sed in metus nec dui consequat vestibulum. In varius pretium nunc, sed bibendum mauris lacinia non. Praesent vel neque ut ligula porttitor vestibulum ac eu erat. Pellentesque quis turpis odio. Etiam auctor laoreet ligula, vel aliquam urna ornare sed. Praesent laoreet diam vitae lectus molestie pulvinar.</div>
+              </div>
+            </div>
+          </div>
+          <div></div>
+        </div>
+        <div class="lg:w-5/12 relative overflow-hidden min-h-full order-1 lg:order-2 w-full">
+          <div class="lg:hidden relative">
+            <div class="absolute inset-0">
+              <product-slider>
+                <div class="keen-slider" id="my-keen-slider">
+                  {% for image in product.images %}
+                    <div class="keen-slider__slide ">
+                      <div class="w-full  flex relative border group-hover:shadow-outline-normal ">
+                        <div style="padding-top: 172.549%;"></div>
+                        <div class="absolute inset-0">
+                          <div style="display: block; overflow: hidden; position: absolute; inset: 0px; box-sizing: border-box; margin: 0px;">
+                            <img loading="lazy" alt="Product Image" src="{{ image.src | img_url: '800X1500' }}" alt="{{ image.alt | escape }}" class="border border-accents-2" style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  {% endfor %}
+                  <svg class="arrow arrow--left text-black" fill="currentColor" id="arrow-left" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"></path>
+                  </svg>
+                  <svg class="arrow arrow--right text-black" fill="currentColor" id="arrow-right" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z"></path>
+                  </svg>
+    
+                </div>
+                <div class="dots absolute bottom-3 left-0 right-0" id="dots"></div>
+              </product-slider>
+            </div>
+            <div style="padding-top: 172.549%;"></div>
+          </div>
+          <div class="w-full relative hidden lg:block">
+            <div class="w-full h-full top-0 left-0 flex">
+              <div class="w-1/6 flex flex-col z-10">
                 {% for image in product.images %}
-                  <div class="keen-slider__slide ">
+                  <div class="group pr-responsive-md pb-responsive-md lg:pr-5 lg:pb-5">
                     <div class="w-full  flex relative border group-hover:shadow-outline-normal ">
                       <div style="padding-top: 172.549%;"></div>
                       <div class="absolute inset-0">
                         <div style="display: block; overflow: hidden; position: absolute; inset: 0px; box-sizing: border-box; margin: 0px;">
-                          <img loading="lazy" alt="Product Image" src="{{ image.src | img_url: '800X1500' }}" alt="{{ image.alt | escape }}" class="border border-accents-2" style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;">
+                          <img alt="Product Image" src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}" class="border border-accents-2" style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="hidden group-hover:block  right-0 top-0 absolute w-5/6">
+                      <div class="w-full" style="padding-top: 172.549%;">
+                        <div class="absolute top-0 right-0 w-full h-full flex-1">
+                          <div style="display: block; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;">
+                            <div style="display: block; box-sizing: border-box; padding-top: 172.549%;"></div>
+                            <modal-opener data-modal="#ProductModal-{{ section.id }}">
+                              <button type="button" aria-haspopup="dialog" data-media-id="{{ image.id }}">
+                                <img class=" " data-media-id="{{ section.id }}-{{ image.id }}" alt="Product Image" src="{{image.src | img_url: '1024x1024', scale: 2 }}" style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;">
+                                <div class="hidden group-hover:block absolute top-5 left-5 p-2 bg-white rounded-full text-sm">
+                                  {%- render 'icon-zoom' -%}</div>
+                              </button>
+                            </modal-opener>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 {% endfor %}
-                <svg class="arrow arrow--left text-black" fill="currentColor" id="arrow-left" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"></path>
-                </svg>
-                <svg class="arrow arrow--right text-black" fill="currentColor" id="arrow-right" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z"></path>
-                </svg>
-  
+                <div class="flex-1"></div>
               </div>
-              <div class="dots absolute bottom-3 left-0 right-0" id="dots"></div>
-            </product-slider>
-          </div>
-          <div style="padding-top: 172.549%;"></div>
-        </div>
-        <div class="w-full relative hidden lg:block">
-          <div class="w-full h-full top-0 left-0 flex">
-            <div class="w-1/6 flex flex-col z-10">
-              {% for image in product.images %}
-                <div class="group pr-responsive-md pb-responsive-md lg:pr-5 lg:pb-5">
-                  <div class="w-full  flex relative border group-hover:shadow-outline-normal ">
-                    <div style="padding-top: 172.549%;"></div>
-                    <div class="absolute inset-0">
-                      <div style="display: block; overflow: hidden; position: absolute; inset: 0px; box-sizing: border-box; margin: 0px;">
-                        <img alt="Product Image" src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}" class="border border-accents-2" style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;">
-                      </div>
+              <div class="w-5/6 bg-accents-0">
+                <div class="w-full flex-1 relative" style="padding-top: 172.549%;">
+                  <div class="flex-1 absolute top-0 right-0 w-full h-full ">
+                    <div style="display: block; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;">
+                      <div style="display: block; box-sizing: border-box; padding-top: 172.549%;"></div>
+                      {% if product.selected_or_first_available_variant.featured_media != null %}
+    
+                        {%- assign media = product.selected_or_first_available_variant.featured_media -%}
+                      {% else %}
+                        {%- assign media = featured_image -%}
+    
+                      {% endif %}
+                      <modal-opener data-modal="#ProductModal-{{ section.id }}">
+                        <button class="group" aria-haspopup="dialog" data-media-id="{{ image.id }}">
+                          <div id="preview_image">
+                            <img class="absolute inset-0 object-cover  ease-in-out" srcset="{% if media.preview_image.width >= 288 %}{{ media.preview_image | img_url: '288x' }} 288w,{% endif %} {% if media.preview_image.width >= 576 %}{{ media.preview_image | img_url: '576x' }} 576w,{% endif %} {% if media.preview_image.width >= 550 %}{{ media.preview_image | img_url: '550x' }} 550w,{% endif %} {% if media.preview_image.width >= 1100 %}{{ media.preview_image | img_url: '1100x' }} 1100w{% endif %}" src="{{ media | img_url: '1024x1024' }}" sizes="(min-width: 1200px) calc((1200px - 10rem) / 2), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)" loading="lazy" width="576" height="{{ 576 | divided_by: media.preview_image.aspect_ratio | ceil }}" alt="{{ media.preview_image.alt | escape }}">
+                          </div>
+                          <div class="hidden group-hover:block absolute top-5 left-5 p-2 bg-white rounded-full text-sm">{%-
+                            render 'icon-zoom' -%}</div>
+                        </button>
+                      </modal-opener>
+    
                     </div>
-                  </div>
-                  <div class="hidden group-hover:block  right-0 top-0 absolute w-5/6">
-                    <div class="w-full" style="padding-top: 172.549%;">
-                      <div class="absolute top-0 right-0 w-full h-full flex-1">
-                        <div style="display: block; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;">
-                          <div style="display: block; box-sizing: border-box; padding-top: 172.549%;"></div>
-                          <modal-opener data-modal="#ProductModal-{{ section.id }}">
-                            <button type="button" aria-haspopup="dialog" data-media-id="{{ image.id }}">
-                              <img class=" " data-media-id="{{ section.id }}-{{ image.id }}" alt="Product Image" src="{{image.src | img_url: '1024x1024', scale: 2 }}" style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;">
-                              <div class="hidden group-hover:block absolute top-5 left-5 p-2 bg-white rounded-full text-sm">
-                                {%- render 'icon-zoom' -%}</div>
-                            </button>
-                          </modal-opener>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              {% endfor %}
-              <div class="flex-1"></div>
-            </div>
-            <div class="w-5/6 bg-accents-0">
-              <div class="w-full flex-1 relative" style="padding-top: 172.549%;">
-                <div class="flex-1 absolute top-0 right-0 w-full h-full ">
-                  <div style="display: block; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;">
-                    <div style="display: block; box-sizing: border-box; padding-top: 172.549%;"></div>
-                    {% if product.selected_or_first_available_variant.featured_media != null %}
-  
-                      {%- assign media = product.selected_or_first_available_variant.featured_media -%}
-                    {% else %}
-                      {%- assign media = featured_image -%}
-  
-                    {% endif %}
-                    <modal-opener data-modal="#ProductModal-{{ section.id }}">
-                      <button class="group" aria-haspopup="dialog" data-media-id="{{ image.id }}">
-                        <div id="preview_image">
-                          <img class="absolute inset-0 object-cover  ease-in-out" srcset="{% if media.preview_image.width >= 288 %}{{ media.preview_image | img_url: '288x' }} 288w,{% endif %} {% if media.preview_image.width >= 576 %}{{ media.preview_image | img_url: '576x' }} 576w,{% endif %} {% if media.preview_image.width >= 550 %}{{ media.preview_image | img_url: '550x' }} 550w,{% endif %} {% if media.preview_image.width >= 1100 %}{{ media.preview_image | img_url: '1100x' }} 1100w{% endif %}" src="{{ media | img_url: '1024x1024' }}" sizes="(min-width: 1200px) calc((1200px - 10rem) / 2), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)" loading="lazy" width="576" height="{{ 576 | divided_by: media.preview_image.aspect_ratio | ceil }}" alt="{{ media.preview_image.alt | escape }}">
-                        </div>
-                        <div class="hidden group-hover:block absolute top-5 left-5 p-2 bg-white rounded-full text-sm">{%-
-                          render 'icon-zoom' -%}</div>
-                      </button>
-                    </modal-opener>
-  
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="flex-1 lg:sticky bottom-24 order-3 w-full">
-        <div id="ProductInfo-{{ section.id }}" class="space-y-6">
-          {%- assign product_form_id = 'product-form-' | append: section.id  -%}
-            <div class="space-y-6">
-              {%- form 'product', product, id: 'product-form-installment', class: 'installment caption-large' -%}
-                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                {{ form | payment_terms }}
-              {%- endform -%}
-              <div>
-                {%- unless product.has_only_default_variant -%}
-                <variant-radios class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}">
-                  {%- for option in product.options_with_values -%}
-                      <fieldset class="js product-form__input">
-                        <legend class="form__label">{{ option.name }}</legend>
-                        {%- for value in option.values -%}
-                          <input type="radio" id="{{ section.id }}-{{ option.name }}-{{ forloop.index0 }}"
-                                name="{{ option.name }}"
-                                value="{{ value | escape }}"
-                                form="product-form-{{ section.id }}"
-                                {% if option.selected_value == value %}checked{% endif %}
-                          >
-                          <label for="{{ section.id }}-{{ option.name }}-{{ forloop.index0 }}">
-                            {{ value }}
-                          </label>
-                        {%- endfor -%}
-                      </fieldset>
-                  {%- endfor -%}
-                  <script type="application/json"> {{ product.variants | json }} </script>
-                </variant-radios>
-            {%- endunless -%}
-            <noscript>
-              <div class="product-form__input{% if product.has_only_default_variant %} hidden{% endif %}">
-                <label class="form__label" for="Variants-{{ section.id }}">{{ 'products.product.product_variants' | t }}</label>
-                <div class="select">
-                  <select name="id" id="Variants-{{ section.id }}" class="select__select" form="product-form">
-                    {%- for variant in product.variants -%}
-                      <option
-                        {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}
-                        {% if variant.available == false %}disabled{% endif %}
-                        value="{{ variant.id }}"
-                      >
-                        {{ variant.title }}
-                        {%- if variant.available == false %} - {{ 'products.product.sold_out' | t }}{% endif %}
-                        - {{ variant.price | money | strip_html }}
-                      </option>
-                    {%- endfor -%}
-                  </select>
-                  {% render 'icon-caret' %}
-                </div>
-              </div>
-            </noscript>
-              </div>
-              
-              <div class="flex items-baseline space-x-6 justify-between">
-                <label class="form__label" for="Quantity-{{ section.id }}">
-                  {{ 'products.product.quantity.label' | t }}
-                </label>
-                <quantity-input class="quantity">
-                  <button class="quantity__button no-js-hidden" name="minus" type="button">
-                    <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: product.title | escape }}</span>
-                    {% render 'icon-minus' %}
-                  </button>
-                  <input class="quantity__input"
-                      type="number"
-                      name="quantity"
-                      id="Quantity-{{ section.id }}"
-                      min="1"
-                      value="1"
-                      form="product-form-{{ section.id }}"
-                    >
-                  <button class="quantity__button no-js-hidden" name="plus" type="button">
-                    <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: product.title | escape }}</span>
-                    {% render 'icon-plus' %}
-                  </button>
-                </quantity-input>
-              </div>
-              <div>
-                <product-form>
-                {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+        <div class="flex-1 lg:sticky top-header lg:pt-24 order-3 w-full">
+          <div id="ProductInfo-{{ section.id }}" class="space-y-6">
+            {%- assign product_form_id = 'product-form-' | append: section.id  -%}
+              <div >
+                {%- form 'product', product, id: 'product-form-installment', class: 'installment caption-large' -%}
                   <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                  <div class=" space-y-6">
-                    <button
-                      type="submit"
-                      name="add"
-                      class="btn btn-lg btn-outline min-w-[200px] w-full lg:w-auto"
-                    {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
-                    >
-                        {%- if product.selected_or_first_available_variant.available -%}
-                          {{ 'products.product.add_to_cart' | t }}
-                        {%- else -%}
-                          {{ 'products.product.sold_out' | t }}
-                        {%- endif -%}
-                    </button>
-                    {%- if block.settings.show_dynamic_checkout -%}
-                      {{ form | payment_button }}
-                    {%- endif -%}
-                  </div>
+                  {{ form | payment_terms }}
                 {%- endform -%}
-              </product-form>
+                
+                <div class="space-y-6"><div>
+                  {%- unless product.has_only_default_variant -%}
+                  <variant-radios class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}">
+                    {%- for option in product.options_with_values -%}
+                        <fieldset class="js product-form__input gap-4 flex option-{{option.name}}">
+                          <legend class="form__label w-full items-baseline text-lg uppercase font-bold py-3 flex justify-between">{{ option.name | upcase }}
+                            {% if option.name == 'Size'  %}
+                              <a href="#" class="text-sm capitalize font-normal underline">
+                                Size guide
+                              </a>
+                            {% endif %}
+                          </legend>
+                          {%- for value in option.values -%}
+                            <input hidden type="radio" id="{{ section.id }}-{{ option.name }}-{{ forloop.index0 }}"
+                                  name="{{ option.name }}"
+                                  value="{{ value | escape }}"
+                                  form="product-form-{{ section.id }}"
+                                  {% if option.selected_value == value %}checked{% endif %}
+                            >
+                            <label class="flex overflow-hidden truncate items-center justify-center min-w-[28px] h-[28px] ring-0 hover:ring-0ring-offset-0 ring-offset-gray-200 hover:ring-offset-[0.2em] transition-all" for="{{ section.id }}-{{ option.name }}-{{ forloop.index0 }}">
+                              {{ value }}
+                            </label>
+                          {%- endfor -%}
+                        </fieldset>
+                        {% if option.name == 'Size' %}
+                          <style>
+                              .option-{{option.name}} input:checked+label{
+                                box-shadow: 0 0 0 2px #fff, 0 0 0 3px #000;
+                                -ms-box-shadow: 0 0 0 2px #fff, 0 0 0 3px #000;
+                                -o-box-shadow: 0 0 0 2px #fff, 0 0 0 3px #000;
+                                -webkit-box-shadow: 0 0 0 2px #fff, 0 0 0 3px #000;
+                                -moz-box-shadow: 0 0 0 2px #fff, 0 0 0 3px #000;
+                              }
+                          </style>
+                          {% else %}
+                          <style>
+                            .option-{{option.name}} input:checked+label{
+                              box-shadow: 0 0 0 2px #fff, 0 0 0 3px #000;
+                              -ms-box-shadow: 0 0 0 2px #fff, 0 0 0 3px #000;
+                              -o-box-shadow: 0 0 0 2px #fff, 0 0 0 3px #000;
+                              -webkit-box-shadow: 0 0 0 2px #fff, 0 0 0 3px #000;
+                              -moz-box-shadow: 0 0 0 2px #fff, 0 0 0 3px #000;
+                            }
+                          </style>
+                        {% endif %}
+                      
+                    {%- endfor -%}
+                    <script type="application/json">
+
+  {
+      product.variants | json
+  }}
+
+  </script>
+                  </variant-radios>
+              {%- endunless -%}
+              <noscript>
+                <div class="product-form__input{% if product.has_only_default_variant %} hidden{% endif %}">
+                  <label class="form__label text-lg uppercase font-bold py-3" for="Variants-{{ section.id }}">{{ 'products.product.product_variants' | t }}</label>
+                  <div class="select">
+                    <select name="id" id="Variants-{{ section.id }}" class="select__select" form="product-form">
+                      {%- for variant in product.variants -%}
+                        <option
+                          {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}
+                          {% if variant.available == false %}disabled{% endif %}
+                          value="{{ variant.id }}"
+                        >
+                          {{ variant.title }}
+                          {%- if variant.available == false %} - {{ 'products.product.sold_out' | t }}{% endif %}
+                          - {{ variant.price | money | strip_html }}
+                        </option>
+                      {%- endfor -%}
+                    </select>
+                    {% render 'icon-caret' %}
+                  </div>
+                </div>
+              </noscript>
+                </div>
+                  <div class="flex items-baseline space-x-6 justify-between">
+                  <label class="form__label text-lg uppercase font-bold py-3" for="Quantity-{{ section.id }}">
+                    {{ 'products.product.quantity.label' | t }}
+                  </label>
+                  <quantity-input class="quantity w-20 flex">
+                    <button class="quantity__button no-js-hidden" name="minus" type="button">
+                      <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: product.title | escape }}</span>
+                      {% render 'icon-minus' %}
+                    </button>
+                    <input class="quantity__input text-center w-[50px] flex-1"
+                        type="number"
+                        name="quantity"
+                        id="Quantity-{{ section.id }}"
+                        min="1"
+                        value="1"
+                        form="product-form-{{ section.id }}"
+                      >
+                    <button class="quantity__button no-js-hidden" name="plus" type="button">
+                      <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: product.title | escape }}</span>
+                      {% render 'icon-plus' %}
+                    </button>
+                  </quantity-input>
+                </div>
+                <div >
+                  <product-form>
+                  {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                    <div class=" space-y-6">
+                      <button
+                        type="submit"
+                        name="add"
+                        class="btn btn-lg btn-outline min-w-[200px] w-full lg:w-auto"
+                      {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
+                      >
+                          {%- if product.selected_or_first_available_variant.available -%}
+                            {{ 'products.product.add_to_cart' | t }}
+                          {%- else -%}
+                            {{ 'products.product.sold_out' | t }}
+                          {%- endif -%}
+                      </button>
+                      {%- if block.settings.show_dynamic_checkout -%}
+                        {{ form | payment_button }}
+                      {%- endif -%}
+                    </div>
+                  {%- endform -%}
+                </product-form>
+                </div>
+                </div>
+                
+                
               </div>
-              
-            </div>
-              
+                
+          </div>
         </div>
       </div>
     </div>
   </div>
+  <div class="container mx-auto flex flex-col space-y-12">
+    <h2 class="font-heading text-4xl text-center">PAIR WITH NECKLACE TO COMPLETE YOUR LOOK</h2>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-px">
+      <div class=" relative group cursor-pointer border border-white">
+        <a href="#" >
+            <div class="relative group-hover:shadow-lg transition-transform group-hover:scale-110">
+                <div class="pt-[145%]"></div>
+                {% render 'image-full'  class:'transition-all group-hover:brightness-50' %}
+            </div>
+            <div class="absolute opacity-0 left-0 bottom-12 transform translate-y-1/2 duration-1000 group-hover:bottom-1/2 group-hover:opacity-100 transition-all text-center w-full flex justify-center items-center">
+                <h4 class="text-2xl uppercase text-white">
+                    Heading
+                </h4>
+            </div>
+        </a>
+      </div>
+      <div class=" relative group cursor-pointer border border-white">
+        <a href="#" >
+            <div class="relative group-hover:shadow-lg transition-transform group-hover:scale-110">
+                <div class="pt-[145%]"></div>
+                {% render 'image-full'  class:'transition-all group-hover:brightness-50' %}
+            </div>
+            <div class="absolute opacity-0 left-0 bottom-12 transform translate-y-1/2 duration-1000 group-hover:bottom-1/2 group-hover:opacity-100 transition-all text-center w-full flex justify-center items-center">
+                <h4 class="text-2xl uppercase text-white">
+                    Heading
+                </h4>
+            </div>
+        </a>
+      </div>
+      <div class=" relative group cursor-pointer border border-white">
+        <a href="#" >
+            <div class="relative group-hover:shadow-lg transition-transform group-hover:scale-110">
+                <div class="pt-[145%]"></div>
+                {% render 'image-full'  class:'transition-all group-hover:brightness-50' %}
+            </div>
+            <div class="absolute opacity-0 left-0 bottom-12 transform translate-y-1/2 duration-1000 group-hover:bottom-1/2 group-hover:opacity-100 transition-all text-center w-full flex justify-center items-center">
+                <h4 class="text-2xl uppercase text-white">
+                    Heading
+                </h4>
+            </div>
+        </a>
+      </div>
+    </div>
+  </div>
 </div>
-
-
 {% schema %}
+
 {
     "name": "t:sections.main-product.name",
     "tag": "section",
     "class": "spaced-section--transparent",
-    "settings": [
-       
-    ]
+    "settings": []
 }
 
 {% endschema %}
