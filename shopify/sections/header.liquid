@@ -259,8 +259,10 @@
                   <div class="w-full mt-10 flex space-x-6 lg:gap-12">
                     {% for collection in collections %}
                     <div class="flex-1">
-                      <div class="font-heading text-3xl border-black">{{collection.title}}</div>
-                      <div class="h-px w-full bg-neutral mt-3"></div>
+                      <div class="font-heading text-3xl border-black">
+                        <a class="font-heading text-effect-1 pb-3" href="{{collection.url}}">{{collection.title }}</a>
+                      </div>
+                      <div class="h-px w-full bg-neutral"></div>
                       <ul class="flex flex-col space-y-4 mt-6">
                         {% for tag in collection.tags %}
                           <li>

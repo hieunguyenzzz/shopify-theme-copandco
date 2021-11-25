@@ -1,9 +1,10 @@
-{{ 'component-card.css' | asset_url | stylesheet_tag }}
-{{ 'section-collection-list.css' | asset_url | stylesheet_tag }}
 
-<div class="container mx-auto">
-  <h1 class="title title--primary">{{ section.settings.title | escape }}</h1>
-
+<div class=" py-20 space-y-20">
+  <div class="container mx-auto">
+    <h1 class="text-left text-7xl pb-2 border-b border-solid border-black inline-block">{{ section.settings.title | escape }}</h1>
+  </div>
+  
+<!-- 
   {%- liquid
     case section.settings.sort
       when 'products_high' or 'products_low'
@@ -17,59 +18,115 @@
     endif
   -%}
 
-  <ul class="collection-list grid grid--1-col grid--3-col-tablet" role="list">
-    {%- for collection in collections -%}
-      <li class="collection-list__item grid__item">
-        <a{% if collection.all_products_count > 0 %} href="{{ collection.url }}"{% endif %}
-          class="card animate-arrow{% if collection.featured_image != blank %} card--media{% else %}{% if section.settings.image_ratio != 'adapt' %} card--stretch{% endif %}{% endif %}{% unless section.settings.image_padding %} card--light-border{% endunless %}"
-        >
-          <div class="card--stretch card-colored color-{{ section.settings.color_scheme }}">
-            {%- if collection.featured_image != blank -%}
-              <div{% if section.settings.image_padding %} class="card__media-spacer"{% endif %}>
-                {% if section.settings.image_padding %}<div class="overlay-card"></div>{% endif %}
-                <div class="media media--{{ section.settings.image_ratio }} media--hover-effect overflow-hidden"
-                  {% if section.settings.image_ratio == 'adapt' %}style="padding-bottom: {{ 1 | divided_by: collection.featured_image.aspect_ratio | times: 100 }}%;"{% endif %}>
-
-                  <img srcset="{%- if collection.featured_image.width >= 165 -%}{{ collection.featured_image | img_url: '165x' }} 165w,{%- endif -%}
-                    {%- if collection.featured_image.width >= 360 -%}{{ collection.featured_image | img_url: '360x' }} 360w,{%- endif -%}
-                    {%- if collection.featured_image.width >= 535 -%}{{ collection.featured_image | img_url: '535x' }} 535w,{%- endif -%}
-                    {%- if collection.featured_image.width >= 720 -%}{{ collection.featured_image | img_url: '720x' }} 720w,{%- endif -%}
-                    {%- if collection.featured_image.width >= 940 -%}{{ collection.featured_image | img_url: '940x' }} 940w,{%- endif -%}
-                    {%- if collection.featured_image.width >= 1070 -%}{{ collection.featured_image | img_url: '1070x' }} 1070w{%- endif -%}"
-                    src="{{ collection.featured_image | img_url: '533x' }}"
-                    sizes="(min-width: 1100px) 358px, (min-width: 750px) calc((100vw - 130px) / 3), calc(100vw - 30px)"
-                    alt="{{ collection.title | escape }}"
-                    height="{{ collection.featured_image.height }}"
-                    width="{{ collection.featured_image.width }}"
-                    loading="lazy"
-                  >
-                </div>
-              </div>
-              <div class="card__text card__text-spacing card__text-hover">
-                {% unless section.settings.image_padding %}<div class="overlay-card"></div>{% endunless %}
-                <h2 class="h3">{{- collection.title -}}<span class="icon-wrap">&nbsp;{% render 'icon-arrow' %}</span></h2>
-              </div>
-            {%- else -%}
-              <div class="overlay-card"></div>
-              <div class="card__text-spacing card__text-hover">
-                <h2 class="h1">
-                  {{- collection.title -}}{%- if collection.description == blank -%}<span class="icon-wrap">&nbsp;{% render 'icon-arrow' %}</span>{% endif %}
-                </h2>
-
-                {%- if collection.description != blank -%}
-                  <p>
-                    {{- collection.description | strip_html | truncatewords: 12 -}}<span class="icon-wrap">&nbsp;{% render 'icon-arrow' %}</span>
-                  </p>
-                {%- endif -%}
-              </div>
-            {%- endif -%}
-          </div>
-        </a>
-      </li>
-    {%- endfor -%}
-  </ul>
+  <div class="grid gap-6 lg:gap-12 grid-cols-2 lg:grid-cols-4 py-12">
+    {% for collection in collections %}
+      {% render '[collection]-card' collection:collection class: '' %}
+    {% endfor %}
+  </div> -->
+  {% for collection in collections %}
+  <div id="{{ section.id }}-collections[{{collection.id}}]" class="">
+    <div class="container mx-auto flex items-center">
+        <div class="flex-1">
+            <h2 class="text-6xl ">{{collection.title}} ({{collection.products.size}})</h2>
+            {% render 'button' url: collection.url text: 'View collection'class: 'mt-6' %}
+        </div>
+        <div class="flex-1 py-4">
+            <div>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam</div>
+        </div>
+    </div>
+    <div class="mt-8 relative">
+        <scrolling-carousel>
+                {% case collection.products.size %}
+                    {% when 1 %}
+                        <ul class="container mx-auto tw-grid w-full gap-10" role="list">
+                    {% when 2 %}
+                        <ul class="container mx-auto tw-grid md:grid-cols-2 w-full gap-10" role="list">
+                    {% when 3 %}
+                        <ul class="container mx-auto tw-grid lg:grid-cols-3 w-full gap-10" role="list">
+                    {% when 4 %}
+                        <ul class="container mx-auto tw-grid md:grid-cols-2 lg:grid-cols-4 w-full gap-10" role="list">
+                    {% else %}
+                        <ul class="carousel carousel-center space-x-6 w-full {% render '[class]-container-full'  class: '' %}" role="list">
+                {% endcase %}
+                {%- for product in collection.products -%}
+                    <li class="carousel-item py-8 w-[25vw]">
+                        {% render '[product]-card' product:product class: '' %}
+                    </li>
+                {%- endfor -%}
+              </ul>
+            <scrolling-arrow-left hidden>
+                <button class="pointer-events-auto absolute bottom-1/2 left-6 w-16 h-16 rounded-full bg-base-100 bg-opacity-30 hover:bg-opacity-100 hover:shadow  flex justify-center items-center text-4xl translate-y-1/2  transform rotate-180">
+                    <svg width="1em" height="1em" fill="none" stroke-width="0.03em" stroke="currentColor" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8.14 14.74"><g ><polyline  points="0.74 14.07 6.79 7.41 0.74 0.67"/></g></svg>
+                </button>
+            </scrolling-arrow-left>
+            <scrolling-arrow-right hidden>
+                <button class="pointer-events-auto absolute bottom-1/2 right-6 w-16 h-16 rounded-full bg-base-100 bg-opacity-30 hover:bg-opacity-100 hover:shadow  flex justify-center items-center text-4xl translate-y-1/2">
+                    <svg width="1em" height="1em" fill="none" stroke-width="0.03em" stroke="currentColor" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8.14 14.74"><g ><polyline points="0.74 14.07 6.79 7.41 0.74 0.67"/></g></svg>
+                </button>
+            </scrolling-arrow-right>
+        </scrolling-carousel>
+    </div>
+  </div>
+{% endfor %}
 </div>
 
+
+
+{% javascript %}
+
+class ScrollingCarousel extends HTMLElement {
+    constructor() {
+        super();
+        let timer = null
+        const start = () => {
+            const sroller = this.querySelector('ul')
+            const arrowLeft = this.querySelector('scrolling-arrow-left')
+            const arrowRight = this.querySelector('scrolling-arrow-right')
+            arrowRight.addEventListener('click', () => {
+                sroller.scrollLeft = sroller.scrollLeft + sroller.clientWidth
+            })
+            arrowLeft.addEventListener('click', () => {
+                sroller.scrollLeft = sroller.scrollLeft - sroller.clientWidth
+            })
+
+            const valid = () => {
+                if (sroller.scrollLeft === 0) {
+                    arrowLeft.setAttribute('hidden', true)
+                } else {
+                    arrowLeft.removeAttribute('hidden')
+                }
+                if (sroller.scrollLeft + sroller.clientWidth === sroller.scrollWidth) {
+                    arrowRight.setAttribute('hidden', true)
+                } else {
+                    arrowRight.removeAttribute('hidden')
+                }
+            }
+            sroller.addEventListener('scroll', () => {
+                if (timer !== null) {
+                    clearTimeout(timer);
+                }
+                timer = setTimeout(valid, 150);
+            }, false);
+
+            valid()
+
+        }
+        const handleIntersection = (entries, observer) => {
+            if (!entries[0].isIntersecting) 
+                return;
+            
+
+            observer.unobserve(this);
+            start()
+        }
+        new IntersectionObserver(handleIntersection.bind(this), {
+            rootMargin: '0px 0px 500px 0px'
+        }).observe(this);
+    }
+}
+customElements.define('scrolling-carousel', ScrollingCarousel);
+
+{% endjavascript %}
 {% schema %}
 {
   "name": "t:sections.main-list-collections.name",

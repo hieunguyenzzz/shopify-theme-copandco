@@ -1,69 +1,252 @@
    
-
-<form id="filter-box" class="w-full pointer-events-none mt-6">
-    <div class="container mx-auto bg-base-100 pointer-events-auto">
-      <div class="text-center  flex justify-end space-x-6">
-        <div class="py-1 border-b border-neutral flex items-center">
-          <div class="font-bold">FILTER</div>
-          <div class="px-6">(0)</div>
-          <div class="flex items-center">
-            {% include 'icon-minus' %}
-          </div>
-        </div>
-        <div class="py-1 border-b border-neutral flex items-center">
-          <div class="font-bold">SORT BY</div>
-          <div class="px-6">All products</div>
-          <div class="flex items-center">
-            {% include 'icon-plus' %}
-          </div>
-        </div>
-      </div>
-      <div class="w-full mt-10 flex space-x-6">
-        {% for i in (1..3) %}
-          <div class="flex-1">
-            <div class="font-heading text-3xl border-black">Collection</div>
-            <div class="h-px w-full bg-neutral mt-3"></div>
-            <ul class="flex flex-col space-y-4 mt-6">
-              <li>
-                <div class="text-effect-1">
-                  All collections
-                </div>
-              </li>
-              <li>
-                <div class="text-effect-1">
-                  All collections
-                </div>
-              </li>
-              <li>
-                <div class="text-effect-1">
-                  All collections
-                </div>
-              </li>
-              <li>
-                <div class="text-effect-1">
-                  All collections
-                </div>
-              </li>
-              <li>
-                <div class="text-effect-1">
-                  All collections
-                </div>
-              </li>
-            </ul>
-          </div>
-        {% endfor %}
+{% assign sort_by = collection.sort_by %}
+<div class="py-24 space-y-12 container mx-auto">
+  <div class="space-y-6">
+    <div class="w-full flex gap-6 lg:gap-12">
+      <div class="w-1/3 max-w-xs hidden lg:block"></div>
+      <div class="flex-1 flex items-baseline space-x-2 ">
+          <a href="/collections" class="text-5xl text-effect-1 font-heading capitalize">Collections</a>
+          <div><svg width="1em" height="1em" fill="none" stroke-width="0.03em" stroke="currentColor" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8.14 14.74"><g ><polyline points="0.74 14.07 6.79 7.41 0.74 0.67"/></g></svg></div>
+          <h1 class="text-5xl capitalize">{{collection.title}}</h1>
       </div>
     </div>
-</form>
+    <div class="w-full flex gap-6 lg:gap-12">
+      <div class="w-1/3 max-w-xs space-y-12 hidden lg:block">
+        <div>
+          <ul class="space-y-3">
+            {% for collection  in collections %}
+              <li>
+                <a class="font-heading text-effect-1" href="{{collection.url}}">{{collection.title | upcase}}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div>
+          <div class="text-sm font-bold mb-3">TAGS</div>
+          <ul class="space-y-3">
+            {% for tag in collection.tags %}
+              <li>
+                  <div class="text-effect-1 font-heading uppercase">
+                      {{ tag | link_to_tag: tag  }}
+                  </div>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <div class="flex-1 isolate">
+        <div id="filter-box" class="w-full pointer-events-none isolate z-10 sticky top-header">
+          <div class="bg-base-100 pointer-events-auto border-primary border-b border-t border-solid">
+            <div class="text-center  flex justify-between space-x-6 z-10 isolate relative">
+              <modal-opener data-modal="#filter-modal-{{ section.id }}">
+                <button class="py-4  flex items-center px-3 hover:bg-base-200 group overflow-hidden">
+                  <div class="font-bold">FILTER</div>
+                  <div class="px-6">(0)</div>
+                  <div class="flex items-center relative">
+                    <div class="filter-modal-{{ section.id }}-icon-plus">
+                      {% include 'icon-plus' %}
+                    </div>
+                    <div class="filter-modal-{{ section.id }}-icon-minus absolute w-full h-full opacity-0 ">
+                      {% include 'icon-minus' %}
+                    </div>
+                  </div>
+                </button>
+              </modal-opener>
+              <div class="group relative">
+                <button tabindex="-1" class="py-4 flex items-center px-3 hover:bg-base-200 ">
+                  <div class="font-bold">SORT BY</div>
+                  <div class="px-6">
+                    {% assign sortByName = 'Featured' %}
+                    {% for option in collection.sort_options %}
+                      {% if option.value == sort_by %} 
+                        {% assign sortByName = option.name %}
+                        {% else %}
+                      {% endif %}
+                    {% endfor %}
+                    {{sortByName}}
+                  </div>
+                  <div class="flex relative items-center transform rotate-0 transition-transform group-focus-within:rotate-180">
+                    <div class="opacity-100 group-focus-within:opacity-0 transition-opacity">
+                      {% include 'icon-plus' %}
+                    </div>
+                    <div class="absolute w-full h-full opacity-0 group-focus-within:opacity-100 transition-opacity">
+                      {% include 'icon-minus' %}
+                    </div>
+                  </div>
+                </button>
+                <div tabindex="-1" class="w-[200px] transition-all scale-0 group-focus-within:scale-100 origin-top-right opacity-0 group-focus-within:opacity-100 text-left cursor-pointer capitalize isolate invisible group-focus-within:visible absolute top-full right-0 bg-base-100 border border-black p-2 flex flex-col gap-2">
+                  {% assign url = request.path | append : '?' %}
+                    {% for filter in collection.filters %}
+                      {% if filter.active_values.size %}
+                          {% assign active_values = filter.active_values | map:'value' | join:',' %}
+                          {% if active_values != blank %}
+                            {% assign url = url | append :filter.param_name | append :'=' | append :active_values %}
+                          {% endif %}
+                      {% endif %}
+                  {% endfor %}
+                  {% for option in collection.sort_options %}
+                    <div class="px-3 py-1 {% if option.value == sort_by %} bg-gray-200 {% endif %} hover:bg-gray-100">
+                      <a href="{{url| sort_by :  option.value}}">{{ option.name }}</a>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+              
+            </div>
+            <filter-modal class="w-full" id="filter-modal-{{ section.id }}" tabindex="-1">
+              <style>
+                #filter-modal-{{ section.id }}{
+                  display:none;
+                }
+                #filter-modal-{{ section.id }}[open]{
+                  display:block;
+                }
+              </style>
+              <div class="bg-white animate__fadeIn animate__animated" role="dialog" aria-label="{{ 'products.modal.label' | t }}" aria-modal="true">
+                <div class="w-full p-6 border-t border-black">
+                  <form class="filter-form flex flex-col lg:flex-row gap-6 items-end">
+                    <div class="flex-1 grid gap-6 grid-cols-1 lg:grid-cols-4">
+                      {%- for filter in collection.filters -%}
+                            {%- case filter.type -%}
+                              {%- when 'list' -%}
+                              <div class="filter-group">
+                                <div class="filter-group-summary">
+                                  <div>
+                                    <span>{{ filter.label }}</span>
+                                    {%- if filter.active_values.size > 0 -%}
+                                      <span>({{ filter.active_values.size }})</span>
+                                    {%- endif -%}
+                                  </div>
+                                </div>
+                          
+                                <div class="filter-group-display">
+                                  <div class="filter-group-display__header">
+                                    <span class="filter-group-display__header-selected">{{ filter.active_values.size }} selected</span>
+                          
+                                    {%- if filter.active_values.size > 0 -%}
+                                      <a href="{{ filter.url_to_remove }}" class="filter-group-display__header-reset">Reset</a>
+                                    {%- endif -%}
+                                  </div>
+                                </div>  
+                                <ul class="filter-group-display__list">
+                                  {%- for filter_value in filter.values -%}
+                                    <li class="filter-group-display__list-item">
+                                      <label for="Filter-{{ filter.param_name }}-{{ forloop.index }}">
+                                      <input type="checkbox"
+                                        name="{{ filter_value.param_name }}"
+                                        value="{{ filter_value.value }}"
+                                        id="Filter-{{ filter.param_name }}-{{ forloop.index }}"
+                                        {% if filter_value.active -%}checked{%- endif %}
+                                        {% if filter_value.count == 0 and filter_value.active == false -%}disabled{%- endif %}
+                                      >{{ filter_value.label }}</label>
+                                    </li>
+                                  {%- endfor -%}
+                                </ul>
+                              </div>
+                            </div>
+                            {%- endcase -%}
+                     
+                      {%- endfor -%}
+                    </div>
+                    <div class="">
+                      <div class="active-filters">
+                        {%- for filter in collection.filters -%}
+                        {%- case filter.type -%}
+                              {%- when 'price_range' -%}
+                                <div class="filter-group-display__price-range">
+                                  <div class="filter-group-display__price-range-from">
+                                    <span>{{ cart.currency.symbol }}</span>
+                    
+                                    <input name="{{ filter.min_value.param_name }}"
+                                      id="Filter-{{ filter.min_value.param_name }}"
+                                      {% if filter.min_value.value -%}
+                                        value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+                                      {%- endif %}
+                                      type="number"
+                                      placeholder="0"
+                                      min="0"
+                                      max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                                    >
+                    
+                                    <label for="Filter-{{ filter.min_value.param_name }}">From</label>
+                                  </div>
+                                  <div class="filter-group-display__price-range-to">
+                                    <span>{{ cart.currency.symbol }}</span>
+                    
+                                    <input name="{{ filter.max_value.param_name }}"
+                                      id="Filter-{{ filter.max_value.param_name }}"
+                                      {% if filter.max_value.value -%}
+                                        value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
+                                      {%- endif %}
+                                      type="number"
+                                      placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                                      min="0"
+                                      max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                                    >
+                    
+                                    <label for="Filter-{{ filter.max_value.param_name }}">To</label>
+                                  </div>
+                                </div>
+                            {%- endcase -%}
+                        {%- endfor -%}
+                        <div class="flex gap-3 justify-end">
+                          <a href="{{ collection.url }}?sort_by={{ collection.sort_by }}" class="btn btn-outline">Clear all</a>
+                          <div class=" filter-group-display__submit">
+                            <input class="btn" type="submit" value="Apply">
+                          </div>
+                        </div>
+                    </div>
+                    
+                  </form>
+                </div>
+              </div>
+            </filter-modal>
+          </div>
+        </div>
+      
+        {%- paginate collection.products by 12-%}
+        <div class="grid gap-6 grid-cols-2 lg:grid-cols-3 py-12">
+          {% for product in collection.products %}
+            {% render '[product]-card' product:product class: '' %}
+          {% endfor %}
+        </div>
+        {%- if paginate.pages > 1 -%}
+          {% render 'pagination', paginate: paginate, anchor: '', class: '' %}
+        {%- endif -%}
+        {%- endpaginate -%}
+      </div>
+    </div>
+  </div>
+</div>
+{% javascript %}
+
+class FilterModal extends ModalDialog {
+    constructor() {
+        super();
+    }
+    hide() {
+        super.hide();
+    }
+
+    show(opener) {
+        if (this.hasAttribute('open')) {
+            super.hide();
+        } else {
+            super.show(opener);
+        }
+    }
+}
+customElements.define('filter-modal', FilterModal);
+
+{% endjavascript %}
+{{ 'global.js' | asset_url | script_tag }}
 
 {% schema %}
 
 {
     "name": "Collection",
     "class": "spaced-section spaced-section--full-width",
-    "settings": [
-        
-    ]
+    "settings": []
 }
 
 {% endschema %}
