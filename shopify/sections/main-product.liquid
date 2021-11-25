@@ -92,16 +92,16 @@
             <div class="w-full h-full top-0 left-0 flex">
               <div class="w-1/6 flex flex-col z-10">
                 {% for image in product.images %}
-                  <div class="group pr-responsive-md pb-responsive-md lg:pr-5 lg:pb-5">
+                  <div  class="group pr-responsive-md pb-responsive-md lg:pr-2 lg:pb-2">
                     <div class="w-full  flex relative border group-hover:shadow-outline-normal ">
                       <div style="padding-top: {{image.aspect_ratio|plus:100}}%;"></div>
-                      <div class="absolute inset-0">
+                      <button tabindex="-1" class="absolute inset-0 block w-full h-full">
                         <div style="display: block; overflow: hidden; position: absolute; inset: 0px; box-sizing: border-box; margin: 0px;">
                           <img alt="Product Image" src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}" class="border border-accents-2" style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;">
                         </div>
-                      </div>
+                      </button>
                     </div>
-                    <div class="hidden group-hover:block  right-0 top-0 absolute w-5/6">
+                    <div class="hidden group-hover:block  group-focus-within:block  right-0 top-0 absolute w-5/6">
                       <div class="w-full" style="padding-top: {{image.aspect_ratio|plus:100}}%;">
                         <div class="absolute top-0 right-0 w-full h-full flex-1">
                           <div style="display: block; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;">
@@ -241,7 +241,7 @@
                   <label class="form__label text-lg uppercase font-bold py-3" for="Quantity-{{ section.id }}">
                     {{ 'products.product.quantity.label' | t }}
                   </label>
-                  <quantity-input class="quantity w-20 flex">
+                  <quantity-input class="quantity flex">
                     <button class="quantity__button no-js-hidden" name="minus" type="button">
                       <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: product.title | escape }}</span>
                       {% render 'icon-minus' %}
@@ -305,25 +305,25 @@
     </div>
   </div>
 <div class="container mx-auto">
-    <div class="max-w-4xl mx-auto space-x-16 flex mt-16">
+    <div class="max-w-4xl mx-auto flex-col gap6 lg:gap-16 flex lg:flex-row mt-16">
         <div class="flex-1 flex relative">
           <div class="relative w-full">
             <div class="pt-[145%]"></div>
             {% render 'image-full' ,image:product.images[0] class:'transition-all group-hover:brightness-50' %}
           </div>
         </div>
-        <div class="flex-1  justify-center relative py-12 max-w-sm">
-            <div class="mt-6 whitespace-pre-line">
+        <div class="flex-1 space-y-3 lg:space-y-6 justify-center relative lg:py-12 max-w-sm">
+            <div class= "whitespace-pre-line">
               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
             </div>
-            <div class="mt-6 space-y-2">
+            <div class=" space-y-2">
                 <a href="{{product.url}}" class="text-3xl">{{ product.title | escape }}</a>
                 <div>gold, jade pendant</div>
                 <div>
                   {% render '[product]-price' product:product class: '' %}
                 </div>
           </div>
-          <a href="{{product.url}}"  class="btn btn-lg group mt-6">SHOP THE LOOK
+          <a href="{{product.url}}"  class="btn btn-lg group ">SHOP THE LOOK
             <svg class="icon ml-6 icon-arrow group-hover:ml-8 transition-all" viewBox="0 0 14 10" fill="none" aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z" fill="currentColor">
             </path></svg>
@@ -334,7 +334,7 @@
 </div>
   <div class="container mx-auto flex flex-col space-y-12">
     <h2 class="font-heading text-4xl text-center">YOU MAY ALSO LIKE</h2>
-    <div class="flex space-x-6 flex-1 w-full justify-center">
+    <div class="grid gap-6 grid-cols-2 lg:grid-cols-4 flex-1 w-full justify-center">
       {% for product in collection.products limit:4 %}
         <a href="{{product.url}}" class="flex-1">
             <div class="w-full relative hover:shadow-lg">
@@ -356,7 +356,7 @@
 
 <product-modal class="modal" id="ProductModal-{{ section.id }}" tabindex="-1">
   <div class="bg-white" role="dialog" aria-label="{{ 'products.modal.label' | t }}" aria-modal="true">
-    <button aria-label="{{ 'accessibility.close' | t }}" id="ModalClose-{{ section.id }}" type="button" class="z-10 modal__toggle absolute top-0 right-4" aria-label="{{ 'accessibility.close' | t }}">
+    <button aria-label="{{ 'accessibility.close' | t }}" id="ModalClose-{{ section.id }}" type="button" class="z-10 border  bg-white modal__toggle absolute top-4 right-4" aria-label="{{ 'accessibility.close' | t }}">
       <svg class="h-6 w-6" fill="none" height="24" shape-rendering="geometricPrecision" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor" viewbox="0 0 24 24" width="24">
         <path d="M18 6L6 18"></path>
         <path d="M6 6l12 12"></path>
