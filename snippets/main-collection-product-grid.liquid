@@ -25,7 +25,7 @@
 {%- endif -%}
 {%- endfor -%}
 {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
-<div class="page-width collection-filters" id="main-collection-filters" data-id="{{ section.id }}">
+<div class="container mx-auto collection-filters" id="main-collection-filters" data-id="{{ section.id }}">
     {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
         {%- assign total_active_values = 0 -%}
         <collection-filters-form>
@@ -229,7 +229,7 @@
 <div class="relative" id="CollectionProductGrid">
     {%- paginate collection.products by section.settings.products_per_page -%}
         {%- if collection.products.size == 0 -%}
-            <div class="collection collection--empty page-width " id="main-collection-product-grid" data-id="{{ section.id }}">
+            <div class="collection collection--empty container mx-auto " id="main-collection-product-grid" data-id="{{ section.id }}">
                 <div class="loading-overlay flex justify-center w-full  h-full p-12 absolute inset-0">
                     <div class="loading-overlay__spinner flex justify-center w-full">
                         <svg aria-hidden="true" class="spinner" focusable="false" role="presentation" viewbox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
@@ -245,7 +245,7 @@
                 </div>
             </div>
         {%- else -%}
-            <div class="collection page-width w-full">
+            <div class="collection container mx-auto w-full">
                 <div class="loading-overlay flex justify-center p-12 w-full">
                     <div class="loading-overlay__spinner">
                         <svg aria-hidden="true" class="spinner" focusable="false" role="presentation" viewbox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">

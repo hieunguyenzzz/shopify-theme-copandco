@@ -53,7 +53,7 @@
       >
     </div>
   {%- endif -%}
-  <div class="banner__content page-width" style="align-items: {{ section.settings.desktop_text_box_position }};">
+  <div class="banner__content container mx-auto" style="align-items: {{ section.settings.desktop_text_box_position }};">
     <div class="banner__box color-{{ section.settings.color_scheme }}">
       {%- for block in section.blocks -%}
         {%- case block.type -%}

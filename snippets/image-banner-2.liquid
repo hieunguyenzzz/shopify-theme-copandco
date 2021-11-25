@@ -239,7 +239,7 @@
 {%- endif -%}
 
 <div id="Banner-{{ id }}" class="{{id}}-banner{% if section.settings.stack_images_on_mobile and section.settings.image != blank and section.settings.image_2 != blank%} {{id}}-banner--stacked{% endif %}{% if section.settings.adapt_height_first_image and section.settings.image != blank %} {{id}}-banner--adapt{% endif %}">
-  <div class="{{id}}-banner__content page-width  color-{{ section.settings.color_scheme }}" style="align-items: {{ section.settings.desktop_text_box_position }};">
+  <div class="{{id}}-banner__content container mx-auto  color-{{ section.settings.color_scheme }}" style="align-items: {{ section.settings.desktop_text_box_position }};">
     <div class="{{id}}-banner__box">
       {%- for block in section.blocks -%}
         {%- case block.type -%}

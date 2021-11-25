@@ -1,9 +1,9 @@
-<div id="{{ section.id }}" class="py-[10%] flex justify-end space-x-12  relative isolate">
+<div id="{{ section.id }}" class="py-[10%] flex justify-end relative isolate">
     <div class="absolute inset-0 w-full h-full overflow-hidden z-[-1]">
         {% render 'image-full' image: section.settings.image %}
     </div>
-    <div class="page-width flex-1 flex justify-end">
-        <div class="p-12 w-1/2 text-center text-white">
+    <div class="container mx-auto flex-1 flex justify-end">
+        <div class="p-12 w-full lg:w-1/2 text-center text-white">
             <div class="mb-6 text-xl font-semibold">{{section.settings.sub_heading}}</div>
             <h2 class="text-6xl leading-none whitespace-pre-line  text-white">{{section.settings.heading}}</h2>
             <div class="mt-8">{{section.settings.description}}</div>
