@@ -1,0 +1,13 @@
+<a href="{{product.url}}" class="flex-1">
+    <div class="w-full relative hover:shadow-lg">
+        <div class="pt-[100%]"></div>
+        {% render 'image-full' ,image:product.images[0] %}
+    </div>
+    <div class="mt-6">
+        <h4 class="text-2xl">{{ product.title | escape }}</h4>
+        <div>gold, jade pendant</div>
+        <div>
+          {% render '[product]-price' product:product  class: '' %}
+        </div>
+    </div>
+  </a>

@@ -35,7 +35,7 @@
     {%- if available == false %} price--sold-out {% endif -%}
     {%- if compare_at_price > price %} price--on-sale {% endif -%}
     {%- if product.price_varies == false and product.compare_at_price_varies %} price--no-compare{% endif -%}">
-    <dl>
+    <dl class="">
       {%- comment -%}
         Explanation of description list:
           - div.price__regular: Displayed when there are no variants on sale
@@ -48,7 +48,7 @@
         </dt>
         <dd {% if show_badges == false %}class="price__last"{% endif %}>
           <span class="price-item price-item--regular">
-                now {{ money_price }}
+                {{ money_price }}
           </span>
         </dd>
       </div>
@@ -70,7 +70,7 @@
         </dt>
         <dd {% if show_badges == false %}class="price__last"{% endif %}>
           <span class="price-item price-item--sale font-bold visually-hidden visually-hidden--inline">
-            now {{ money_price }}
+            {{ money_price }}
           </span>
         </dd>
       </div>

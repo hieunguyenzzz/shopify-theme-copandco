@@ -44,7 +44,7 @@
                         <ul class="carousel carousel-center space-x-6 w-full {% render '[class]-container-full'  class: '' %}" role="list">
                 {% endcase %}
                 {%- for block in section.blocks -%}
-                    <li class="carousel-item py-8 relative group cursor-pointer">
+                    <li class="carousel-item py-8 ">
                         <a href="{{block.settings.url}}" class="relative">
                             <div class="w-[40vw] lg:w-[20vw] relative group-hover:shadow-lg transition-transform group-hover:scale-110">
                                 <div class="pt-[145%]"></div>

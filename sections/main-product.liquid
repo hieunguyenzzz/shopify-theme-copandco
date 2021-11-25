@@ -1,10 +1,9 @@
 {% assign collection = product.collections[0] %}
-
 {% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
 {% assign image = featured_image %}
 <div class="space-y-24 pt-12 pb-24 ">
   <div class="space-y-12">
-    <div class="container mx-auto">
+    <div class="container mx-auto hidden lg:block">
       {% render 'breadscumb' %}
     </div>
     <div class="container mx-auto space-y-6 lg:space-y-16">
@@ -90,37 +89,7 @@
           </div>
           <div class="w-full relative hidden lg:block">
             <div class="w-full h-full top-0 left-0 flex">
-              <div class="w-1/6 flex flex-col z-10">
-                {% for image in product.images %}
-                  <div  class="group pr-responsive-md pb-responsive-md lg:pr-2 lg:pb-2">
-                    <div class="w-full  flex relative border group-hover:shadow-outline-normal ">
-                      <div style="padding-top: {{image.aspect_ratio|plus:100}}%;"></div>
-                      <button tabindex="-1" class="absolute inset-0 block w-full h-full">
-                        <div style="display: block; overflow: hidden; position: absolute; inset: 0px; box-sizing: border-box; margin: 0px;">
-                          <img alt="Product Image" src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}" class="border border-accents-2" style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;">
-                        </div>
-                      </button>
-                    </div>
-                    <div class="hidden group-hover:block  group-focus-within:block  right-0 top-0 absolute w-5/6">
-                      <div class="w-full" style="padding-top: {{image.aspect_ratio|plus:100}}%;">
-                        <div class="absolute top-0 right-0 w-full h-full flex-1">
-                          <div style="display: block; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;">
-                            <div style="display: block; box-sizing: border-box; padding-top: {{image.aspect_ratio|plus:100}}%;"></div>
-                            <modal-opener data-modal="#ProductModal-{{ section.id }}">
-                              <button type="button" aria-haspopup="dialog" data-media-id="{{ image.id }}">
-                                <img class=" " data-media-id="{{ section.id }}-{{ image.id }}" alt="Product Image" src="{{image.src | img_url: '1024x1024', scale: 2 }}" style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;">
-                                <div class="hidden group-hover:block absolute top-5 left-5 p-2 bg-white rounded-full text-sm">
-                                  {%- render 'icon-zoom' -%}</div>
-                              </button>
-                            </modal-opener>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                {% endfor %}
-                <div class="flex-1"></div>
-              </div>
+         
               <div class="w-5/6 bg-accents-0">
                 <div class="w-full flex-1 relative" style="padding-top: {{image.aspect_ratio|plus:100}}%;">
                   <div class="flex-1 absolute top-0 right-0 w-full h-full ">
@@ -146,6 +115,37 @@
                     </div>
                   </div>
                 </div>
+              </div>
+              <div class="w-1/6 flex flex-col z-10">
+                {% for image in product.images %}
+                  <div  class="group pr-responsive-md pb-responsive-md lg:pl-2 lg:pb-2">
+                    <div class="w-full  flex relative border group-hover:shadow-outline-normal ">
+                      <div style="padding-top: {{image.aspect_ratio|plus:100}}%;"></div>
+                      <button tabindex="-1" class="absolute inset-0 block w-full h-full">
+                        <div style="display: block; overflow: hidden; position: absolute; inset: 0px; box-sizing: border-box; margin: 0px;">
+                          <img alt="Product Image" src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}" class="border border-accents-2" style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;">
+                        </div>
+                      </button>
+                    </div>
+                    <div class="hidden group-hover:block  group-focus-within:block  left-0 top-0 absolute w-5/6">
+                      <div class="w-full" style="padding-top: {{image.aspect_ratio|plus:100}}%;">
+                        <div class="absolute top-0 right-0 w-full h-full flex-1">
+                          <div style="display: block; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;">
+                            <div style="display: block; box-sizing: border-box; padding-top: {{image.aspect_ratio|plus:100}}%;"></div>
+                            <modal-opener data-modal="#ProductModal-{{ section.id }}">
+                              <button type="button" aria-haspopup="dialog" data-media-id="{{ image.id }}">
+                                <img class=" " data-media-id="{{ section.id }}-{{ image.id }}" alt="Product Image" src="{{image.src | img_url: '1024x1024', scale: 2 }}" style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;">
+                                <div class="hidden group-hover:block absolute top-5 left-5 p-2 bg-white rounded-full text-sm">
+                                  {%- render 'icon-zoom' -%}</div>
+                              </button>
+                            </modal-opener>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+                <div class="flex-1"></div>
               </div>
             </div>
           </div>
@@ -208,11 +208,11 @@
                     {%- endfor -%}
                     <script type="application/json">
 
-  {
-      product.variants | json
-  }}
+                    {
+                        product.variants | json
+                    }}
 
-  </script>
+                    </script>
                   </variant-radios>
               {%- endunless -%}
               <noscript>
@@ -268,7 +268,7 @@
                       <button
                         type="submit"
                         name="add"
-                        class="btn btn-lg btn-outline min-w-[200px] w-full lg:w-auto"
+                        class="btn btn-outline min-w-[200px] w-full"
                       {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
                       >
                           {%- if product.selected_or_first_available_variant.available -%}
@@ -277,9 +277,7 @@
                             {{ 'products.product.sold_out' | t }}
                           {%- endif -%}
                       </button>
-                      {%- if block.settings.show_dynamic_checkout -%}
-                        {{ form | payment_button }}
-                      {%- endif -%}
+                      {{ form | payment_button  }}
                     </div>
                   {%- endform -%}
                 </product-form>
@@ -469,7 +467,91 @@
     margin: 0;
     width: 2.2rem;
   }
-  
+  * Dynamic checkout */
+  .shopify-payment-button__more-options {
+    color: var(--color-foreground);
+  }
+
+  .shopify-payment-button__button {
+    border-radius: 0;
+    min-height: 4.6rem;
+    overflow: hidden;
+    font-size: 1.5rem;
+    letter-spacing: .1rem;
+    border-color: transparent;
+    border-color: hsla(var(--n)/var(--tw-border-opacity,1));
+    cursor: pointer;
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+    transition-duration: .15s;
+    transition-duration: .2s;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    border-radius: var(--rounded-btn,.5rem);
+    height: 3rem;
+    font-size: .875rem!important;
+    line-height: 1.25rem;
+    line-height: 2;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    min-height: 3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-transform: var(--btn-text-case,uppercase);
+    border-width: var(--border-btn,1px);
+    -webkit-animation: button-pop var(--animation-btn,.25s) ease-out;
+    animation: button-pop var(--animation-btn,.25s) ease-out;
+    --tw-bg-opacity: 1;
+    background-color: hsla(var(--n)/var(--tw-bg-opacity,1))!important;
+    --tw-border-opacity: 1;
+    --tw-text-opacity: 1;
+    color: hsla(var(--nc)/var(--tw-text-opacity,1));
+  }
+
+  .shopify-payment-button__button--unbranded {
+    background-color: var(--color-button-background);
+    box-shadow: 0 0 0 0.1rem var(--color-button-border);
+    font-size: 1.4rem;
+    line-height: 1.2;
+    letter-spacing: 0.07rem;
+  }
+
+  .shopify-payment-button__button--unbranded:hover,
+  .shopify-payment-button__button--unbranded:hover:not([disabled]) {
+    background-color: var(--color-button-background);
+    box-shadow: 0 0 0 0.2rem var(--color-button-border);
+  }
+
+  .shopify-payment-button__button--unbranded:focus {
+    outline: 0.3rem solid var(--color-foreground);
+    outline-offset: 0.3rem;
+  }
+
+  .shopify-payment-button__button--unbranded:focus-visible {
+    outline: 0.3rem solid var(--color-foreground);
+    outline-offset: 0.3rem;
+  }
+
+  .shopify-payment-button__button--unbranded:focus:not(:focus-visible) {
+    outline: 0;
+  }
+
+  .shopify-payment-button__more-options {
+    margin: 1.6rem 0 1rem;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    letter-spacing: 0.05rem;
+    text-decoration: underline;
+    text-underline-offset: 0.3rem;
+  }
 {% endstylesheet %}
 {{ 'global.js' | asset_url | script_tag }}
 
