@@ -1,7 +1,7 @@
 
 <div class=" py-20 space-y-20">
   <div class="container mx-auto">
-    <h1 class="text-left text-7xl pb-2 border-b border-solid border-black inline-block">{{ section.settings.title | escape }}</h1>
+    <h1 class="text-left text-5xl  lg:text-7xl pb-2 border-b border-solid border-black inline-block">{{ section.settings.title | escape }}</h1>
   </div>
   
 <!-- 
@@ -25,18 +25,20 @@
   </div> -->
   {% for collection in collections %}
   <div id="{{ section.id }}-collections[{{collection.id}}]" class="">
-    <div class="container mx-auto flex items-center">
+    <div class="container mx-auto flex flex-col lg:flex-row lg:items-center gap-6">
         <div class="flex-1">
-            <h2 class="text-6xl ">{{collection.title}} ({{collection.products.size}})</h2>
+            <h2 class="text-3xl lg:text-5xl ">{{collection.title}} ({{collection.products.size}})</h2>
             {% render 'button' url: collection.url text: 'View collection'class: 'mt-6' %}
         </div>
-        <div class="flex-1 py-4">
+        {% if collection.description != blank %}
+          <div class="flex-1 max-w-prose">
             <div>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam</div>
-        </div>
+          </div>
+        {% endif %}
     </div>
-    <div class="mt-8 relative">
+    <div class="relative overflow-hidden">
         <scrolling-carousel>
-                {% case collection.products.size %}
+                {% case collection.products.size limit: 12 %}
                     {% when 1 %}
                         <ul class="container mx-auto tw-grid w-full gap-10" role="list">
                     {% when 2 %}
@@ -49,18 +51,18 @@
                         <ul class="carousel carousel-center space-x-6 w-full {% render '[class]-container-full'  class: '' %}" role="list">
                 {% endcase %}
                 {%- for product in collection.products -%}
-                    <li class="carousel-item py-8 w-[25vw]">
+                    <li class="carousel-item py-8 w-[40vw] lg:w-[15vw]">
                         {% render '[product]-card' product:product class: '' %}
                     </li>
                 {%- endfor -%}
               </ul>
             <scrolling-arrow-left hidden>
-                <button class="pointer-events-auto absolute bottom-1/2 left-6 w-16 h-16 rounded-full bg-base-100 bg-opacity-30 hover:bg-opacity-100 hover:shadow  flex justify-center items-center text-4xl translate-y-1/2  transform rotate-180">
+                <button class="pointer-events-auto absolute bottom-1/2 left-6 w-16 h-16 rounded-full bg-base-100 bg-opacity-60 hover:bg-opacity-100 hover:shadow  flex justify-center items-center text-4xl translate-y-1/2  transform rotate-180">
                     <svg width="1em" height="1em" fill="none" stroke-width="0.03em" stroke="currentColor" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8.14 14.74"><g ><polyline  points="0.74 14.07 6.79 7.41 0.74 0.67"/></g></svg>
                 </button>
             </scrolling-arrow-left>
             <scrolling-arrow-right hidden>
-                <button class="pointer-events-auto absolute bottom-1/2 right-6 w-16 h-16 rounded-full bg-base-100 bg-opacity-30 hover:bg-opacity-100 hover:shadow  flex justify-center items-center text-4xl translate-y-1/2">
+                <button class="pointer-events-auto absolute bottom-1/2 right-6 w-16 h-16 rounded-full bg-base-100 bg-opacity-60 hover:bg-opacity-100 hover:shadow  flex justify-center items-center text-4xl translate-y-1/2">
                     <svg width="1em" height="1em" fill="none" stroke-width="0.03em" stroke="currentColor" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8.14 14.74"><g ><polyline points="0.74 14.07 6.79 7.41 0.74 0.67"/></g></svg>
                 </button>
             </scrolling-arrow-right>

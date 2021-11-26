@@ -1,78 +1,59 @@
-{{ 'component-card.css' | asset_url | stylesheet_tag }}
-{{ 'component-price.css' | asset_url | stylesheet_tag }}
-{{ 'component-product-grid.css' | asset_url | stylesheet_tag }}
 
-<link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
-
-<noscript>{{ 'component-search.css' | asset_url | stylesheet_tag }}</noscript>
-
-<style>
-  .template-search__search {
-    margin: 0 auto;
-    max-width: 29.5rem;
-  }
-
-  .template-search__search .search {
-    margin-top: 3rem;
-  }
-
-  .template-search__results {
-    margin-top: 6rem;
-  }
-
-  .template-search--empty {
-    padding-bottom: 18rem;
-  }
-
-  .template-search .grid__item--small:not(:last-child) {
-    padding-bottom: 0.5rem;
-  }
-
-  @media screen and (min-width: 750px) {
-    .template-search__search {
-      max-width: 47.8rem;
-    }
-
-    .template-search .grid__item--small:not(:last-child) {
-      padding-bottom: 1rem;
-    }
-  }
-
-  .search__button .icon {
-    height: 1.8rem;
-  }
-</style>
-
-<div class="template-search spaced-section{% unless search.performed and search.results.size > 0 %} template-search--empty{% endunless %}">
-  <div class="container mx-auto text-center ">
-    {%- if search.performed -%}
-      <h1 class="h2">{{ 'templates.search.title' | t }}</h1>
-    {%- else -%}
-      <h1 class="h2">{{ 'general.search.search' | t }}</h1>
-    {%- endif -%}
-    <div class="template-search__search">
-      <form action="{{ routes.search_url }}" method="get" role="search" class="search">
-        <div class="field">
-          <input
-            class="search__input field__input"
-            id="Search-In-Template"
-            type="search"
-            name="q"
-            value="{{ search.terms | escape }}"
-            {% if search.performed %}autofocus{% endif %}
-            placeholder="{{ 'general.search.search' | t }}"
-          >
-          <label class="field__label" for="Search-In-Template" aria-hidden="true">{{ 'general.search.search' | t }}</label>
+{% assign sort_by = search.sort_by %}
+{% assign showclearBtn = false %}
+          {% assign filterItemCount = 0 %}
+          {% capture filterItems %}
+          {%- for filter in search.filters -%}
+            {%- if filter.type == "price_range" -%}
+              {%- if filter.min_value.value != nil or filter.max_value.value != nil -%}
+                <a class="active-filters__remove-filter btn btn-sm" href="{{ filter.url_to_remove }}">
+                  {%- assign min_value = filter.min_value.value | default: 0 -%}
+                  {%- assign max_value = filter.max_value.value | default: filter.range_max -%}
+                  {{ min_value | money }} - {{ max_value | money }} X
+                </a>
+                {% assign showclearBtn = true %}
+                {% assign filterItemCount = filterItemCount | plus: 1 %}
+                {%- endif -%}
+            {%- else -%}
+              {%- for filter_value in filter.active_values -%}
+                <a class="active-filters__remove-filter btn btn-sm" href="{{ filter_value.url_to_remove }}">
+                  {{ filter_value.label }} X
+                </a>
+                {% assign filterItemCount = filterItemCount | plus: 1 %}
+                {% assign showclearBtn = true %}
+              {%- endfor -%}
+            {%- endif- %}
+          {%- endfor -%}
+          {% endcapture %}
+<div class="py-12 space-y-12 container mx-auto">
+  <div class="space-y-12">
+    <div class="w-full flex gap-6 flex-col items-center">
+      <div class="flex-1 flex items-baseline text-center space-x-2 ">
+          <a href="/search" class="text-5xl text-effect-1 font-heading capitalize">Search</a>
+      </div>
+      <form action="{{ routes.search_url }}" method="get" role="search" class="search w-full flex justify-center">
+        <div class="field w-full max-w-prose  form-control">
+          <div class="input-group border border-black relative flex">
+            <input
+              class="search__input field__input input input-lg flex-1"
+              id="Search-In-Template"
+              type="search"
+              name="q"
+              value="{{ search.terms | escape }}"
+              {% if search.performed %}autofocus{% endif %}
+              placeholder="{{ 'general.search.search' | t }}"
+            >
+            <button  type="submit" class="btn btn-lg absolute top-0 h-full right-0" aria-label="{{ 'general.search.search' | t }}">
+              Search
+            </button>
+          </div>
+          
+          <label hidden class="field__label" for="Search-In-Template" aria-hidden="true">{{ 'general.search.search' | t }}</label>
           <input name="options[prefix]" type="hidden" value="last">
-          <button type="submit" class="search__button field__button focus-inset" aria-label="{{ 'general.search.search' | t }}">
-            <svg class="icon icon-search">
-              <use xlink:href="#icon-search">
-            </svg>
-          </button>
+          
         </div>
       </form>
-    </div>
-    {%- if search.performed -%}
+      {%- if search.performed -%}
       <p class="element-margin" role="status">
         {%- if search.results_count == 0 -%}
           {{ 'templates.search.no_results' | t: terms: search.terms }}
@@ -81,84 +62,230 @@
         {%- endif -%}
       </p>
     {%- endif -%}
-  </div>
-  {%- if search.performed and search.results.size > 0 -%}
-    {% paginate search.results by 24 %}
-      <div class="template-search__results container mx-auto">
-        <ul class="grid grid--4-col-desktop grid--3-col-tablet grid--2-col grid--one-third-max grid--quarter-max negative-margin product-grid" role="list">
-          {%- for item in search.results -%}
-            <li class="grid__item{% unless item.object_type == 'product' %} grid__item--small{% endunless %}">
-              {%- case item.object_type -%}
-                {%- when 'product' -%}
-                  {%- capture product_settings -%}{%- if section.settings.product_show_vendor -%}vendor,{%- endif -%}title,price{%- endcapture -%}
-                  {% render 'product-card',
-                    product_card_product: item,
-                    media_size: section.settings.image_ratio,
-                    show_secondary_image: section.settings.show_secondary_image,
-                    add_image_padding: section.settings.add_image_padding,
-                    show_vendor: section.settings.show_vendor,
-                    show_image_outline: section.settings.show_image_outline
-                  %}
-                {%- when 'article' -%}
-                  <a href="{{ item.url }}" class="card-wrapper">
-                    <div class="card card--search card--soft{% unless item.image %} card--text-only{% endunless %}">
-                      <div class="card__inner">
-                        {%- if item.image -%}
-                          <div class="media media--cropped">
-                            <img
-                              srcset="{%- if item.image.src.width >= 165 -%}{{ item.image.src | img_url: '165x' }} 165w,{%- endif -%}
-                                  {%- if item.image.src.width >= 360 -%}{{ item.image.src | img_url: '360x' }} 268w,{%- endif -%}
-                                  {%- if item.image.src.width >= 533 -%}{{ item.image.src | img_url: '533x' }} 357w,{%- endif -%}
-                                  {%- if item.image.src.width >= 720 -%}{{ item.image.src | img_url: '720x' }} 536w,{%- endif -%}
-                                  {%- if item.image.src.width >= 940 -%}{{ item.image.src | img_url: '940x' }} 714w{%- endif -%}"
-                              src="{{ item.image.src | img_url: '533x' }}"
-                              loading="lazy"
-                              sizes="(min-width: 1200px) 268px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
-                              width="{{ item.image.src.width }}"
-                              height="{{ item.image.src.height }}"
-                              alt="{{ item.image.src.alt | escape }}"
-                          >
-                          </div>
-                        {%- endif -%}
-                        <div class="card__content">
-                          <h2 class="card__text h3">{{ item.title | truncate: 50 | escape }}</h2>
-                          <div class="card-article-info caption-with-letter-spacing h5">
-                            {%- if section.settings.article_show_date -%}
-                              <span class="circle-divider">{{ item.published_at | time_tag: format: 'month_year' }}</span>
-                            {%- endif -%}
-                            {%- if section.settings.article_show_author -%}
-                              <span>{{ item.author }}</span>
-                            {%- endif -%}
-                          </div>
-                        </div>
-                        <div class="card__badge">
-                          <span class="badge color-background-1">{{ 'blogs.article.blog' | t }}</span>
-                        </div>
-                      </div>
+    </div>
+    <div class="w-full flex gap-6 lg:gap-12">
+      <div class="flex-1 isolate space-y-6">
+        <div id="filter-box" class="w-full pointer-events-none isolate z-10 sticky top-header">
+          <div class="bg-base-100 pointer-events-auto border-primary border-b border-t border-solid">
+            <div class="text-center  flex justify-between space-x-6 z-10 isolate relative">
+              <modal-opener data-modal="#filter-modal-{{ section.id }}">
+                <button class="py-4  flex items-center px-3 hover:bg-base-200 group overflow-hidden">
+                  <div class="font-bold">FILTER</div>
+                  <div class="px-6">({{filterItemCount}})</div>
+                  <div class="flex items-center relative">
+                    <div class="filter-modal-{{ section.id }}-icon-plus">
+                      {% include 'icon-plus' %}
                     </div>
-                  </a>
-                {%- when 'page' -%}
-                  <a href="{{ item.url }}" class="card-wrapper">
-                    <div class="card card--search card--soft card--text-only">
-                      <div class="card__inner">
-                        <div class="card__content"><h2 class="card__text h3">{{ item.title | truncate: 50 | escape }}</h2></div>
-                        <div class="card__badge">
-                          <span class="badge color-background-1">{{ 'templates.search.page' | t }}</span>
-                        </div>
-                      </div>
+                    <div class="filter-modal-{{ section.id }}-icon-minus absolute w-full h-full opacity-0 ">
+                      {% include 'icon-minus' %}
                     </div>
-                  </a>
-              {%- endcase -%}
-            </li>
-          {%- endfor -%}
-        </ul>
+                  </div>
+                </button>
+              </modal-opener>
+              <div class="group relative">
+                <button tabindex="-1" class="py-4 flex items-center px-3 hover:bg-base-200 ">
+                  <div class="font-bold">SORT BY</div>
+                  <div class="px-6">
+                    {% assign sortByName = 'Featured' %}
+                    {% for option in search.sort_options %}
+                      {% if option.value == sort_by %} 
+                        {% assign sortByName = option.name %}
+                        {% else %}
+                      {% endif %}
+                    {% endfor %}
+                    {{sortByName}}
+                  </div>
+                  <div class="flex relative items-center transform rotate-0 transition-transform group-focus-within:rotate-180">
+                    <div class="opacity-100 group-focus-within:opacity-0 transition-opacity">
+                      {% include 'icon-plus' %}
+                    </div>
+                    <div class="absolute w-full h-full opacity-0 group-focus-within:opacity-100 transition-opacity">
+                      {% include 'icon-minus' %}
+                    </div>
+                  </div>
+                </button>
+                <div tabindex="-1" class="w-[200px] transition-all scale-0 group-focus-within:scale-100 origin-top-right opacity-0 group-focus-within:opacity-100 text-left cursor-pointer capitalize isolate invisible group-focus-within:visible absolute top-full right-0 bg-base-100 border border-black p-2 flex flex-col gap-2">
+                  {% assign url = request.path | append : '?' %}
+                    {% for filter in search.filters %}
+                      {% if filter.active_values.size %}
+                          {% assign active_values = filter.active_values | map:'value' | join:',' %}
+                          {% if active_values != blank %}
+                            {% assign url = url | append :filter.param_name | append :'=' | append :active_values %}
+                          {% endif %}
+                      {% endif %}
+                  {% endfor %}
+                  {% for option in search.sort_options %}
+                    <div class="px-3 py-1 {% if option.value == sort_by %} bg-gray-200 {% endif %} hover:bg-gray-100">
+                      <a href="{{url| sort_by :  option.value}}">{{ option.name }}</a>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+              
+            </div>
+            
+            <filter-modal class="w-full" id="filter-modal-{{ section.id }}" tabindex="-1">
+              <style>
+                #filter-modal-{{ section.id }}{
+                  display:none;
+                }
+                #filter-modal-{{ section.id }}[open]{
+                  display:block;
+                }
+              </style>
+              <div class="bg-white animate__fadeIn animate__animated" role="dialog" aria-label="{{ 'products.modal.label' | t }}" aria-modal="true">
+                <div class="w-full p-6 pt-8 border-t border-black">
+                  
+                  <form class="filter-form flex flex-col gap-6 gap-y-10">
+                    <input
+                      hidden
+                      class="search__input field__input input input-lg flex-1"
+                      id="Search-In-Template"
+                      type="search"
+                      name="q"
+                      value="{{ search.terms | escape }}"
+                      {% if search.performed %}autofocus{% endif %}
+                      placeholder="{{ 'general.search.search' | t }}"
+                    >
+                    <div class="flex-1 grid gap-6 grid-cols-1 lg:grid-cols-3">
+                      {%- for filter in search.filters -%}
+                        {%- case filter.type -%}
+                        {%- when 'list' -%}
+                        <div class="filter-group space-y-3 order-1">
+                            <div class="filter-group-summary py-2">
+                              <div>
+                                  <span class="text-2xl font-heading">{{ filter.label }} </span>
+                                  {%- if filter.active_values.size > 0 -%}
+                                  <span>({{ filter.active_values.size }})</span>
+                                  {%- endif -%}
+                                  {{' '}}
+                                  {%- if filter.active_values.size > 0 -%}
+                                    <a href="{{ filter.url_to_remove }}" class="underline text-opacity-80">Reset</a>
+                                  {%- endif -%}
+                              </div>
+                            </div>
+                            {% if filter.label == 'Size' %}
+                              <ul class="mt-3 grid grid-cols-2 gap-3 ">
+                              {% else %}
+                              <ul class="space-y-3 mt-3">
+                              {% endif %}
+                              {%- for filter_value in filter.values -%}
+                              <li class="flex items-baseline space-x-6 ">
+                                  <label class="flex space-x-3 items-center" for="Filter-{{ filter.param_name }}-{{ forloop.index }}">
+                                  <div class="h-[20px] flex items-center">
+                                    <input type="checkbox"
+                                    class="radio radio"
+                                    name="{{ filter_value.param_name }}"
+                                    value="{{ filter_value.value }}"
+                                    id="Filter-{{ filter.param_name }}-{{ forloop.index }}"
+                                    {% if filter_value.active -%}checked{%- endif %}
+                                    {% if filter_value.count == 0 and filter_value.active == false -%}disabled{%- endif %}
+                                    >
+                                  </div>
+                                  <span class="leading-[20px]">{{ filter_value.label }}</span></label>
+                              </li>
+                              {%- endfor -%}
+                            </ul>
+                        </div>
+                        {%- when 'price_range' -%}
+                        <div class="filter-group-display__price-range space-y-3 order-2">
+                            <div class="filter-group-summary py-2">
+                              <div>
+                                  <span class="text-2xl font-heading">{{ filter.label }} ({{ cart.currency.iso_code }})</span>
+                              </div>
+                            </div>
+                            <div class="flex space-x-3">
+                              <div class="filter-group-display__price-range-from flex-1 flex space-x-3 items-baseline">
+                                <label for="Filter-{{ filter.min_value.param_name }}">From</label>
+                                <input class="input input-bordered input-sm flex-1" name="{{ filter.min_value.param_name }}"
+                                id="Filter-{{ filter.min_value.param_name }}"
+                                {% if filter.min_value.value -%}
+                                value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+                                {%- endif %}
+                                type="number"
+                                placeholder="0"
+                                min="0"
+                                max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                                >
+                                
+                              </div>
+                              <div class="filter-group-display__price-range-to flex-1 flex space-x-3 items-baseline">
+                                <label for="Filter-{{ filter.max_value.param_name }}">To</label>
+                                <input class="input input-bordered input-sm flex-1" name="{{ filter.max_value.param_name }}"
+                                id="Filter-{{ filter.max_value.param_name }}"
+                                {% if filter.max_value.value -%}
+                                value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
+                                {%- endif %}
+                                type="number"
+                                placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                                min="0"
+                                max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                                >
+                                
+                              </div>
+                            </div>
+                            <div>Maximum: {{ filter.range_max | money_with_currency  }}</div>
+                        </div>
+                        {%- endcase -%}
+                      {%- endfor -%}
+                    </div>
+                    <div class="flex gap-3 justify-end">
+                          <a href="{{ search.url }}?sort_by={{ search.sort_by }}" class="btn btn-outline">Clear all</a>
+                          <div class=" filter-group-display__submit">
+                             <input class="btn min-w-[100px]" type="submit" value="Apply">
+                          </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </filter-modal>
+           
+          </div>
+        </div>
+        <div class="active-filters py-2 flex flex-wrap gap-3">
+          
+          {{filterItems}}
+          {% if showclearBtn %}
+            <a href="{{ request.path }}?sort_by={{ search.sort_by }}" class="btn btn-sm btn-outline active-filters__clear">Clear all</a>
+          {% endif %}
+        </div>
+        {%- paginate search.results by 12-%}
+        <div class="grid gap-6 grid-cols-2 lg:grid-cols-4 ">
+          {% for product in search.results %}
+            {% render '[product]-card' product:product class: '' %}
+          {% endfor %}
+        </div>
         {%- if paginate.pages > 1 -%}
-          {% render 'pagination', paginate: paginate %}
+          {% render 'pagination', paginate: paginate, anchor: '', class: '' %}
         {%- endif -%}
+        {%- endpaginate -%}
       </div>
-    {% endpaginate %}
-  {%- endif -%}
+    </div>
+  </div>
 </div>
+{% javascript %}
+
+class FilterModal extends ModalDialog {
+    constructor() {
+        super();
+    }
+    hide() {
+        super.hide();
+    }
+
+    show(opener) {
+        if (this.hasAttribute('open')) {
+            super.hide();
+        } else {
+            super.show(opener);
+        }
+    }
+}
+customElements.define('filter-modal', FilterModal);
+
+{% endjavascript %}
+{{ 'global.js' | asset_url | script_tag }}
+
 
 {% schema %}
 {
