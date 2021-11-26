@@ -2193,6 +2193,10 @@ html {
   color: hsla(var(--bc)/var(--tw-text-opacity,1));
 }
 
+.input-bordered {
+  --tw-border-opacity: 0.2;
+}
+
 .input-disabled,.input[disabled] {
   --tw-bg-opacity: 1;
   background-color: hsla(var(--b2)/var(--tw-bg-opacity,1));
@@ -2669,6 +2673,15 @@ html {
   width: 320px;
 }
 
+.btn-sm {
+  height: 2rem;
+  padding-left: .75rem;
+  padding-right: .75rem;
+  min-height: 2rem;
+  font-size: .875rem;
+  line-height: 2rem;
+}
+
 .btn-lg {
   height: 4rem;
   padding-left: 1.5rem;
@@ -2678,10 +2691,23 @@ html {
   line-height: 2rem;
 }
 
+.btn-square.btn-sm {
+  height: 2rem;
+  padding: 0;
+  width: 2rem;
+}
+
 .btn-square.btn-lg {
   height: 4rem;
   padding: 0;
   width: 4rem;
+}
+
+.btn-circle.btn-sm {
+  border-radius: 9999px;
+  height: 2rem;
+  padding: 0;
+  width: 2rem;
 }
 
 .btn-circle.btn-lg {
@@ -2689,6 +2715,15 @@ html {
   height: 4rem;
   padding: 0;
   width: 4rem;
+}
+
+.input-sm {
+  height: 2rem;
+  font-size: .875rem;
+  line-height: 1.25rem;
+  line-height: 2rem;
+  padding-left: .75rem;
+  padding-right: .75rem;
 }
 
 .avatar.online:before {
@@ -2830,6 +2865,10 @@ html {
   top: -0.75rem;
 }
 
+.top-full {
+  top: 100%;
+}
+
 .top-5 {
   top: 1.25rem;
 }
@@ -2844,10 +2883,6 @@ html {
 
 .right-4 {
   right: 1rem;
-}
-
-.top-full {
-  top: 100%;
 }
 
 .isolate {
@@ -2956,6 +2991,10 @@ html {
   margin-left: 0.75rem;
 }
 
+.mb-3 {
+  margin-bottom: 0.75rem;
+}
+
 .-mt-4 {
   margin-top: -1rem;
 }
@@ -2970,10 +3009,6 @@ html {
 
 .ml-2 {
   margin-left: 0.5rem;
-}
-
-.mb-3 {
-  margin-bottom: 0.75rem;
 }
 
 .block {
@@ -3064,6 +3099,10 @@ html {
   height: 100vh;
 }
 
+.h-\[20px\] {
+  height: 20px;
+}
+
 .h-0 {
   height: 0px;
 }
@@ -3076,12 +3115,12 @@ html {
   height: 1.5rem;
 }
 
-.h-24 {
-  height: 6rem;
-}
-
 .h-1\/4 {
   height: 25%;
+}
+
+.h-24 {
+  height: 6rem;
 }
 
 .min-h-screen {
@@ -3152,6 +3191,10 @@ html {
   width: 100vw;
 }
 
+.w-\[25vw\] {
+  width: 25vw;
+}
+
 .w-5\/6 {
   width: 83.333333%;
 }
@@ -3168,16 +3211,12 @@ html {
   width: 1.5rem;
 }
 
-.w-\[30vw\] {
-  width: 30vw;
-}
-
-.w-\[25vw\] {
-  width: 25vw;
-}
-
 .min-w-\[200px\] {
   min-width: 200px;
+}
+
+.min-w-\[100px\] {
+  min-width: 100px;
 }
 
 .min-w-\[28px\] {
@@ -3226,10 +3265,6 @@ html {
 
 .flex-grow {
   flex-grow: 1;
-}
-
-.origin-top {
-  transform-origin: top;
 }
 
 .origin-top-right {
@@ -3370,21 +3405,25 @@ html {
   gap: 1px;
 }
 
-.gap-4 {
-  gap: 1rem;
+.gap-2 {
+  gap: 0.5rem;
 }
 
 .gap-3 {
   gap: 0.75rem;
 }
 
-.gap-2 {
-  gap: 0.5rem;
+.gap-4 {
+  gap: 1rem;
 }
 
 .gap-x-12 {
   -moz-column-gap: 3rem;
        column-gap: 3rem;
+}
+
+.gap-y-10 {
+  row-gap: 2.5rem;
 }
 
 .gap-x-8 {
@@ -3498,6 +3537,12 @@ html {
   margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
 
+.space-x-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
 .space-y-20 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(5rem * calc(1 - var(--tw-space-y-reverse)));
@@ -3508,12 +3553,6 @@ html {
   --tw-space-y-reverse: 0;
   margin-top: calc(6rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(6rem * var(--tw-space-y-reverse));
-}
-
-.space-x-2 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
-  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
 .overflow-auto {
@@ -3593,11 +3632,6 @@ html {
 .border-gray-500 {
   --tw-border-opacity: 1;
   border-color: rgba(107, 114, 128, var(--tw-border-opacity));
-}
-
-.border-neutral {
-  --tw-border-opacity: 1;
-  border-color: hsla(var(--n) / var(--tw-border-opacity));
 }
 
 .border-primary {
@@ -3781,14 +3815,14 @@ html {
   padding-right: 0.5rem;
 }
 
-.py-20 {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-}
-
 .py-1 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
+}
+
+.py-20 {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
 }
 
 .px-\[1rem\] {
@@ -3832,8 +3866,20 @@ html {
   padding-bottom: 5rem;
 }
 
+.pb-3 {
+  padding-bottom: 0.75rem;
+}
+
 .pl-8 {
   padding-left: 2rem;
+}
+
+.pt-8 {
+  padding-top: 2rem;
+}
+
+.pb-2 {
+  padding-bottom: 0.5rem;
 }
 
 .pt-12 {
@@ -3854,22 +3900,6 @@ html {
 
 .pt-3 {
   padding-top: 0.75rem;
-}
-
-.pb-2 {
-  padding-bottom: 0.5rem;
-}
-
-.pb-3 {
-  padding-bottom: 0.75rem;
-}
-
-.pb-12 {
-  padding-bottom: 3rem;
-}
-
-.pb-8 {
-  padding-bottom: 2rem;
 }
 
 .text-left {
@@ -3979,8 +4009,8 @@ html {
   line-height: 1;
 }
 
-.leading-loose {
-  line-height: 2;
+.leading-\[20px\] {
+  line-height: 20px;
 }
 
 .tracking-\[0\.5em\] {
@@ -4025,6 +4055,10 @@ html {
   --tw-text-opacity: 1;
 }
 
+.text-opacity-80 {
+  --tw-text-opacity: 0.8;
+}
+
 .underline {
   text-decoration: underline;
 }
@@ -4039,10 +4073,6 @@ html {
 
 .opacity-20 {
   opacity: 0.2;
-}
-
-.opacity-30 {
-  opacity: 0.3;
 }
 
 .opacity-100 {
@@ -4273,11 +4303,6 @@ html {
   background-color: hsla(var(--b2) / var(--tw-bg-opacity));
 }
 
-.hover\:bg-gray-200:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
-}
-
 .hover\:bg-gray-100:hover {
   --tw-bg-opacity: 1;
   background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
@@ -4363,16 +4388,12 @@ html {
   transform: var(--tw-transform);
 }
 
-.group:focus-within .group-focus-within\:opacity-100 {
-  opacity: 1;
-}
-
 .group:focus-within .group-focus-within\:opacity-0 {
   opacity: 0;
 }
 
-.group:focus-visible .group-focus-visible\:visible {
-  visibility: visible;
+.group:focus-within .group-focus-within\:opacity-100 {
+  opacity: 1;
 }
 
 .group:hover .group-hover\3Apointer-events-auto,.group-two:hover .group-two-hover\:pointer-events-auto,.group-one:hover .group-one-hover\:pointer-events-auto {
@@ -4389,10 +4410,6 @@ html {
 
 .group:hover .group-hover\3Atop-0,.group-two:hover .group-two-hover\:top-0,.group-one:hover .group-one-hover\:top-0 {
   top: 0px;
-}
-
-.group:hover .group-hover\3A bottom-0,.group-two:hover .group-two-hover\:bottom-0,.group-one:hover .group-one-hover\:bottom-0 {
-  bottom: 0px;
 }
 
 .group:hover .group-hover\3Aml-8,.group-two:hover .group-two-hover\:ml-8,.group-one:hover .group-one-hover\:ml-8 {
@@ -4781,7 +4798,7 @@ html {
   --diff: calc(var(--max-size) - var(--min-size));
   --responsive: calc(var(--min-size) * 1px + var(--diff) * (0.08333vw - 0.3px));
   --max-size: 14;
-  --min-size:12;
+  --min-size:9;
   font-size: calc(14.4px + 0.16667vw);
   font-size: var(--responsive);
 }
