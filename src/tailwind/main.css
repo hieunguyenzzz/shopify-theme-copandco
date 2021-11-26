@@ -26,8 +26,8 @@
   --diff: calc(var(--max-size) - var(--min-size));
   --responsive: calc(var(--min-size) * 1px + var(--diff) * (0.08333vw - 0.3px));
   --max-size: 14;
-  --min-size:9;
-  font-size: calc(14.4px + 0.16667vw);
+  --min-size:12;
+  /* font-size: calc(14.4px + 0.16667vw); */
   font-size: var(--responsive);
 }
 @screen md{

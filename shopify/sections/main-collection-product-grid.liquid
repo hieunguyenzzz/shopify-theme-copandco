@@ -139,7 +139,7 @@
                         <div class="filter-group space-y-3 order-1">
                             <div class="filter-group-summary py-2">
                               <div>
-                                  <span class="text-2xl font-heading">{{ filter.label }}</span>
+                                  <span class="text-2xl font-heading">{{ filter.label }} </span>
                                   {%- if filter.active_values.size > 0 -%}
                                   <span>({{ filter.active_values.size }})</span>
                                   {%- endif -%}
@@ -155,7 +155,7 @@
                               <ul class="space-y-3 mt-3">
                               {% endif %}
                               {%- for filter_value in filter.values -%}
-                              <li class="flex items-baseline space-x-6">
+                              <li class="flex items-baseline space-x-6 ">
                                   <label class="flex space-x-3 items-center" for="Filter-{{ filter.param_name }}-{{ forloop.index }}">
                                   <div class="h-[20px] flex items-center">
                                     <input type="checkbox"
