@@ -35,8 +35,10 @@
         </div>
       </div>
       <div class="flex-1 isolate space-y-6">
-        {% render '[filter]' class: '' sort_options:collection.sort_options
-        filters:collection.filters sort_by: collection.sort_by: %}
+        {% render '[filter]' class: '' 
+        sort_options:collection.sort_options
+        filters:collection.filters 
+        sort_by: collection.sort_by %}
         {%- paginate collection.products by 12-%}
         <div class="grid gap-6 grid-cols-2 lg:grid-cols-3 ">
           {% for product in collection.products %}
