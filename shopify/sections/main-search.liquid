@@ -50,9 +50,11 @@
     </div>
     <div class="w-full flex gap-6 lg:gap-12">
       <div class="flex-1 isolate space-y-6">
-        {% render '[filter]' class: '' sort_options:search.sort_options
-        filters:search.filters sort_by: search.sort_by: %} {%- if
-        search.performed -%}
+        {% render '[filter]' class: '' 
+        sort_options:search.sort_options
+        filters:search.filters 
+        sort_by: search.sort_by: %}
+        {%- if search.performed -%}
         <p class="element-margin w-full text-center" role="status">
           {%- if search.results_count == 0 -%}
           {{ "templates.search.no_results" | t: terms:search.terms }}
