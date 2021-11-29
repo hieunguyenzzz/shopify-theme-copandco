@@ -19,7 +19,7 @@
       "settings": {
         "heading": "New Collection",
         "sub_heading": "FALL WINTER 2021",
-        "description": "<p>Integer in luctus ante. Praesent tellus ligula, quis lobortis velit lacinia luctus.<\/p>",
+        "description": "<p>Integer in luctus ante. Praesent tellus ligula, quis lobortis velit lacinia luctus. <\/p>",
         "buttonText": "SHOP ALL",
         "buttonUrl": "\/",
         "image1": "shopify:\/\/shop_images\/jewelry-04.jpg",
@@ -98,8 +98,8 @@
     "featured-3": {
       "type": "featured-3",
       "settings": {
-        "heading": "Categories",
-        "sub_heading": "SHOP BY",
+        "heading": "Best selling",
+        "sub_heading": "Check it out",
         "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, <\/p>",
         "buttonText": "SHOP ALL",
         "buttonUrl": "\/"
