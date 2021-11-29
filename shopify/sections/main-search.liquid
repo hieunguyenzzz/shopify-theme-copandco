@@ -1,105 +1,136 @@
 <div class="py-12 space-y-12 container mx-auto">
-  <div class="space-y-12">
-    <div class="w-full flex gap-6 flex-col items-center">
-      <div class="flex-1 flex items-baseline text-center space-x-2">
-        <a href="/search" class="text-5xl text-effect-1 font-heading capitalize"
-          >Search</a
-        >
-      </div>
-      <form
-        action="{{ routes.search_url }}"
-        method="get"
-        role="search"
-        class="search w-full flex justify-center"
-      >
-        <div class="field w-full max-w-prose form-control">
-          <div class="input-group border border-black relative flex">
-            <input
-              class="search__input field__input input input-lg flex-1"
-              id="Search-In-Template"
-              type="search"
-              name="q"
-              value="{{ search.terms | escape }}"
-              {%
-              if
-              search.performed
-              %}autofocus{%
-              endif
-              %}
-              placeholder="{{ 'general.search.search' | t }}"
-            />
-            <button
-              type="submit"
-              class="btn btn-lg absolute top-0 h-full right-0"
-              aria-label="{{ 'general.search.search' | t }}"
-            >
-              Search
-            </button>
-          </div>
+    <div class="space-y-12">
+        <div class="w-full flex gap-6 flex-col items-center">
+            <div class="flex-1 flex items-baseline text-center space-x-2">
+                <a class="text-5xl text-effect-1 font-heading capitalize" href="/search">Search</a>
+            </div>
+            <form action="{{ routes.search_url }}" method="get" role="search" class="search w-full flex justify-center">
+                <div class="field w-full max-w-prose form-control">
+                    <div class="input-group border border-black relative flex">
+                        <input class="search__input field__input input input-lg flex-1" id="Search-In-Template" type="search" name="q" value="{{ search.terms | escape }}" {% if search.performed %} autofocus {% endif %} placeholder="{{ 'general.search.search' | t }}"/>
+                        <button type="submit" class="btn btn-lg absolute top-0 h-full right-0" aria-label="{{ 'general.search.search' | t }}">
+                            Search
+                        </button>
+                    </div>
 
-          <label
-            hidden
-            class="field__label"
-            for="Search-In-Template"
-            aria-hidden="true"
-            >{{ "general.search.search" | t }}</label
-          >
-          <input name="options[prefix]" type="hidden" value="last" />
+                    <label aria-hidden="true" class="field__label" for="Search-In-Template" hidden>{{ "general.search.search" | t }}</label>
+                    <input name="options[prefix]" type="hidden" value="last"/>
+                </div>
+            </form>
         </div>
-      </form>
-    </div>
-    <div class="w-full flex gap-6 lg:gap-12">
-      <div class="flex-1 isolate space-y-6">
-        {% render '[filter]' class: '' 
-        sort_options:search.sort_options
-        filters:search.filters 
-        sort_by: search.sort_by: %}
-        {%- if search.performed -%}
-        <p class="element-margin w-full text-center" role="status">
-          {%- if search.results_count == 0 -%}
-          {{ "templates.search.no_results" | t: terms:search.terms }}
-          {%- else -%}
-          {{ 'templates.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
-          {%- endif -%}
-        </p>
-        {%- endif -%} {%- paginate search.results by 12-%}
-        <div class="grid gap-6 grid-cols-2 lg:grid-cols-4">
-          {% for product in search.results %} {% render '[product]-card'
-          product:product class: '' %} {% endfor %}
+        <div class="w-full flex gap-6 lg:gap-12">
+            <div class="flex-1 isolate space-y-6">
+                {% render '[filter]' class: '' 
+                  sort_options:search.sort_options
+                  filters:search.filters 
+                  sort_by: search.sort_by: %}
+                {%- if search.performed -%}
+                    <p class="element-margin w-full text-center" role="status">
+                        {%- if search.results_count == 0 -%}
+                            {{ "templates.search.no_results" | t: terms:search.terms }}
+                        {%- else -%}
+                            {{ 'templates.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
+                        {%- endif -%}
+                    </p>
+                {%- endif -%}
+                {%- paginate search.results by 12-%}
+                    <div class="grid gap-6 grid-cols-2 lg:grid-cols-4">
+                        {% for product in search.results %}
+                            {% render '[product]-card' product:product class: '' %}
+                        {% endfor %}
+                    </div>
+                    {%- if paginate.pages > 1 -%}
+                        {% render 'pagination', paginate: paginate, anchor: '', class: '' %}
+                    {%- endif -%}
+                {%- endpaginate -%}
+            </div>
         </div>
-        {%- if paginate.pages > 1 -%} {% render 'pagination', paginate:
-        paginate, anchor: '', class: '' %} {%- endif -%} {%- endpaginate -%}
-      </div>
     </div>
-  </div>
 </div>
-{% javascript %} class FilterModal extends ModalDialog { constructor() {
-super(); } hide() { super.hide(); } show(opener) { if
-(this.hasAttribute('open')) { super.hide(); } else { super.show(opener); } } }
-customElements.define('filter-modal', FilterModal); {% endjavascript %}
+{% javascript %}
+
+class FilterModal extends ModalDialog {
+    constructor() {
+        super();
+    }
+    hide() {
+        super.hide();
+    }
+    show(opener) {
+        if (this.hasAttribute('open')) {
+            super.hide();
+        } else {
+            super.show(opener);
+        }
+    }
+}
+customElements.define('filter-modal', FilterModal);
+
+{% endjavascript %}
 {{ "global.js" | asset_url | script_tag }}
 
-{% schema %} { "name": "t:sections.main-search.name", "tag": "section", "class":
-"spaced-section", "settings": [ { "type": "header", "content":
-"t:sections.main-search.settings.header__1.content" }, { "type": "select", "id":
-"image_ratio", "options": [ { "value": "adapt", "label":
-"t:sections.main-search.settings.image_ratio.options__1.label" }, { "value":
-"portrait", "label":
-"t:sections.main-search.settings.image_ratio.options__2.label" }, { "value":
-"square", "label":
-"t:sections.main-search.settings.image_ratio.options__3.label" } ], "default":
-"adapt", "label": "t:sections.main-search.settings.image_ratio.label" }, {
-"type": "checkbox", "id": "show_secondary_image", "default": false, "label":
-"t:sections.main-search.settings.show_secondary_image.label" }, { "type":
-"checkbox", "id": "add_image_padding", "default": false, "label":
-"t:sections.main-search.settings.add_image_padding.label" }, { "type":
-"checkbox", "id": "show_image_outline", "default": true, "label":
-"t:sections.main-search.settings.show_image_outline.label" }, { "type":
-"checkbox", "id": "show_vendor", "default": false, "label":
-"t:sections.main-search.settings.show_vendor.label" }, { "type": "header",
-"content": "t:sections.main-search.settings.header__2.content" }, { "type":
-"checkbox", "id": "article_show_date", "default": true, "label":
-"t:sections.main-search.settings.article_show_date.label" }, { "type":
-"checkbox", "id": "article_show_author", "default": false, "label":
-"t:sections.main-search.settings.article_show_author.label" } ] } {% endschema
-%}
+{% schema %}
+
+{
+    "name": "t:sections.main-search.name",
+    "tag": "section",
+    "class": "spaced-section",
+    "settings": [
+        {
+            "type": "header",
+            "content": "t:sections.main-search.settings.header__1.content"
+        }, {
+            "type": "select",
+            "id": "image_ratio",
+            "options": [
+                {
+                    "value": "adapt",
+                    "label": "t:sections.main-search.settings.image_ratio.options__1.label"
+                }, {
+                    "value": "portrait",
+                    "label": "t:sections.main-search.settings.image_ratio.options__2.label"
+                }, {
+                    "value": "square",
+                    "label": "t:sections.main-search.settings.image_ratio.options__3.label"
+                }
+            ],
+            "default": "adapt",
+            "label": "t:sections.main-search.settings.image_ratio.label"
+        }, {
+            "type": "checkbox",
+            "id": "show_secondary_image",
+            "default": false,
+            "label": "t:sections.main-search.settings.show_secondary_image.label"
+        }, {
+            "type": "checkbox",
+            "id": "add_image_padding",
+            "default": false,
+            "label": "t:sections.main-search.settings.add_image_padding.label"
+        }, {
+            "type": "checkbox",
+            "id": "show_image_outline",
+            "default": true,
+            "label": "t:sections.main-search.settings.show_image_outline.label"
+        }, {
+            "type": "checkbox",
+            "id": "show_vendor",
+            "default": false,
+            "label": "t:sections.main-search.settings.show_vendor.label"
+        }, {
+            "type": "header",
+            "content": "t:sections.main-search.settings.header__2.content"
+        }, {
+            "type": "checkbox",
+            "id": "article_show_date",
+            "default": true,
+            "label": "t:sections.main-search.settings.article_show_date.label"
+        }, {
+            "type": "checkbox",
+            "id": "article_show_author",
+            "default": false,
+            "label": "t:sections.main-search.settings.article_show_author.label"
+        }
+    ]
+}
+
+{% endschema %}

@@ -1,5 +1,4 @@
-
-<div class=" py-20 space-y-20">
+<div class="py-12 space-y-12 lg:py-20 lg:space-y-20">
   <div class="container mx-auto">
     <h1 class="text-left text-5xl  lg:text-7xl pb-2 border-b border-solid border-black inline-block">{{ section.settings.title | escape }}</h1>
   </div>
@@ -48,11 +47,13 @@
                     {% when 4 %}
                         <ul class="container mx-auto tw-grid md:grid-cols-2 lg:grid-cols-4 w-full gap-10" role="list">
                     {% else %}
-                        <ul class="carousel carousel-center space-x-6 w-full {% render '[class]-container-full'  class: '' %}" role="list">
+                        <ul class="carousel carousel-center gap-6 w-full {% render '[class]-container-full'  class: '' %}" role="list">
                 {% endcase %}
                 {%- for product in collection.products -%}
                     <li class="carousel-item py-8 w-[40vw] lg:w-[15vw]">
-                        {% render '[product]-card' product:product class: '' %}
+                        <div class="w-full">
+                            {% render '[product]-card' product:product class: '' %}
+                        </div>
                     </li>
                 {%- endfor -%}
               </ul>
@@ -130,103 +131,90 @@ customElements.define('scrolling-carousel', ScrollingCarousel);
 
 {% endjavascript %}
 {% schema %}
+
 {
-  "name": "t:sections.main-list-collections.name",
-  "class": "spaced-section",
-  "settings": [
-    {
-      "type": "text",
-      "id": "title",
-      "label": "t:sections.main-list-collections.settings.title.label",
-      "default": "Collections"
-    },
-    {
-      "type": "select",
-      "id": "sort",
-      "options": [
+    "name": "t:sections.main-list-collections.name",
+    "class": "spaced-section",
+    "settings": [
         {
-          "value": "alphabetical",
-          "label": "t:sections.main-list-collections.settings.sort.options__1.label"
-        },
-        {
-          "value": "alphabetical_reversed",
-          "label": "t:sections.main-list-collections.settings.sort.options__2.label"
-        },
-        {
-          "value": "date_reversed",
-          "label": "t:sections.main-list-collections.settings.sort.options__3.label"
-        },
-        {
-          "value": "date",
-          "label": "t:sections.main-list-collections.settings.sort.options__4.label"
-        },
-        {
-          "value": "products_high",
-          "label": "t:sections.main-list-collections.settings.sort.options__5.label"
-        },
-        {
-          "value": "products_low",
-          "label": "t:sections.main-list-collections.settings.sort.options__6.label"
+            "type": "text",
+            "id": "title",
+            "label": "t:sections.main-list-collections.settings.title.label",
+            "default": "Collections"
+        }, {
+            "type": "select",
+            "id": "sort",
+            "options": [
+                {
+                    "value": "alphabetical",
+                    "label": "t:sections.main-list-collections.settings.sort.options__1.label"
+                }, {
+                    "value": "alphabetical_reversed",
+                    "label": "t:sections.main-list-collections.settings.sort.options__2.label"
+                }, {
+                    "value": "date_reversed",
+                    "label": "t:sections.main-list-collections.settings.sort.options__3.label"
+                }, {
+                    "value": "date",
+                    "label": "t:sections.main-list-collections.settings.sort.options__4.label"
+                }, {
+                    "value": "products_high",
+                    "label": "t:sections.main-list-collections.settings.sort.options__5.label"
+                }, {
+                    "value": "products_low",
+                    "label": "t:sections.main-list-collections.settings.sort.options__6.label"
+                }
+            ],
+            "default": "alphabetical",
+            "label": "t:sections.main-list-collections.settings.sort.label"
+        }, {
+            "type": "select",
+            "id": "image_ratio",
+            "options": [
+                {
+                    "value": "adapt",
+                    "label": "t:sections.main-list-collections.settings.image_ratio.options__1.label"
+                }, {
+                    "value": "portrait",
+                    "label": "t:sections.main-list-collections.settings.image_ratio.options__2.label"
+                }, {
+                    "value": "square",
+                    "label": "t:sections.main-list-collections.settings.image_ratio.options__3.label"
+                }
+            ],
+            "default": "adapt",
+            "label": "t:sections.main-list-collections.settings.image_ratio.label",
+            "info": "t:sections.main-list-collections.settings.image_ratio.info"
+        }, {
+            "type": "select",
+            "id": "color_scheme",
+            "options": [
+                {
+                    "value": "accent-1",
+                    "label": "t:sections.main-list-collections.settings.color_scheme.options__1.label"
+                }, {
+                    "value": "accent-2",
+                    "label": "t:sections.main-list-collections.settings.color_scheme.options__2.label"
+                }, {
+                    "value": "background-1",
+                    "label": "t:sections.main-list-collections.settings.color_scheme.options__3.label"
+                }, {
+                    "value": "background-2",
+                    "label": "t:sections.main-list-collections.settings.color_scheme.options__4.label"
+                }, {
+                    "value": "inverse",
+                    "label": "t:sections.main-list-collections.settings.color_scheme.options__5.label"
+                }
+            ],
+            "default": "background-1",
+            "label": "t:sections.main-list-collections.settings.color_scheme.label"
+        }, {
+            "type": "checkbox",
+            "id": "image_padding",
+            "default": false,
+            "label": "t:sections.main-list-collections.settings.image_padding.label"
         }
-      ],
-      "default": "alphabetical",
-      "label": "t:sections.main-list-collections.settings.sort.label"
-    },
-    {
-      "type": "select",
-      "id": "image_ratio",
-      "options": [
-        {
-          "value": "adapt",
-          "label": "t:sections.main-list-collections.settings.image_ratio.options__1.label"
-        },
-        {
-          "value": "portrait",
-          "label": "t:sections.main-list-collections.settings.image_ratio.options__2.label"
-        },
-        {
-          "value": "square",
-          "label": "t:sections.main-list-collections.settings.image_ratio.options__3.label"
-        }
-      ],
-      "default": "adapt",
-      "label": "t:sections.main-list-collections.settings.image_ratio.label",
-      "info": "t:sections.main-list-collections.settings.image_ratio.info"
-    },
-    {
-      "type": "select",
-      "id": "color_scheme",
-      "options": [
-        {
-          "value": "accent-1",
-          "label": "t:sections.main-list-collections.settings.color_scheme.options__1.label"
-        },
-        {
-          "value": "accent-2",
-          "label": "t:sections.main-list-collections.settings.color_scheme.options__2.label"
-        },
-        {
-          "value": "background-1",
-          "label": "t:sections.main-list-collections.settings.color_scheme.options__3.label"
-        },
-        {
-          "value": "background-2",
-          "label": "t:sections.main-list-collections.settings.color_scheme.options__4.label"
-        },
-        {
-          "value": "inverse",
-          "label": "t:sections.main-list-collections.settings.color_scheme.options__5.label"
-        }
-      ],
-      "default": "background-1",
-      "label": "t:sections.main-list-collections.settings.color_scheme.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "image_padding",
-      "default": false,
-      "label": "t:sections.main-list-collections.settings.image_padding.label"
-    }
-  ]
+    ]
 }
+
 {% endschema %}

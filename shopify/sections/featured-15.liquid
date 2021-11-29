@@ -16,7 +16,7 @@
 <div class="mt-6 relative">
     <scrolling-carousel-{{section.id}}>
         {% if section.blocks.size == 0 %}
-            <ul class="carousel carousel-center space-x-6 {% render '[class]-container-full'  class: '' %}">
+            <ul class="carousel carousel-center gap-6 {% render '[class]-container-full'  class: '' %}">
                 {% for i in (1..6) %}
                     <li class="carousel-item py-8 flex flex-col w-[40vw] lg:w-[25vw] ">
                         <div class="w-full relative hover:shadow-lg ">
@@ -41,7 +41,7 @@
                 {% when 4 %}
                     <ul class="container mx-auto tw-grid md:grid-cols-2 lg:grid-cols-4 w-full gap-10" role="list">
                 {% else %}
-                    <ul class="carousel carousel-center space-x-6 container mx-auto" role="list">
+                    <ul class="carousel carousel-center gap-6 container mx-auto" role="list">
             {% endcase %}
             {%- for block in section.blocks -%}
                 <li class="carousel-item py-8 relative group cursor-pointer">

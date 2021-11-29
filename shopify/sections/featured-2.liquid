@@ -12,7 +12,7 @@
     <div class="mt-8 relative">
         <scrolling-carousel>
             {% if section.blocks.size == 0 %}
-                <ul class="carousel carousel-center space-x-6 {% render '[class]-container-full'  class: '' %}">
+                <ul class="carousel carousel-center gap-6 {% render '[class]-container-full'  class: '' %}">
                     {% for i in (1..6) %}
                     <li class="carousel-item py-8 relative group cursor-pointer">
                         <a href="/" class="relative">
@@ -41,11 +41,11 @@
                     {% when 4 %}
                         <ul class="container mx-auto tw-grid md:grid-cols-2 lg:grid-cols-4 w-full gap-10" role="list">
                     {% else %}
-                        <ul class="carousel carousel-center space-x-6 w-full {% render '[class]-container-full'  class: '' %}" role="list">
+                        <ul class="carousel carousel-center gap-6 w-full {% render '[class]-container-full'  class: '' %}" role="list">
                 {% endcase %}
                 {%- for block in section.blocks -%}
                     <li class="carousel-item py-8 ">
-                        <a href="{{block.settings.url}}" class="relative">
+                        <a href="{{block.settings.url}}" class="relative w-full">
                             <div class="w-[40vw] lg:w-[20vw] relative group-hover:shadow-lg transition-transform group-hover:scale-110">
                                 <div class="pt-[145%]"></div>
                                 {% render 'image-full' image: block.settings.image class:'transition-all group-hover:brightness-50' %}
