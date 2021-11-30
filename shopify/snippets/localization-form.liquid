@@ -33,13 +33,13 @@
     {%- form 'localization', id: 'CountryForm'  -%}
         <div class="no-js-hidden">
             {% comment %} <h2 class="caption-large" id="FooterCountryLabel">{{ 'localization.country_label' | t }}</h2> {% endcomment %}
-            <div class="group flex items-center h-[100px]  relative">
+            <div class="group flex items-center h-header  relative">
                 <button aria-controls="FooterCountryList" aria-describedby="FooterCountryLabel" aria-expanded="false" class="flex space-x-2 items-center px-2 py-1 border border-black" type="button">
                     {{ localization.country.currency.symbol }}
                     {{ localization.country.currency.iso_code }}
                     <div class="text-lg ml-2">{% render 'icon-caret' %}</div>
                 </button>
-                <div class="absolute top-0 pt-[100px] lg:pt-[100px] pointer-events-none group-hover:pointer-events-auto opacity-0 group-hover:block group-hover:opacity-100 mt-8 group-hover:mt-0 transition-all duration-300 ease-in-out right-0">
+                <div class="absolute top-0 pt-header lg:pt-header pointer-events-none group-hover:pointer-events-auto opacity-0 group-hover:block group-hover:opacity-100 mt-8 group-hover:mt-0 transition-all duration-300 ease-in-out right-0">
                     <div id="CountryList" role="list">
                         <ul class="text-xs shadow-lg bg-white flex flex-col top-header px-6 py-3 text-black">
                             {%- for country in localization.available_countries -%}
