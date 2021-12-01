@@ -6,7 +6,9 @@
     <div class="mt-6">
         <h4 class="text-2xl">{{ product.title | escape }}</h4>
         <div class="flex  gap-3 justify-between items-baseline">
-            <div class="text-sm truncate">gold, jade pendant</div>
+            <div class="text-sm truncate">
+                {{product.tags | join: ', '}}
+            </div>
             <div>
                 {% render '[product]-price' product:product  class: 'flex gap-x-3 truncate items-baseline flex-wrap justify-end' %}
             </div>
