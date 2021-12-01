@@ -1,12 +1,13 @@
 <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
-<div class="container py-16  mx-auto">
+
+<div class="container py-16 mx-auto">
     <cart-items class=" space-y-16 {% if cart == empty %} is-empty{% endif %}">
-        <div class="title-wrapper-with-link w-full">
-            <h1 class="title title--primary text-3xl lg:text-5xl">Shopping Cart</h1>
+        <div class="w-full title-wrapper-with-link">
+            <h1 class="text-3xl title title--primary lg:text-5xl">Shopping Cart</h1>
         </div>
 
         {% if cart == empty %}
-            <div class="cart__warnings w-full text-center text-gray-500">
+            <div class="w-full text-center text-gray-500 cart__warnings">
                 <h2 class="cart__empty-text">Your cart is empty</h2>
                 <a href="{{ routes.all_products_collection_url }}" class="link">
                     {{ 'general.continue_shopping' | t }}
@@ -15,21 +16,21 @@
         {% endif %}
         <form action="{{ routes.cart_url }}" class="cart__contents critical-hidden" method="post" id="cart">
             <div class="cart__items" id="main-cart-items" data-id="{{ section.id }}">
-                <div class="js-contents">
+                <div class="w-full overflow-x-auto js-contents">
                     {%- if cart != empty -%}
-                        <table class="cart-items table w-full" style="--b2:0 0 0">
-                            <thead>
+                        <table class="table w-full cart-items" style="--b2:0 0 0">
+                            <thead class="hidden lg:table-header-group">
                                 <tr class="text-center uppercase">
                                     <th class="text-lg !bg-transparent min-w-[120px] caption-with-letter-spacing bg-none" colspan="2" scope="col">
                                         <div></div>
                                     </th>
                                     <th class="text-lg !bg-transparent min-w-[120px] right caption-with-letter-spacing" colspan="1" scope="col">
-                                        <div class="border-b-2 py-2 text-base border-black border-solid">
+                                        <div class="py-2 text-base border-b-2 border-black border-solid">
                                             {{ 'sections.cart.headings.price' | t }}
                                         </div>
                                     </th>
                                     <th class="text-lg !bg-transparent min-w-[120px] cart-items__heading--wide medium-up caption-with-letter-spacing bg-none" colspan="1" scope="col">
-                                        <div class="border-b-2 py-2 text-base border-black border-solid">
+                                        <div class="py-2 text-base border-b-2 border-black border-solid">
                                             {{ 'sections.cart.headings.quantity' | t }}
                                         </div>
                                     </th>
@@ -37,7 +38,7 @@
                                         <div></div>
                                     </th>
                                     <th class="text-lg !bg-transparent min-w-[120px] medium-up right caption-with-letter-spacing bg-none" colspan="1" scope="col">
-                                        <div class="border-b-2 py-2 text-base border-black border-solid">
+                                        <div class="py-2 text-base border-b-2 border-black border-solid">
                                             {{ 'sections.cart.headings.total' | t }}
                                         </div>
                                     </th>
@@ -45,19 +46,18 @@
                             </thead>
                             <tbody>
                                 {%- for item in cart.items -%}
-                                    <tr class="cart-item border-black" id="CartItem-{{ item.index | plus: 1 }}">
-                                        <td class="border-black cart-item__media w-1/4 max-w-[150px]">
+                                    <tr class="flex flex-wrap border-black lg:table-row cart-item" id="CartItem-{{ item.index | plus: 1 }}">
+                                        <td class="border-black cart-item__media w-1/4 max-w-[150px] !border-transparent lg:!border-current">
                                             {% if item.image %}
-                                                <img class="cart-item__image w-full" src="{{ item.image | img_url: '150x' }}" alt="{{ item.image.alt | escape }}" loading="lazy" width="75" height="{{ 75 | divided_by: item.image.aspect_ratio | ceil }}">
+                                                <img class="w-full cart-item__image" src="{{ item.image | img_url: '150x' }}" alt="{{ item.image.alt | escape }}" loading="lazy" width="75" height="{{ 75 | divided_by: item.image.aspect_ratio | ceil }}">
                                             {% endif %}
                                         </td>
-
-                                        <td class="border-black art-item__details">
+                                        <td class="flex-1 border-black art-item__details !border-transparent lg:!border-current">
                                             {%- if section.settings.show_vendor -%}
                                                 <p class="caption-with-letter-spacing light">{{ item.product.vendor }}</p>
                                             {%- endif -%}
 
-                                            <a href="{{ item.product.url }}" class="cart-item__name break font-heading text-2xl">{{ item.product.title | escape }}</a>
+                                            <a href="{{ item.product.url }}" class="text-2xl cart-item__name break font-heading">{{ item.product.title | escape }}</a>
 
                                             {%- if item.product.has_only_default_variant == false or item.properties.size != 0 or item.selling_plan_allocation != nil -%}
                                                 <dl>
@@ -102,10 +102,11 @@
                                                     </li>
                                                 {%- endfor -%}
                                             </ul>
-                                            <p class="cart-item__error hidden" id="Line-item-error-{{ item.index | plus: 1 }}"></p>
+                                            <p class="hidden cart-item__error" id="Line-item-error-{{ item.index | plus: 1 }}"></p>
                                         </td>
-
-                                        <td class="border-black cart-item__prices right">
+                                        <td class="w-full lg:w-auto flex justify-end lg:table-cell  !border-transparent lg:!border-current cart-item__prices right">
+                                            <span class="flex-1 text-gray-500 lg:hidden">Price: </span>
+                                            
                                             <div class="cart-item__price-wrapper">
                                                 {%- if item.original_price != item.final_price -%}
                                                     <dl class="cart-item__discounted-prices">
@@ -138,39 +139,42 @@
                                                         </div>
                                                     {%- endif -%}
                                                 {%- else -%}
+                                                       
                                                     <span class="">
                                                         {{ item.original_price | money }}
                                                     </span>
                                                 {%- endif -%}
                                             </div>
                                         </td>
-
-                                        <td class="border-black cart-item__quantity">
-                                            <quantity-input class="quantity flex">
+                                        <td class="w-full lg:w-auto flex justify-end lg:table-cell  !border-transparent lg:!border-current  cart-item__quantity">
+                                            <span class="flex-1 text-gray-500 lg:hidden">Qty: </span>
+                                            <quantity-input class="flex quantity">
                                                 <button class="quantity__button no-js-hidden" name="minus" type="button">
                                                     <span class="visually-hidden">Decrease quantity</span>
-                                                    <svg aria-hidden="true" class="icon icon-minus pointer-events-none" fill="none" focusable="false" height="1em" role="presentation" viewbox="0 0 10 2" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                                    <svg aria-hidden="true" class="pointer-events-none icon icon-minus" fill="none" focusable="false" height="1em" role="presentation" viewbox="0 0 10 2" width="1em" xmlns="http://www.w3.org/2000/svg">
                                                         <path clip-rule="evenodd" d="M.5 1C.5.7.7.5 1 .5h8a.5.5 0 110 1H1A.5.5 0 01.5 1z" fill-rule="evenodd" fill="currentColor"></path>
                                                     </svg>
                                                 </button>
-                                                <input class="quantity__input text-center w-[2ch] flex-1" type="number" name="updates[]" value="{{ item.quantity }}" min="0" aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}" id="Quantity-{{ item.index | plus: 1 }}" data-index="{{ item.index | plus: 1 }}">
+                                                <input class="quantity__input text-center w-[5ch] flex-1" type="number" name="updates[]" value="{{ item.quantity }}" min="0" aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}" id="Quantity-{{ item.index | plus: 1 }}" data-index="{{ item.index | plus: 1 }}">
                                                 <button class="quantity__button no-js-hidden" name="plus" type="button">
                                                     <span class="visually-hidden">Increase quantity</span>
-                                                    <svg aria-hidden="true" class="icon icon-plus pointer-events-none" fill="none" focusable="false" height="1em" role="presentation" viewbox="0 0 10 10" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                                    <svg aria-hidden="true" class="pointer-events-none icon icon-plus" fill="none" focusable="false" height="1em" role="presentation" viewbox="0 0 10 10" width="1em" xmlns="http://www.w3.org/2000/svg">
                                                         <path clip-rule="evenodd" d="M1 4.51a.5.5 0 000 1h3.5l.01 3.5a.5.5 0 001-.01V5.5l3.5-.01a.5.5 0 00-.01-1H5.5L5.49.99a.5.5 0 00-1 .01v3.5l-3.5.01H1z" fill-rule="evenodd" fill="currentColor"></path>
                                                     </svg>
                                                 </button>
                                             </quantity-input>
                                         </td>
-                                        <td class="border-black text-center text-sm">
+                                        <td class="w-full lg:w-auto flex justify-end lg:table-cell  !border-transparent lg:!border-current  text-center text-sm">
                                             <cart-remove-button id="Remove-{{ item.index | plus: 1 }}" data-index="{{ item.index | plus: 1 }}">
                                                 <a href="{{ item.url_to_remove }}" class="underline " aria-label="{{ 'sections.cart.remove_title' | t: title: item.title }}">
                                                     Remove
                                                 </a>
                                             </cart-remove-button>
                                         </td>
-                                        <td class="border-black cart-item__totals right">
-                                            <div class="loading-overlay hidden">
+                                        <td class="flex justify-end w-full lg:w-auto lg:table-cell cart-item__totals right">
+                                            <span class="flex-1 text-gray-500 lg:hidden">Total: </span>
+
+                                            <div class="hidden loading-overlay">
                                                 <div class="loading-overlay__spinner">
                                                     <svg aria-hidden="true" class="spinner" focusable="false" role="presentation" viewbox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
                                                         <circle class="path" cx="33" cy="33" fill="none" r="30" stroke-width="6"></circle>
@@ -178,7 +182,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="cart-item__price-wrapper medium-up text-right">
+                                            <div class="text-right cart-item__price-wrapper medium-up">
                                                 {%- if item.original_line_price != item.final_line_price -%}
                                                     <dl class="cart-item__discounted-prices">
                                                         <dt class="visually-hidden">

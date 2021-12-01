@@ -1,5 +1,5 @@
 {% if cart != empty %}
-    <div class="container mx-auto flex justify-end {% if cart == empty %} is-empty{% endif %}" id="main-cart-footer" data-id="{{ section.id }}">
+    <div class="container mx-auto pb-20 flex justify-end {% if cart == empty %} is-empty{% endif %}" id="main-cart-footer" data-id="{{ section.id }}">
         <div class="max-w-[400px] w-full">
             <div class="cart__footer">
                 <div class="cart__blocks">
@@ -50,7 +50,6 @@
     </div>
 {% endif %}
 {% javascript %}
-
 class CartNote extends HTMLElement {
     constructor() {
         super();

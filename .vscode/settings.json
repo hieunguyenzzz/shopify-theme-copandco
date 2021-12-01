@@ -22,5 +22,5 @@
   "files.associations": {
     "*.liquid": "html"
   },
-
+  "headwind.runOnSave": true
 }
