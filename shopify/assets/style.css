@@ -3136,6 +3136,14 @@ html {
   margin-left: 0.5rem;
 }
 
+.mr-3 {
+  margin-right: 0.75rem;
+}
+
+.-ml-1 {
+  margin-left: -0.25rem;
+}
+
 .block {
   display: block;
 }
@@ -3252,6 +3260,10 @@ html {
   height: 6rem;
 }
 
+.h-5 {
+  height: 1.25rem;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
@@ -3350,6 +3362,10 @@ html {
 
 .w-\[5ch\] {
   width: 5ch;
+}
+
+.w-5 {
+  width: 1.25rem;
 }
 
 .min-w-\[200px\] {
@@ -3489,6 +3505,17 @@ html {
 
 .transform {
   transform: var(--tw-transform);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  -webkit-animation: spin 1s linear infinite;
+          animation: spin 1s linear infinite;
 }
 
 .cursor-pointer {
@@ -4304,6 +4331,14 @@ html {
 
 .opacity-100 {
   opacity: 1;
+}
+
+.opacity-25 {
+  opacity: 0.25;
+}
+
+.opacity-75 {
+  opacity: 0.75;
 }
 
 .shadow-inner {
