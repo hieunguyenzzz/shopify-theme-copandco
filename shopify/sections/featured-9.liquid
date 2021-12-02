@@ -35,7 +35,7 @@
                     {% assign product  = block.settings.product %}
                     <div class="flex space-x-12 w-full ">
                         <div class="flex-1 py-6">
-                            {% render '[product]-content' product:product class: '' %}
+                            {% render '[product]-content' product: block.settings.product class: '' %}
                         </div>
                         <div class="w-1/3 max-w-md relative overflow-hidden">
                             {% render 'image-full' image:product.images[0] class: '' %}

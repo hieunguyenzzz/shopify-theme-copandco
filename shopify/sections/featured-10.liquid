@@ -9,23 +9,17 @@
             <div class="relative">
                 <div class="relative aspect-w-16 aspect-h-12">
                 </div>
-                {% render 'image-full'  class: '' %}
+                {% render 'image-full' image:section.settings.image_1 class: '' %}
             </div>
-            <div>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud
-                exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea</div>
+            <div>{{section.settings.description_1}}</div>
         </div>
         <div class="flex-1 space-y-6">
             <div class="relative">
                 <div class="relative aspect-w-16 aspect-h-12">
                 </div>
-                {% render 'image-full'  class: '' %}
+                {% render 'image-full' image:section.settings.image_2 class: '' %}
             </div>
-            <div>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud
-                exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea</div>
+            <div>{{section.settings.description_2}}</div>
         </div>
     </div>
     
@@ -69,6 +63,36 @@
         "type": "image_picker",
         "id": "image",
         "label": "Image background"
+        },
+        {
+            "type": "header",
+            "content": "Column 1"
+        },
+        {
+            "type": "image_picker",
+            "id": "image_1",
+            "label": "Image"
+        },
+        {
+            "type": "richtext",
+            "id": "description_1",
+            "label": "Description",
+            "default": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea</p>"
+        },
+        {
+            "type": "header",
+            "content": "Column 2"
+        },
+        {
+            "type": "image_picker",
+            "id": "image_2",
+            "label": "Image"
+        },
+        {
+            "type": "richtext",
+            "id": "description_2",
+            "label": "Description",
+            "default": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea</p>"
         }
     ],
     
