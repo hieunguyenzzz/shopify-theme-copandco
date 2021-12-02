@@ -100,13 +100,16 @@
     </head>
 
     <body >
+        <script src="{{ 'visible-animate.js' | asset_url }}" defer="defer"></script>
+        <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+        <script src="{{ 'accordion.js' | asset_url }}" defer="defer"></script>
         <a class="skip-to-content-link button visually-hidden" href="#MainContent">
             {{ "accessibility.skip_to_text" | t }}
         </a>
         {% section 'announcement-bar' %}
         {% section 'header' %}
 
-        <main class="content-for-layout focus-none min-h-screen" id="MainContent" role="main" tabindex="-1">
+        <main class="min-h-screen content-for-layout focus-none" id="MainContent" role="main" tabindex="-1">
             {{ content_for_layout }}
         </main>
 
@@ -115,9 +118,7 @@
         <ul hidden>
             <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
         </ul>
-        <script src="{{ 'visible-animate.js' | asset_url }}" defer="defer"></script>
-        <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
-        <script src="{{ 'accordion.js' | asset_url }}" defer="defer"></script>
+
         <script>
             window.routes = {
                 cart_add_url: '{{ routes.cart_add_url }}',
