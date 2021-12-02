@@ -1,14 +1,13 @@
-{% if product == 'example' %}
-    <div class="space-y-2 {{class}}">
-        <a href="{{ product.url | default: '#' }}" class="text-3xl font-heading">example product {{forloop.index}}</a>
-        <div>gold, jade pendant</div>
-        {% render '[product]-price' product:product  class: '' %}
+<div class="mt-6">
+    <h4 class="text-2xl">{{ product.title | escape }}</h4>
+    <div class="flex  gap-3 justify-between items-baseline">
+        <div class="text-sm truncate">
+            {{product.tags | join: ', '}}
+        </div>
+        <div>
+            {% render '[product]-price' product:product  class: 'flex gap-x-3 truncate items-baseline flex-wrap justify-end' %}
+        </div>
     </div>
-{% else %}
-    <div class="space-y-2 {{class}}">
-        <a href="{{ product.url | default: '#' }}" class="text-3xl font-heading">{{product.title}}</a>
-        <div>gold, jade pendant</div>
-        {% render '[product]-price' product:product  class: '' %}
-    </div>
-{% endif %}
+
+</div>
 
