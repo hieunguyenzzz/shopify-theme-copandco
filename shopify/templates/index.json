@@ -285,6 +285,17 @@
       "settings": {
         "heading": "FOLLOW US ON INSTAGRAM"
       }
+    },
+    "1638425588a59b7ce4": {
+      "type": "featured-4",
+      "settings": {
+        "heading": "DREAMCATCHER\nfor dreamer",
+        "sub_heading": "COLLECTION",
+        "description": "<p>Make your dream come true by wearing our products<\/p>",
+        "buttonText": "SHOP NOW",
+        "buttonUrl": "\/",
+        "image": "shopify:\/\/shop_images\/jewelry-05.jpg"
+      }
     }
   },
   "order": [
@@ -304,6 +315,7 @@
     "featured-14",
     "featured-15",
     "featured-newsletter",
-    "featured-instagram"
+    "featured-instagram",
+    "1638425588a59b7ce4"
   ]
 }
