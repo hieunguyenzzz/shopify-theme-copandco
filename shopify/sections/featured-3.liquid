@@ -1,40 +1,139 @@
+{% assign id = section.id %}
+{% if section.blocks != blank %}
+    {% assign collections = section.blocks | map: 'settings' | map: 'collection' %}
+{% endif %}
+{% capture inputs %}
+    {% for collection in collections %}
+        <input hidden {% if forloop.index==1 %} checked {% endif %} type="radio" id="{{id}}-{{forloop.index}}" name="{{id}}-input">
+    {% endfor %}
+{% endcapture %}
+{% capture tabItems %}
+    {% for collection in collections %}
+        <label data-index="{{forloop.index}}" for="{{id}}-{{forloop.index}}" class="keen-slider__slide text-xl flex-shrink-0 uppercase text-effect-1 py-1">{{collection.title}}</label>
+    {% endfor %}
+{% endcapture %}
+{% capture tabPanels %}
+    {% for collection in collections %}
+        <div data-panel-id="{{id}}-panel-{{forloop.index}}" class="keen-slider__slide flex space-x-6 w-full flex-shrink-0">
+            {% for product in collection.products limit: 3 %}
+                <div class="flex-1 max-w-[33.33%] ">
+                    {% render '[product]-card' product:product class: '' %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+{% endcapture %}
+<style>
+    .{{id}}-tabitems .active{
+        border-bottom: 2px solid black;
+    }
+    [data-keen-slider-moves] .keen-slider__slide{
+        pointer-events: none;
+    }
+</style>
+
 <div id="{{ section.id }}" class="bg-white">
-    <div class="container mx-auto mt-16 py-24 flex flex-col lg:flex-row items-end gap-12  ">
-        <div class="bg-base-200 w-full lg:w-[30%] lg:max-w-prose p-12">
+    <div class="container mx-auto mt-16 py-24 flex flex-col lg:flex-row items-stretch gap-12">
+        <div class="bg-base-200 w-full lg:w-[35%] max-w-lg lg:max-w-prose p-12 pb-16 pt-20 flex-shrink-0">
             <div class="mb-2 text-xl">{{section.settings.sub_heading}}</div>
             <h2 class="text-6xl">{{section.settings.heading}}</h2>
             <div class="mt-20">{{section.settings.description}}</div>
             {% render 'button' url: section.settings.buttonUrl text: section.settings.buttonText class: 'mt-6' %}
         </div>
-        <div class="space-y-6 lg:flex-1 w-full">
-            <div class="flex space-x-6">
-                <div class="text-xl">RING</div>
-                <div class="text-xl">EARRING</div>
-                <div class="text-xl">NECKLACE</div>
-                <div class="text-xl">BRACELET</div>
-                <div class="text-xl">OTHERS</div>
-            </div>
-            <div class="flex space-x-6 flex-1 w-full">
-                {% for i in (1..3) %}
-                <div class="flex-1">
-                    <div class="w-full relative hover:shadow-lg">
-                        <div class="pt-[100%]"></div>
-                        {% render 'image-full' %}
-                    </div>
-                    <div class="mt-6">
-                        <h4 class="text-2xl">Gemmine jade set</h4>
-                        <div>gold, jade pendant</div>
-                        <div class="font-bold text-lg">$230</div>
-                    </div>
+        <div class="space-y-6 lg:flex-1 w-full lg:pt-20 overflow-hidden ">
+            {{inputs}}
+            <div class="flex space-x-6 {{id}}-tabitems">
+                <div id="{{id}}-keen-slider-thumbs" class="keen-slider  overflow-hidden flex-1 flex gap-6 truncate">
+                    {{tabItems}}
                 </div>
-                {% endfor %}
+                <div class="flex">
+                    <label id="{{id}}-prev" class="btn btn-outline btn-square btn-sm border-transparent" for="section-template--15194526220440__featured-7-input-1">
+                        <svg fill="none" height="1em" stroke-width="0.05em" stroke="currentColor" viewbox="0 0 10.14 14.74" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <g>
+                                <polyline points="7.39 0.67 1.35 7.33 7.39 14.07"></polyline>
+                            </g>
+                        </svg>
+                    </label>
+                    <label id="{{id}}-next" class="btn btn-outline btn-square btn-sm border-transparent" for="section-template--15194526220440__featured-7-input-3">
+                        <svg fill="none" height="1em" stroke-width="0.05em" stroke="currentColor" viewbox="0 0 6.14 14.74" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <g>
+                                <polyline points="0.74 14.07 6.79 7.41 0.74 0.67"></polyline>
+                            </g>
+                        </svg>
+                    </label>
+                </div>
+            </div>
+
+            <div id="{{id}}-keen-slider" class="keen-slider flex flex-1 w-full overflow-hidden {{id}}-panels">
+                {{tabPanels}}
             </div>
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/keen-slider@6.2.0/keen-slider.min.js"></script>
+<script>
+    function ThumbnailPlugin(mainslider) {
+        return (slider) => {
+            function removeActive() {
+            slider.slides.forEach((slide) => {
+                slide.classList.remove("active")
+            })
+            }
+            function addActive(idx) {
+            slider.slides[idx].classList.add("active")
+            }
 
+            function addClickEvents() {
+            slider.slides.forEach((slide, idx) => {
+                slide.addEventListener("click", () => {
+                if (mainslider) mainslider.moveToIdx(idx)
+                })
+            })
+            }
 
-{% schema %} {
+            slider.on("created", (slider) => {
+                if (!mainslider) return
+                addActive(slider.track.details.rel)
+                addClickEvents()
+                mainslider.on("animationStarted", (main) => {
+                    removeActive()
+                    const next = main.animator.targetIdx || 0
+                    addActive(next)
+                    slider.moveToIdx(next)
+                })
+                
+            })
+        }
+        }
+    const mainslider = new KeenSlider("#{{id}}-keen-slider", {
+        initial: 0,
+        slides: {
+            spacing: 10,
+        },
+        created:(slider)=>{
+            console.log('document.querySelector("#{{id}}-prev")',document.querySelector("#{{id}}-prev"))
+                document.querySelector("#{{id}}-prev").addEventListener('click',()=>{
+                    slider.prev()
+                })
+                document.querySelector("#{{id}}-next").addEventListener('click',()=>{
+                    slider.next()
+                })
+        }
+    })
+    const thumbslider = new KeenSlider("#{{id}}-keen-slider-thumbs", {
+      initial: 0,
+      slides: {
+        spacing: 10,
+        perView: "auto"
+      },
+    },[
+        ThumbnailPlugin(mainslider)
+    ]
+    )
+</script>
+
+{% schema %}
+{
     "name":"Featured 3",
     "tag":"section",
     "settings":[
@@ -54,7 +153,7 @@
           "type":"richtext",
           "id":"description",
           "label":"Description",
-          "default":"<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, </p>"
+          "default":"<p>Lorem ipsum dolor sit amet, consectetuer adipiscing.</p>"
        },
         {
             "type": "text",
@@ -68,15 +167,16 @@
             "default": "/"
         }
     ],
+    "max_blocks": 4,
     "blocks":[
        {
-          "type":"article",
-          "name":"Article",
+          "type":"collection",
+          "name":"Collection",
           "settings":[
              {
-                "type":"article",
-                "id":"article",
-                "label":"Article"
+                 "type": "collection",
+                 "id": "collection",
+                 "label": "collection"
              }
           ]
        }
@@ -90,4 +190,4 @@
        }
     ]
  }
- {% endschema %}
+{% endschema %}

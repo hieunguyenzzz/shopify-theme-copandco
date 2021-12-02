@@ -18,7 +18,7 @@
   },
   "prettier.enable": false,
   "git.ignoreLimitWarning": true,
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "files.associations": {
     "*.liquid": "html"
   },

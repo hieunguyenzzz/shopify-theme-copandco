@@ -1,12 +1,17 @@
-<a href="{{collection.url}}" class="group relative block">
+{% if collection %}
+    {% assign url = collection.url %}
+    {% assign image = collection.featured_image %}
+    {% assign title = collection.title | escape %}
+{% endif %}
+<a href="{{url}}" class="group relative block {{class}}">
     <div class="relative group-hover:shadow-lg transition-transform group-hover:scale-110 duration-1000">
         <div class="pt-[145%]"></div>
-        {% render 'image-full' image:collection.featured_image class:'' %}
+        {% render 'image-full' image:image class:'' %}
     </div>
     <div class="absolute left-0 py-6 h-1/4 transform duration-1000 bottom-0 group-hover:w-full group-hover:h-full transition-all text-center w-full flex justify-center items-center">
-        <div class="absolute w-full h-full transition-all bg-opacity-30 bg-black z-[-1]"></div>
+        <div class="absolute w-full h-full transition-all duration-1000 bg-opacity-0 group-hover:bg-opacity-30 bg-black z-[-1]"></div>
         <h4 class="text-2xl uppercase text-white isolate">
-            {{collection.title | escape}}
+            {{title}}
         </h4>
     </div>
 </a>
