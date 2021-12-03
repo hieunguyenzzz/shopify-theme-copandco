@@ -1,7 +1,9 @@
 class ProductForm extends HTMLElement {
   constructor() {
     super();   
-
+    console.log({
+      this:this
+    })
     this.form = this.querySelector('form');
     this.form.addEventListener('submit', this.onSubmitHandler.bind(this));
     this.cartNotification = document.querySelector('cart-notification');

@@ -6,7 +6,7 @@
       <button
           type="submit"
           name="add"
-          class="btn btn-outline btn-circle "
+          class="btn btn-outline btn-circle btn-sm "
         {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
         >
             {% render 'icon-plus'  class: '' %}
