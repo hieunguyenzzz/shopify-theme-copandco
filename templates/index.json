@@ -395,8 +395,53 @@
     },
     "featured-instagram": {
       "type": "featured-instagram",
+      "blocks": {
+        "c80b1075-5587-4615-82c7-646d13b3dfc4": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/jewelry-03.jpg",
+            "url": "\/"
+          }
+        },
+        "0afc4bd4-95bb-4655-a65f-458ea696f368": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/jewelry-09.jpg",
+            "url": "\/"
+          }
+        },
+        "5277a465-9f02-48c6-b3b9-5ed3dd47f986": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/jewelry-08.jpg",
+            "url": "\/"
+          }
+        },
+        "072df0b8-e463-4dd7-8ce6-13745ebb7745": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/jewelry-11.jpg",
+            "url": "\/"
+          }
+        },
+        "45ac0517-a076-4076-9b86-2796a66c5052": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/jewelry-10.jpg",
+            "url": "\/"
+          }
+        }
+      },
+      "block_order": [
+        "c80b1075-5587-4615-82c7-646d13b3dfc4",
+        "0afc4bd4-95bb-4655-a65f-458ea696f368",
+        "5277a465-9f02-48c6-b3b9-5ed3dd47f986",
+        "072df0b8-e463-4dd7-8ce6-13745ebb7745",
+        "45ac0517-a076-4076-9b86-2796a66c5052"
+      ],
       "settings": {
-        "heading": "FOLLOW US ON INSTAGRAM"
+        "heading": "FOLLOW US ON INSTAGRAM",
+        "subHeading": "@copandco.essentials"
       }
     }
   },
