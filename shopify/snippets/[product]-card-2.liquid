@@ -17,9 +17,9 @@
       assign money_price = 'products.product.price.from_price_html' | t: price: money_price
     endif
   -%}
-  {%- if compare_at_price > price %} 
+{%- if compare_at_price > price %}
     {% assign sale_percent = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | ceil %}
-  {% endif -%}
+{% endif -%}
 <a href="{{product.url}}" class="flex-1">
     <div class="w-full relative hover:shadow-lg">
         <div class="pt-[100%]"></div>
@@ -33,16 +33,18 @@
         {% endif %}
         {% render 'image-full' ,image:product.images[0] %}
     </div>
-    <div class="mt-6 px-8">
-        <h4 class="text-xl lg:text-3xl">{{ product.title | escape }}</h4>
-        <div class="flex flex-col gap-2 justify-between items-baseline">
-            <div class="text-sm truncate">
-                {{product.tags | join: ', '}}
-            </div>
-            <div>
-                {% render '[product]-price' product:product  class: 'flex gap-x-3 truncate items-baseline flex-wrap justify-end' %}
+    <div class="mt-6 px-8 flex gap-3 items-end">
+        <div class="flex-1">
+            <h4 class="text-xl lg:text-3xl">{{ product.title | escape }}</h4>
+            <div class="flex flex-col gap-2 justify-between items-baseline">
+                <div class="text-sm truncate">
+                    {{product.tags | join: ', '}}
+                </div>
+                <div>
+                    {% render '[product]-price' product:product  class: 'flex gap-x-3 truncate items-baseline flex-wrap justify-end' %}
+                </div>
             </div>
         </div>
-
+        {% render '[product]-quick-add' product:product class: '' %}
     </div>
 </a>

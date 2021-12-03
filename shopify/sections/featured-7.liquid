@@ -78,8 +78,9 @@
                                 <div class="text-sm truncate">
                                     {{product.tags | join: ', '}}
                                 </div>
-                                <div>
+                                <div class="flex gap-6">
                                     {% render '[product]-price' product:product   %}
+                                    {% render '[product]-quick-add' product:product  class: '' %}
                                 </div>
                             </div>
                         </div>

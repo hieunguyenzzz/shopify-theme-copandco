@@ -123,3 +123,6 @@ h5,
   white-space: nowrap;
   flex-wrap: nowrap;
 }
+.btn.loading svg{
+  display: none;
+}

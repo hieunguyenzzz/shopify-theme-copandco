@@ -22,7 +22,9 @@
             {% endfor %}
         {% else %}
             {% for block in section.blocks %}
-                {% render '[product]-card-2' product:block.settings.product  class: '' %}
+       
+                    {% render '[product]-card-2' product:block.settings.product  class: '' %}
+
             {% endfor %}
         {% endif %}
 
