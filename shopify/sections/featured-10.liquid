@@ -1,30 +1,105 @@
-<div class="container mx-auto my-24 space-x-18 flex">
-    <div class="flex flex-col justify-center max-w-xs relative">
+<div class="container mx-auto my-24 lg:gap-18 lg:flex">
+    <div class="flex flex-col justify-center max-w-xs relative flex-shrink-0">
         {% render '[section]-heading'  class: '' %}
         {% render '[section]-sub-heading'  class: 'mt-3' %}
         {% render '[section]-description'  class: 'mt-8' %}
     </div>
-    <div class="flex-1 flex space-x-6">
-        <div class="flex-1 space-y-6">
-            <div class="relative">
-                <div class="relative aspect-w-16 aspect-h-12">
-                </div>
-                {% render 'image-full' image:section.settings.image_1 class: '' %}
+    <div class="flex-1 overflow-hidden">
+            <div class="flex justify-end mb-4">
+                <label id="{{id}}-prev" class="btn btn-outline btn-square btn-sm border-transparent" for="section-template--15194526220440__featured-7-input-1">
+                    <svg fill="none" height="1em" stroke-width="0.05em" stroke="currentColor" viewBox="0 0 10.14 14.74" width="1em" xmlns="http://www.w3.org/2000/svg">
+                        <g>
+                            <polyline points="7.39 0.67 1.35 7.33 7.39 14.07"></polyline>
+                        </g>
+                    </svg>
+                </label>
+                <label id="{{id}}-next" class="btn btn-outline btn-square btn-sm border-transparent" for="section-template--15194526220440__featured-7-input-3">
+                    <svg fill="none" height="1em" stroke-width="0.05em" stroke="currentColor" viewBox="0 0 6.14 14.74" width="1em" xmlns="http://www.w3.org/2000/svg">
+                        <g>
+                            <polyline points="0.74 14.07 6.79 7.41 0.74 0.67"></polyline>
+                        </g>
+                    </svg>
+                </label>
             </div>
-            <div>{{section.settings.description_1}}</div>
-        </div>
-        <div class="flex-1 space-y-6">
-            <div class="relative">
-                <div class="relative aspect-w-16 aspect-h-12">
-                </div>
-                {% render 'image-full' image:section.settings.image_2 class: '' %}
-            </div>
-            <div>{{section.settings.description_2}}</div>
+        <div id="{{id}}-keen-slider" class="keen-slider flex-1 flex overflow-hidden w-full">
+            {% if section.blocks != blank %}
+                {% for block in section.blocks %}
+                    <div class="keen-slider__slide flex-1">
+                        <div class="relative">
+                            <div class="relative aspect-w-16 aspect-h-12"></div>
+                            {% render 'image-full' image:block.settings.image class: '' %}
+                        </div>
+                        <div class="flex gap-2  mt-4 text-2xl text-[#FFD700]">
+                            {% for i in (1..5) %}
+                                {% if block.settings.star >= i %}
+                                    <svg fill="currentColor" height="1em" stroke-width="0" stroke="currentColor" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                    </svg>
+                                {% else %}
+                                    <svg fill="currentColor" height="1em" stroke-width="0" stroke="currentColor" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"></path>
+                                    </svg>
+                                {% endif %}
+                            {% endfor %}
+
+                        </div>
+                        <div class="mt-4">{{block.settings.description}}</div>
+                        <div class="font-heading text-lg mt-3">{{block.settings.author}}</div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                {% for i in (1..6) %}
+                    <div class="keen-slider__slide flex-1">
+                        <div class="relative">
+                            <div class="relative aspect-w-16 aspect-h-12"></div>
+                            {% render 'image-full'  class: '' %}
+                        </div>
+                        <div class="flex gap-2  mt-4 text-2xl text-[#FFD700]">
+                            {% for i in (1..3) %}
+                                <svg fill="currentColor" height="1em" stroke-width="0" stroke="currentColor" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                </svg>
+                            {% endfor %}
+                            {% for i in (1..2) %}
+                                <svg fill="currentColor" height="1em" stroke-width="0" stroke="currentColor" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5.354 5.119 7.538.792A.516.516 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.537.537 0 0 1 16 6.32a.548.548 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.52.52 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.58.58 0 0 1 .085-.302.513.513 0 0 1 .37-.245l4.898-.696zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.565.565 0 0 1 .162-.505l2.907-2.77-4.052-.576a.525.525 0 0 1-.393-.288L8.001 2.223 8 2.226v9.8z"></path>
+                                </svg>
+                            {% endfor %}
+                            <svg fill="currentColor" height="1em" stroke-width="0" stroke="currentColor" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="mt-4">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
+                                                                                                diam nonummy nibh euismod tincidunt ut laoreet dolore magna
+                                                                                                aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud
+                                                                                                exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea</div>
+                        <div class="font-heading text-xl mt-3">Krystal</div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
         </div>
     </div>
-    
-   
+
 </div>
+<script src="https://cdn.jsdelivr.net/npm/keen-slider@6.2.0/keen-slider.min.js"></script>
+<script>
+    new KeenSlider("#{{id}}-keen-slider", {
+        initial: 0,
+        slides: {
+          perView: 2,
+          spacing: 20,
+        },
+        created:(slider)=>{
+            document.querySelector("#{{id}}-prev").addEventListener('click',()=>{
+                    slider.prev()
+                })
+            document.querySelector("#{{id}}-next").addEventListener('click',()=>{
+                    slider.next()
+                })
+        }
+    })
+</script>
 {% schema %}
 {
     "name": "Featured 10",
@@ -63,39 +138,43 @@
         "type": "image_picker",
         "id": "image",
         "label": "Image background"
-        },
-        {
-            "type": "header",
-            "content": "Column 1"
-        },
-        {
-            "type": "image_picker",
-            "id": "image_1",
-            "label": "Image"
-        },
-        {
-            "type": "richtext",
-            "id": "description_1",
-            "label": "Description",
-            "default": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea</p>"
-        },
-        {
-            "type": "header",
-            "content": "Column 2"
-        },
-        {
-            "type": "image_picker",
-            "id": "image_2",
-            "label": "Image"
-        },
-        {
-            "type": "richtext",
-            "id": "description_2",
-            "label": "Description",
-            "default": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea</p>"
         }
     ],
-    
+    "blocks":[
+            {
+                "type": "review",
+                "name": "review",
+                "settings": [
+                    {
+                        "type": "image_picker",
+                        "id": "image",
+                        "label": "Image"
+                    },
+                    {
+                        "type": "range",
+                        "id": "star",
+                        "label": "Star",
+                        "min": 1,
+                        "max": 5,
+                        "step": 1,
+                        "default": 1
+                    },
+                    {
+                        "type": "richtext",
+                        "id": "description",
+                        "label": "Description",
+                        "default": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea</p>"
+                    },
+                    {
+                        "type": "text",
+                        "id": "author",
+                        "label": "Author",
+                        "default": "Author",
+                        "placeholder": "Author"
+                    }
+                ]
+            }
+    ],
     "presets": [
         {
             "name": "Featured 10",
