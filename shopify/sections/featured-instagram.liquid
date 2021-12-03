@@ -1,12 +1,23 @@
-<div class="my-24 space-y-16 text-center">
+<div class="my-24  text-center">
   <h2 class="text-3xl whitespace-pre-line">{{section.settings.heading}}</h2>   
-  <div class="w-full tw-grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-px">
-    {% for i in (1..6) %}
-        <div class="relative transform hover:shadow-md hover:z-10">
-          <div class="aspect-w-1 aspect-h-1"></div>
-          {% render 'image-full'  class: '' %}
-        </div>
-    {% endfor %}
+  <div class="text-xl font-semibold {{class}} mt-1">{{section.settings.subHeading}}</div>
+  <div class="w-full flex gap-px justify-center mt-16">
+    {% if section.blocks == blank %}
+      {% for i in (1..5) %}
+          <div class="relative transform hover:shadow-md hover:z-10 flex-1">
+            <div class="aspect-w-1 aspect-h-1"></div>
+            {% render 'image-full'  class: '' %}
+          </div>
+      {% endfor %}
+    {% endif %}
+    {% if section.blocks != blank %}
+      {% for block in section.blocks %}
+          <a href="{{block.settings.url}}" class="relative transform hover:shadow-md hover:z-10 max-w-md flex-1">
+            <div class="aspect-w-1 aspect-h-1"></div>
+            {% render 'image-full' image:block.settings.image class: '' %}
+          </a>
+      {% endfor %}
+    {% endif %}
   </div>
 </div>
 {% schema %}
@@ -19,6 +30,31 @@
           "id":"heading",
           "label":"Heading",
           "default":"FOLLOW US ON INSTAGRAM"
+        },
+        {
+            "type": "text",
+            "id": "subHeading",
+            "label": "Sub heading",
+            "default": "@copandco.essentials"
+        }
+    ],
+    "blocks":[
+        {
+          "type": "image",
+          "name": "image",
+          "settings": [
+            {
+              "type": "image_picker",
+              "id": "image",
+              "label": "Image"
+            },
+            {
+              "type": "url",
+              "id": "url",
+              "label": "Url",
+              "default": "/"
+            }
+          ]
         }
     ],
     "presets": [
