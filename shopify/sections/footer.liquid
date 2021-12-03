@@ -16,6 +16,7 @@
 <noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'disclosure.css' | asset_url | stylesheet_tag }}</noscript>
 
+
 <footer class="footer font-semibold bg-base-200">
     <div class="w-full">
         {%- if section.blocks.size > 0 or section.settings.newsletter_enable or section.settings.show_social -%}
@@ -107,7 +108,11 @@
             {%- endif -%}
             <div class="lg:w-[300px]  flex justify-center items-center py-12">
                 <a href="{{ routes.root_url }}" class="header__heading-link link  focus-inset w-[160px]  py-4">
-                    <img src="/assets/logo-footer.png" loading="lazy" class="header__heading-logo " width="256" height="131" alt="{{ shop_name | escape }}">
+                    {% if section.settings.image %}
+                        <img src="{{section.settings.image | image_url: width: 300, height: 300 }}" loading="lazy" class="header__heading-logo " width="256" height="131" alt="{{ shop_name | escape }}">
+                        {% else %}
+                        <img src="{{'logo.png' | asset_img_url:'300px'}}" loading="lazy" class="header__heading-logo " width="256" height="131" alt="{{ shop_name | escape }}">
+                    {% endif %}
                 </a>
             </div>
         </div>
@@ -408,6 +413,11 @@ customElements.define('localization-form', LocalizationForm);
         }
     ],
     "settings": [
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+        },
         {
             "type": "select",
             "id": "color_scheme",

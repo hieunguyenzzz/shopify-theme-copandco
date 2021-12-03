@@ -44,19 +44,19 @@
                     <ul class="carousel carousel-center gap-6 container mx-auto" role="list">
             {% endcase %}
             {%- for block in section.blocks -%}
-                <li class="carousel-item py-8 relative group cursor-pointer">
-                    <a href="{{block.settings.url}}" class="relative">
-                        <div class="w-[40vw] lg:w-[20vw] relative group-hover:shadow-lg transition-transform group-hover:scale-110">
-                            <div class="pt-[145%]"></div>
-                            {% render 'image-full' image: block.settings.image %}
-                        </div>
-                        <div class="absolute left-0 bottom-12 transform translate-y-1/2 duration-500 group-hover:bottom-1/2 transition-all text-center w-full flex justify-center items-center">
-                            <h4 class="text-2xl uppercase text-white">
-                                {{block.settings.heading}}
-                            </h4>
-                        </div>
+                <li class="carousel-item py-8 flex flex-col w-[40vw] lg:w-[25vw] ">
+                    <div class="w-full relative hover:shadow-lg ">
+                        <div class="pt-[145%]"></div>
+                        {% render 'image-full' image:block.settings.image  class: '' %}
+                    </div>
+                    <a href="{{block.settings.url}}">
+                        <h3 class="text-2xl mt-6">
+                            {{block.settings.title}} 
+                        </h3>
                     </a>
-                    
+                    <div class="mt-2">
+                        {{block.settings.description}}
+                    </div>
                 </li>
             {%- endfor -%}
             </ul>
@@ -165,7 +165,33 @@
         "label": "Image background"
         }
     ],
-    
+    "blocks":[
+        {
+            "type": "review",
+            "name": "review",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "Title",
+                    "placeholder": "Title"
+                },
+                {
+                    "type": "richtext",
+                    "id": "description",
+                    "label": "Description",
+                    "default": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea</p>"
+                }
+               
+            ]
+        }
+    ],
     "presets": [
         {
             "name": "Featured 15",
