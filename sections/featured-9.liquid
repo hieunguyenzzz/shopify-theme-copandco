@@ -14,14 +14,14 @@
     </div>
     <div class="relative flex-1 space-y-12">
         <div class="text-3xl font-heading">
-            We aim for versatility. So we bring you pieces that can be
-            <b class="font-bold">worn together or alone</b>
+            {{section.settings.right_description}}
         </div>
         <div class="font-semibold">SHOP THE LOOK</div>
         <div class="space-y-6 w-full">
             {% if section.blocks.size == 0 %}
                 {% for i in (1..3) %}
                     <div class="flex space-x-12 w-full ">
+                        123
                         <div class="flex-1 py-6">
                             {% render '[product]-content' product: 'example'  class: '' %}
                         </div>
@@ -35,10 +35,10 @@
                     {% assign product  = block.settings.product %}
                     <div class="flex space-x-12 w-full ">
                         <div class="flex-1 py-6">
-                            {% render '[product]-content'  class: '' %}
+                            {% render '[product]-content' product: block.settings.product class: '' %}
                         </div>
                         <div class="w-1/3 max-w-md relative overflow-hidden">
-                            {% render 'image-full'  class: '' %}
+                            {% render 'image-full' image:product.images[0] class: '' %}
                         </div>
                     </div>
                 {% endfor %}
@@ -66,23 +66,48 @@
             "type": "richtext",
             "id": "description",
             "label": "Description",
-            "default": "<p>It’s time to sale. 10 - 50% off on selected items.</p><p>Ends 5 September.</p>"
-        }, {
-            "type": "text",
-            "id": "buttonText",
-            "label": "Button Text",
-            "default": "SHOP NOW"
-        }, {
-            "type": "url",
-            "id": "buttonUrl",
-            "label": "Button Url",
-            "default": "/"
-        }, {
-            "type": "image_picker",
-            "id": "image",
-            "label": "Image background"
-        }
+            "default": "<p>It’s time to sale. 10 - 50% off on selected items.</p> <p>Ends 5 September.</p>"
+            }, {
+                "type": "text",
+                "id": "buttonText",
+                "label": "Button Text",
+                "default": "SHOP NOW"
+            }, {
+                "type": "url",
+                "id": "buttonUrl",
+                "label": "Button Url",
+                "default": "/"
+            }, {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image background"
+            },
+            {
+                "type": "header",
+                "content": "Right column"
+            },
+            {
+                "type": "richtext",
+                "id": "right_description",
+                "label": "Description",
+                "default": "<p>We aim for versatility. So we bring you pieces that can be <b>worn together or alone</b></p>"
+            }
+       
     ],
+    "max_blocks": 3,
+    "blocks": [
+    {
+        "type": "product",
+        "name": "product",
+        "settings": [
+            {
+                "type": "product",
+                "id": "product",
+                "label": "Product"
+            }
+        ]
+    }
+],
     "presets": [
         {
             "name": "Featured 9",

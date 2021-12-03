@@ -207,13 +207,39 @@
     },
     "featured-9": {
       "type": "featured-9",
+      "blocks": {
+        "8c1e1b54-fba0-44e1-8055-0067e4b0ad16": {
+          "type": "product",
+          "settings": {
+            "proruct": "14k-bloom-earrings"
+          }
+        },
+        "d998d7cd-16a5-431b-ac09-f232f61757ad": {
+          "type": "product",
+          "settings": {
+            "proruct": "14k-dangling-pendant-earrings"
+          }
+        },
+        "eb3d552c-d56b-415d-ba2f-58833bc91cc8": {
+          "type": "product",
+          "settings": {
+            "proruct": "14k-intertwined-earrings"
+          }
+        }
+      },
+      "block_order": [
+        "8c1e1b54-fba0-44e1-8055-0067e4b0ad16",
+        "d998d7cd-16a5-431b-ac09-f232f61757ad",
+        "eb3d552c-d56b-415d-ba2f-58833bc91cc8"
+      ],
       "settings": {
         "heading": "End of season Sale",
         "sub_heading": "UP TO 50%",
         "description": "<p>It’s time to sale. 10 - 50% off on selected items.<\/p><p>Ends 5 September.<\/p>",
         "buttonText": "SHOP NOW",
         "buttonUrl": "\/",
-        "image": "shopify:\/\/shop_images\/jewelry-10.jpg"
+        "image": "shopify:\/\/shop_images\/jewelry-10.jpg",
+        "right_description": "<p>We aim for versatility. So we bring you pieces that can be <strong>worn together or alone<\/strong><\/p>"
       }
     },
     "featured-10": {

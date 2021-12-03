@@ -24,19 +24,18 @@
     <div class="w-full relative hover:shadow-lg">
         <div class="pt-[100%]"></div>
         {% if sale_percent %}
-            <div class="absolute p-6 top-0 right-0 flex transform -translate-y-1/2">
+            <div class="absolute max-w-[40%] p-[4%] top-0 right-0 flex transform -translate-y-1/2">
                 <img class="w-full" src="{{ 'sale.png' | asset_img_url: '150px' }}" alt="sale"/>
                 <div class="w-full h-full flex justify-center items-center absolute inset-0 text-3xl font-bold">
                     {{sale_percent}}%
                 </div>
             </div>
         {% endif %}
-        
         {% render 'image-full' ,image:product.images[0] %}
     </div>
-    <div class="mt-6">
-        <h4 class="text-2xl">{{ product.title | escape }}</h4>
-        <div class="flex  gap-3 justify-between items-baseline">
+    <div class="mt-6 px-8">
+        <h4 class="text-xl lg:text-3xl">{{ product.title | escape }}</h4>
+        <div class="flex flex-col gap-2 justify-between items-baseline">
             <div class="text-sm truncate">
                 {{product.tags | join: ', '}}
             </div>
