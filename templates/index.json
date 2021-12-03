@@ -33,7 +33,7 @@
         "28d851c0-60b6-425c-92de-a29175bfbf8f": {
           "type": "category",
           "settings": {
-            "image": "shopify:\/\/shop_images\/jewelry-09.jpg",
+            "image": "shopify:\/\/shop_images\/jewelry-07.jpg",
             "heading": "CATEGORY",
             "id": "\/"
           }
@@ -49,15 +49,7 @@
         "8d1ecf1a-167b-4ef1-a03d-3abb334920d4": {
           "type": "category",
           "settings": {
-            "image": "shopify:\/\/shop_images\/jewelry-11.jpg",
-            "heading": "CATEGORY",
-            "id": "\/"
-          }
-        },
-        "d14959f3-be99-4b77-ba3a-c80ca64ffd8e": {
-          "type": "category",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/jewelry-06.jpg",
+            "image": "shopify:\/\/shop_images\/jewelry-09.jpg",
             "heading": "CATEGORY",
             "id": "\/"
           }
@@ -66,6 +58,14 @@
           "type": "category",
           "settings": {
             "image": "shopify:\/\/shop_images\/jewelry-10.jpg",
+            "heading": "CATEGORY",
+            "id": "\/"
+          }
+        },
+        "d14959f3-be99-4b77-ba3a-c80ca64ffd8e": {
+          "type": "category",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/jewelry-06.jpg",
             "heading": "CATEGORY",
             "id": "\/"
           }
@@ -83,8 +83,8 @@
         "28d851c0-60b6-425c-92de-a29175bfbf8f",
         "3c497aa2-40ff-4943-9b1b-325f244a2517",
         "8d1ecf1a-167b-4ef1-a03d-3abb334920d4",
-        "d14959f3-be99-4b77-ba3a-c80ca64ffd8e",
         "64074021-62e0-4c9c-8017-3c025fd94477",
+        "d14959f3-be99-4b77-ba3a-c80ca64ffd8e",
         "19030842-6d12-468e-8a47-614f39647d16"
       ],
       "settings": {
@@ -207,31 +207,6 @@
     },
     "featured-9": {
       "type": "featured-9",
-      "blocks": {
-        "8c1e1b54-fba0-44e1-8055-0067e4b0ad16": {
-          "type": "product",
-          "settings": {
-            "proruct": "14k-bloom-earrings"
-          }
-        },
-        "d998d7cd-16a5-431b-ac09-f232f61757ad": {
-          "type": "product",
-          "settings": {
-            "proruct": "14k-dangling-pendant-earrings"
-          }
-        },
-        "eb3d552c-d56b-415d-ba2f-58833bc91cc8": {
-          "type": "product",
-          "settings": {
-            "proruct": "14k-intertwined-earrings"
-          }
-        }
-      },
-      "block_order": [
-        "8c1e1b54-fba0-44e1-8055-0067e4b0ad16",
-        "d998d7cd-16a5-431b-ac09-f232f61757ad",
-        "eb3d552c-d56b-415d-ba2f-58833bc91cc8"
-      ],
       "settings": {
         "heading": "End of season Sale",
         "sub_heading": "UP TO 50%",
@@ -239,7 +214,7 @@
         "buttonText": "SHOP NOW",
         "buttonUrl": "\/",
         "image": "shopify:\/\/shop_images\/jewelry-10.jpg",
-        "right_description": "<p>We aim for versatility. So we bring you pieces that can be <strong>worn together or alone<\/strong><\/p>"
+        "right_description": "<p>We aim for versatility. So we bring you pieces that can be <b>worn together or alone<\/b><\/p>"
       }
     },
     "featured-10": {
@@ -250,7 +225,9 @@
         "description": "<p>It’s time to sale. 10 - 50% off on selected items.<\/p><p>Ends 5 September.<\/p>",
         "buttonText": "SHOP NOW",
         "buttonUrl": "\/",
-        "image": "shopify:\/\/shop_images\/jewelry-03.jpg"
+        "image": "shopify:\/\/shop_images\/jewelry-03.jpg",
+        "description_1": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea<\/p>",
+        "description_2": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea<\/p>"
       }
     },
     "featured-11": {
