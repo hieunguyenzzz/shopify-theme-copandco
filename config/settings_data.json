@@ -42,6 +42,7 @@
           "2ce994a8-7bed-4422-8394-32db9f21e82b"
         ],
         "settings": {
+          "image": "shopify:\/\/shop_images\/jewelry-15.png",
           "color_scheme": "background-2",
           "newsletter_enable": true,
           "newsletter_heading": "Sign up to our emails",

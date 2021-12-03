@@ -22,7 +22,10 @@
             {% endfor %}
         {% else %}
             {% for block in section.blocks %}
-                {% render '[product]-card-2' product:block.settings.product  class: '' %}
+                <div class="flex-1 flex gap-3">
+                    {% render '[product]-card-2' product:block.settings.product  class: '' %}
+                    {% render '[product]-quick-add'  class: '' %}
+                </div>
             {% endfor %}
         {% endif %}
 

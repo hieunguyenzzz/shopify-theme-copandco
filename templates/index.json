@@ -375,6 +375,55 @@
     },
     "featured-15": {
       "type": "featured-15",
+      "blocks": {
+        "2cdb40d8-6f1f-48a9-9191-7081b81ec1a4": {
+          "type": "review",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/jewelry-11.jpg",
+            "title": "Title",
+            "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea<\/p>"
+          }
+        },
+        "a5a51e5a-5e71-481d-9a8f-2df82804e098": {
+          "type": "review",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/jewelry-02.jpg",
+            "title": "Title",
+            "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea<\/p>"
+          }
+        },
+        "1a534d5a-cb3e-4a30-895b-7441b09afe27": {
+          "type": "review",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/jewelry-08.jpg",
+            "title": "Title",
+            "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea<\/p>"
+          }
+        },
+        "53e0a1c7-f11e-4b62-8171-cfb435b1608b": {
+          "type": "review",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/jewelry-05.jpg",
+            "title": "Title",
+            "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea<\/p>"
+          }
+        },
+        "7d2b6b37-2f2d-43fc-9ea8-fd47626a4d97": {
+          "type": "review",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/jewelry-06.jpg",
+            "title": "Title",
+            "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "2cdb40d8-6f1f-48a9-9191-7081b81ec1a4",
+        "a5a51e5a-5e71-481d-9a8f-2df82804e098",
+        "1a534d5a-cb3e-4a30-895b-7441b09afe27",
+        "53e0a1c7-f11e-4b62-8171-cfb435b1608b",
+        "7d2b6b37-2f2d-43fc-9ea8-fd47626a4d97"
+      ],
       "settings": {
         "heading": "Handcrafted jewelry",
         "sub_heading": "NEW BLOG",

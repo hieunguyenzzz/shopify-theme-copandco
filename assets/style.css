@@ -1317,6 +1317,13 @@ html {
   width: 3rem;
 }
 
+.btn-circle {
+  border-radius: 9999px;
+  height: 3rem;
+  padding: 0;
+  width: 3rem;
+}
+
 .btn.loading,.btn.loading:hover {
   pointer-events: none;
 }
@@ -2800,11 +2807,25 @@ html {
   width: 4rem;
 }
 
+.btn-circle.btn-xs {
+  border-radius: 9999px;
+  height: 1.5rem;
+  padding: 0;
+  width: 1.5rem;
+}
+
 .btn-circle.btn-sm {
   border-radius: 9999px;
   height: 2rem;
   padding: 0;
   width: 2rem;
+}
+
+.btn-circle.btn-md {
+  border-radius: 9999px;
+  height: 3rem;
+  padding: 0;
+  width: 3rem;
 }
 
 .btn-circle.btn-lg {
