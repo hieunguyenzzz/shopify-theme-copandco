@@ -3142,6 +3142,10 @@ html {
   margin-left: 0.5rem;
 }
 
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
 .block {
   display: block;
 }
@@ -4323,6 +4327,11 @@ html {
 .text-primary {
   --tw-text-opacity: 1;
   color: hsla(var(--p) / var(--tw-text-opacity));
+}
+
+.text-\[\#FFD700\] {
+  --tw-text-opacity: 1;
+  color: rgba(255, 215, 0, var(--tw-text-opacity));
 }
 
 .text-opacity-100 {

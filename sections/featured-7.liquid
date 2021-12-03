@@ -71,8 +71,18 @@
                         <div class="pt-[70%]"></div>
                         {% render 'image-full' image: product.images[0] class: '' %}
                     </div>
-                    <div class="mt-6 space-y-[0.5em] flex space-x-3 items-baseline ">
-                        {% render '[product]-content' product:product class: 'flex-1 animate__animated animate__fadeIn ease-in-out'  %}
+                    <div class="mt-6 space-y-[0.5em] flex space-x-3 items-baseline w-full">
+                        <div class="flex-1">
+                            <a href="{{product.url}}"><h4 class="text-3xl">{{ product.title | escape }}</h4></a>
+                            <div class=" flex-col  gap-3 justify-between items-baseline">
+                                <div class="text-sm truncate">
+                                    {{product.tags | join: ', '}}
+                                </div>
+                                <div>
+                                    {% render '[product]-price' product:product   %}
+                                </div>
+                            </div>
+                        </div>
                         <div class="flex">
                             {% assign preIndex = forloop.index | minus:1 %}
                             {% assign nextIndex = forloop.index | plus:1 %}

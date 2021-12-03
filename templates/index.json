@@ -4,7 +4,7 @@
       "type": "featured-banner",
       "settings": {
         "heading": "Everyday Jewelry Essentials",
-        "description": "<p>Inspired by all of the little thing in our life <\/p><p>Complete your look for every occasion<\/p>",
+        "description": "<p>Inspired by all of the little thing in our life <\/p><p>Complete your look for every occasionr<\/p>",
         "buttonText": "SHOP ALL",
         "buttonUrl": "\/",
         "circleText": "every day jewelry estnesials•",
@@ -33,7 +33,7 @@
         "28d851c0-60b6-425c-92de-a29175bfbf8f": {
           "type": "category",
           "settings": {
-            "image": "shopify:\/\/shop_images\/jewelry-07.jpg",
+            "image": "shopify:\/\/shop_images\/jewelry-09.jpg",
             "heading": "CATEGORY",
             "id": "\/"
           }
@@ -49,15 +49,7 @@
         "8d1ecf1a-167b-4ef1-a03d-3abb334920d4": {
           "type": "category",
           "settings": {
-            "image": "shopify:\/\/shop_images\/jewelry-09.jpg",
-            "heading": "CATEGORY",
-            "id": "\/"
-          }
-        },
-        "64074021-62e0-4c9c-8017-3c025fd94477": {
-          "type": "category",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/jewelry-10.jpg",
+            "image": "shopify:\/\/shop_images\/jewelry-11.jpg",
             "heading": "CATEGORY",
             "id": "\/"
           }
@@ -66,6 +58,14 @@
           "type": "category",
           "settings": {
             "image": "shopify:\/\/shop_images\/jewelry-06.jpg",
+            "heading": "CATEGORY",
+            "id": "\/"
+          }
+        },
+        "64074021-62e0-4c9c-8017-3c025fd94477": {
+          "type": "category",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/jewelry-10.jpg",
             "heading": "CATEGORY",
             "id": "\/"
           }
@@ -83,8 +83,8 @@
         "28d851c0-60b6-425c-92de-a29175bfbf8f",
         "3c497aa2-40ff-4943-9b1b-325f244a2517",
         "8d1ecf1a-167b-4ef1-a03d-3abb334920d4",
-        "64074021-62e0-4c9c-8017-3c025fd94477",
         "d14959f3-be99-4b77-ba3a-c80ca64ffd8e",
+        "64074021-62e0-4c9c-8017-3c025fd94477",
         "19030842-6d12-468e-8a47-614f39647d16"
       ],
       "settings": {
@@ -97,6 +97,38 @@
     },
     "featured-3": {
       "type": "featured-3",
+      "blocks": {
+        "400507f4-68e3-44d0-b359-b3fea8951cbe": {
+          "type": "collection",
+          "settings": {
+            "collection": "bracelet"
+          }
+        },
+        "fbb38e5a-580a-48be-b613-18eec0456495": {
+          "type": "collection",
+          "settings": {
+            "collection": "earring"
+          }
+        },
+        "5467eee6-4749-4f98-b17b-d6cf3431a784": {
+          "type": "collection",
+          "settings": {
+            "collection": "necklace"
+          }
+        },
+        "afcb3ea0-9f3a-42af-9e30-36606c556ca9": {
+          "type": "collection",
+          "settings": {
+            "collection": "ring"
+          }
+        }
+      },
+      "block_order": [
+        "400507f4-68e3-44d0-b359-b3fea8951cbe",
+        "fbb38e5a-580a-48be-b613-18eec0456495",
+        "5467eee6-4749-4f98-b17b-d6cf3431a784",
+        "afcb3ea0-9f3a-42af-9e30-36606c556ca9"
+      ],
       "settings": {
         "heading": "Best selling",
         "sub_heading": "Check it out",
@@ -133,19 +165,19 @@
         "afb0108e-62b6-45f3-b27f-0f30bc37627e": {
           "type": "product",
           "settings": {
-            "product": "14k-bloom-earrings"
+            "product": "gold-necklace"
           }
         },
         "2a0e7065-5deb-487b-914f-57fe02e8480f": {
           "type": "product",
           "settings": {
-            "product": "14k-dangling-pendant-earrings-1"
+            "product": "mira-rings"
           }
         },
         "e78ecc69-aac4-4216-9f6a-0e3668bb8ac1": {
           "type": "product",
           "settings": {
-            "product": "18k-bloom-pendant"
+            "product": "kira-rings"
           }
         }
       },
@@ -164,19 +196,19 @@
         "d1049ecf-1d5a-4c72-8577-788a4b6eaef3": {
           "type": "product",
           "settings": {
-            "product": "18k-interlinked-earrings"
+            "product": "twinkle-earrings"
           }
         },
         "7d92d5a7-2767-4857-95e2-db9af782cdc8": {
           "type": "product",
           "settings": {
-            "product": "18k-fluid-lines-necklace"
+            "product": "sea-lover-rings"
           }
         },
         "f2e5eec9-bd23-42c0-b13a-188802c150e6": {
           "type": "product",
           "settings": {
-            "product": "pendant-earrings"
+            "product": "haruko-earrings"
           }
         }
       },
@@ -207,6 +239,31 @@
     },
     "featured-9": {
       "type": "featured-9",
+      "blocks": {
+        "8c1e1b54-fba0-44e1-8055-0067e4b0ad16": {
+          "type": "product",
+          "settings": {
+            "product": "haruko-earrings"
+          }
+        },
+        "d998d7cd-16a5-431b-ac09-f232f61757ad": {
+          "type": "product",
+          "settings": {
+            "product": "pearl-bracelet"
+          }
+        },
+        "eb3d552c-d56b-415d-ba2f-58833bc91cc8": {
+          "type": "product",
+          "settings": {
+            "product": "mira-rings"
+          }
+        }
+      },
+      "block_order": [
+        "8c1e1b54-fba0-44e1-8055-0067e4b0ad16",
+        "d998d7cd-16a5-431b-ac09-f232f61757ad",
+        "eb3d552c-d56b-415d-ba2f-58833bc91cc8"
+      ],
       "settings": {
         "heading": "End of season Sale",
         "sub_heading": "UP TO 50%",
@@ -214,20 +271,62 @@
         "buttonText": "SHOP NOW",
         "buttonUrl": "\/",
         "image": "shopify:\/\/shop_images\/jewelry-10.jpg",
-        "right_description": "<p>We aim for versatility. So we bring you pieces that can be <b>worn together or alone<\/b><\/p>"
+        "right_description": "<p>We aim for versatility. So we bring you pieces that can be <strong>worn together or alone<\/strong><\/p>"
       }
     },
     "featured-10": {
       "type": "featured-10",
+      "blocks": {
+        "bec668c4-64bf-4f71-8c34-bcf256399a63": {
+          "type": "review",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/jewelry-03.jpg",
+            "star": 1,
+            "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea<\/p>",
+            "author": "Author"
+          }
+        },
+        "41643711-455d-479f-ae27-483306cf22f5": {
+          "type": "review",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/jewelry-03.jpg",
+            "star": 1,
+            "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea<\/p>",
+            "author": "Author"
+          }
+        },
+        "32aef52b-93b1-4598-bc9a-680a703b4534": {
+          "type": "review",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/jewelry-09.jpg",
+            "star": 2,
+            "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea<\/p>",
+            "author": "Author"
+          }
+        },
+        "55542829-b39f-470f-91ce-964c8614994f": {
+          "type": "review",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/jewelry-11.jpg",
+            "star": 1,
+            "description": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea<\/p>",
+            "author": "Author"
+          }
+        }
+      },
+      "block_order": [
+        "bec668c4-64bf-4f71-8c34-bcf256399a63",
+        "41643711-455d-479f-ae27-483306cf22f5",
+        "32aef52b-93b1-4598-bc9a-680a703b4534",
+        "55542829-b39f-470f-91ce-964c8614994f"
+      ],
       "settings": {
         "heading": "Rated excellent",
         "sub_heading": "BY YOU",
         "description": "<p>It’s time to sale. 10 - 50% off on selected items.<\/p><p>Ends 5 September.<\/p>",
         "buttonText": "SHOP NOW",
         "buttonUrl": "\/",
-        "image": "shopify:\/\/shop_images\/jewelry-03.jpg",
-        "description_1": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea<\/p>",
-        "description_2": "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea<\/p>"
+        "image": "shopify:\/\/shop_images\/jewelry-03.jpg"
       }
     },
     "featured-11": {
