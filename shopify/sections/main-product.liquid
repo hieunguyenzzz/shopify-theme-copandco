@@ -57,98 +57,118 @@
           </div>
           <div></div>
         </div>
-        <div class="lg:w-5/12 relative overflow-hidden min-h-full order-1 lg:order-2 w-full">
-          <div class="lg:hidden relative">
-            <div class="absolute inset-0">
-              <product-slider>
-                <div class="keen-slider" id="my-keen-slider">
+        <div class="lg:w-5/12 relative  min-h-full order-1 lg:order-2 w-full">
+          {% if product.images.size == 1 %}
+            <div class=" relative">
+              <div style="padding-top: {{ 1 | divided_by: image.aspect_ratio | times: 100 }}%;"></div>
+              <modal-opener data-modal="#ProductModal-{{ section.id }}">
+                <button class="group" aria-haspopup="dialog" data-media-id="{{ image.id }}">
+                  <div id="preview_image">
+                    <img class="absolute inset-0 object-cover  ease-in-out w-full" srcset="{% if image.width >= 288 %}{{ image | img_url: '288x' }} 288w,{% endif %} {% if image.width >= 576 %}{{ image | img_url: '576x' }} 576w,{% endif %} {% if image.width >= 550 %}{{ image | img_url: '550x' }} 550w,{% endif %} {% if image.width >= 1100 %}{{ image | img_url: '1100x' }} 1100w{% endif %}" src="{{ media | img_url: '1024x1024' }}" sizes="(min-width: 1200px) calc((1200px - 10rem) / 2), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)" loading="lazy" width="576" height="{{ 576 | divided_by: image.aspect_ratio | ceil }}" alt="{{ image.alt | escape }}">
+                  </div>
+                  <div class="hidden group-hover:block absolute top-5 left-5 p-2 bg-white rounded-full text-sm">{%-
+                    render 'icon-zoom' -%}</div>
+                </button>
+              </modal-opener>
+              
+            </div>
+            {% else %}
+            <div class="lg:hidden relative">
+              <div class="absolute inset-0">
+                <product-slider>
+                  <div class="keen-slider" id="my-keen-slider">
+                    {% for image in product.images %}
+                      <div class="keen-slider__slide relative">
+                        <div style="padding-top: {{ 1 | divided_by: image.aspect_ratio | times: 100 }}%;"></div>
+                        <modal-opener data-modal="#ProductModal-{{ section.id }}">
+                          <button class="group" aria-haspopup="dialog" data-media-id="{{ image.id }}">
+                            <div id="preview_image">
+                              <img class="absolute inset-0 object-cover  ease-in-out w-full" srcset="{% if image.width >= 288 %}{{ image | img_url: '288x' }} 288w,{% endif %} {% if image.width >= 576 %}{{ image | img_url: '576x' }} 576w,{% endif %} {% if image.width >= 550 %}{{ image | img_url: '550x' }} 550w,{% endif %} {% if image.width >= 1100 %}{{ image | img_url: '1100x' }} 1100w{% endif %}" src="{{ media | img_url: '1024x1024' }}" sizes="(min-width: 1200px) calc((1200px - 10rem) / 2), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)" loading="lazy" width="576" height="{{ 576 | divided_by: image.aspect_ratio | ceil }}" alt="{{ image.alt | escape }}">
+                            </div>
+                            <div class="hidden group-hover:block absolute top-5 left-5 p-2 bg-white rounded-full text-sm">{%-
+                              render 'icon-zoom' -%}</div>
+                          </button>
+                        </modal-opener>
+                        
+                      </div>
+                    {% endfor %}
+                    <svg class="arrow arrow--left text-black" fill="currentColor" id="arrow-left" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"></path>
+                    </svg>
+                    <svg class="arrow arrow--right text-black" fill="currentColor" id="arrow-right" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z"></path>
+                    </svg>
+      
+                  </div>
+                  <div class="dots absolute bottom-3 left-0 right-0" id="dots"></div>
+                </product-slider>
+              </div>
+              <div style="padding-top: {{ 1 | divided_by: image.aspect_ratio | times: 100 }}%;"></div>
+            </div>
+            <div class="w-full relative hidden lg:block">
+              <div class="w-full h-full top-0 left-0 flex">
+           
+                <div class="w-5/6 bg-accents-0">
+                  <div class="w-full flex-1 relative" style="padding-top: {{ 1 | divided_by: image.aspect_ratio | times: 100 }}%;">
+                    <div class="flex-1 absolute top-0 right-0 w-full h-full ">
+                      <div style="display: block; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;">
+                        <div style="display: block; box-sizing: border-box; padding-top: {{ 1 | divided_by: image.aspect_ratio | times: 100 }}%;"></div>
+                        {% if product.selected_or_first_available_variant.featured_media != null %}
+      
+                          {%- assign media = product.selected_or_first_available_variant.featured_media -%}
+                        {% else %}
+                          {%- assign media = featured_image -%}
+      
+                        {% endif %}
+                        <modal-opener data-modal="#ProductModal-{{ section.id }}">
+                          <button class="group" aria-haspopup="dialog" data-media-id="{{ image.id }}">
+                            <div id="preview_image">
+                              <img class="absolute inset-0 object-cover  ease-in-out w-full" srcset="{% if media.preview_image.width >= 288 %}{{ media.preview_image | img_url: '288x' }} 288w,{% endif %} {% if media.preview_image.width >= 576 %}{{ media.preview_image | img_url: '576x' }} 576w,{% endif %} {% if media.preview_image.width >= 550 %}{{ media.preview_image | img_url: '550x' }} 550w,{% endif %} {% if media.preview_image.width >= 1100 %}{{ media.preview_image | img_url: '1100x' }} 1100w{% endif %}" src="{{ media | img_url: '1024x1024' }}" sizes="(min-width: 1200px) calc((1200px - 10rem) / 2), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)" loading="lazy" width="576" height="{{ 576 | divided_by: media.preview_image.aspect_ratio | ceil }}" alt="{{ media.preview_image.alt | escape }}">
+                            </div>
+                            <div class="hidden group-hover:block absolute top-5 left-5 p-2 bg-white rounded-full text-sm">{%-
+                              render 'icon-zoom' -%}</div>
+                          </button>
+                        </modal-opener>
+      
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-1/6 flex flex-col z-10">
                   {% for image in product.images %}
-                    <div class="keen-slider__slide ">
+                    <div  class="group pr-responsive-md pb-responsive-md lg:pl-2 lg:pb-2">
                       <div class="w-full  flex relative border group-hover:shadow-outline-normal ">
-                        <div style="padding-top: {{image.aspect_ratio|plus:100}}%;"></div>
-                        <div class="absolute inset-0">
+                        <div style="padding-top: {{ 1 | divided_by: image.aspect_ratio | times: 100 }}%;"></div>
+                        <button tabindex="-1" class="absolute inset-0 block w-full h-full">
                           <div style="display: block; overflow: hidden; position: absolute; inset: 0px; box-sizing: border-box; margin: 0px;">
-                            <img loading="lazy" alt="Product Image" src="{{ image.src | img_url: '800X1500' }}" alt="{{ image.alt | escape }}" class="border border-accents-2" style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;">
+                            <img alt="Product Image" src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}" class="border border-accents-2" style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;">
+                          </div>
+                        </button>
+                      </div>
+                      <div class="hidden group-hover:block  group-focus-within:block  left-0 top-0 absolute w-5/6 bg-gray-100">
+                        <div class="w-full" style="padding-top: {{ 1 | divided_by: image.aspect_ratio | times: 100 }}%;">
+                          <div class="absolute top-0 right-0 w-full h-full flex-1">
+                            <div style="display: block; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;">
+                              <div style="display: block; box-sizing: border-box; padding-top: {{ 1 | divided_by: image.aspect_ratio | times: 100 }}%;"></div>
+                              <modal-opener data-modal="#ProductModal-{{ section.id }}">
+                                <button type="button" aria-haspopup="dialog" data-media-id="{{ image.id }}">
+                                  <img class=" object-contain" data-media-id="{{ section.id }}-{{ image.id }}" alt="Product Image" src="{{image.src | img_url: '1024x1024', scale: 2 }}" style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;">
+                                  <div class="hidden group-hover:block absolute top-5 left-5 p-2 bg-white rounded-full text-sm">
+                                    {%- render 'icon-zoom' -%}</div>
+                                </button>
+                              </modal-opener>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   {% endfor %}
-                  <svg class="arrow arrow--left text-black" fill="currentColor" id="arrow-left" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"></path>
-                  </svg>
-                  <svg class="arrow arrow--right text-black" fill="currentColor" id="arrow-right" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z"></path>
-                  </svg>
-    
+                  <div class="flex-1"></div>
                 </div>
-                <div class="dots absolute bottom-3 left-0 right-0" id="dots"></div>
-              </product-slider>
+              </div>
             </div>
-            <div style="padding-top: {{image.aspect_ratio|plus:100}}%;"></div>
-          </div>
-          <div class="w-full relative hidden lg:block">
-            <div class="w-full h-full top-0 left-0 flex">
+          {% endif %}
          
-              <div class="w-5/6 bg-accents-0">
-                <div class="w-full flex-1 relative" style="padding-top: {{image.aspect_ratio|plus:100}}%;">
-                  <div class="flex-1 absolute top-0 right-0 w-full h-full ">
-                    <div style="display: block; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;">
-                      <div style="display: block; box-sizing: border-box; padding-top: {{image.aspect_ratio|plus:100}}%;"></div>
-                      {% if product.selected_or_first_available_variant.featured_media != null %}
-    
-                        {%- assign media = product.selected_or_first_available_variant.featured_media -%}
-                      {% else %}
-                        {%- assign media = featured_image -%}
-    
-                      {% endif %}
-                      <modal-opener data-modal="#ProductModal-{{ section.id }}">
-                        <button class="group" aria-haspopup="dialog" data-media-id="{{ image.id }}">
-                          <div id="preview_image">
-                            <img class="absolute inset-0 object-cover  ease-in-out" srcset="{% if media.preview_image.width >= 288 %}{{ media.preview_image | img_url: '288x' }} 288w,{% endif %} {% if media.preview_image.width >= 576 %}{{ media.preview_image | img_url: '576x' }} 576w,{% endif %} {% if media.preview_image.width >= 550 %}{{ media.preview_image | img_url: '550x' }} 550w,{% endif %} {% if media.preview_image.width >= 1100 %}{{ media.preview_image | img_url: '1100x' }} 1100w{% endif %}" src="{{ media | img_url: '1024x1024' }}" sizes="(min-width: 1200px) calc((1200px - 10rem) / 2), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)" loading="lazy" width="576" height="{{ 576 | divided_by: media.preview_image.aspect_ratio | ceil }}" alt="{{ media.preview_image.alt | escape }}">
-                          </div>
-                          <div class="hidden group-hover:block absolute top-5 left-5 p-2 bg-white rounded-full text-sm">{%-
-                            render 'icon-zoom' -%}</div>
-                        </button>
-                      </modal-opener>
-    
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="w-1/6 flex flex-col z-10">
-                {% for image in product.images %}
-                  <div  class="group pr-responsive-md pb-responsive-md lg:pl-2 lg:pb-2">
-                    <div class="w-full  flex relative border group-hover:shadow-outline-normal ">
-                      <div style="padding-top: {{image.aspect_ratio|plus:100}}%;"></div>
-                      <button tabindex="-1" class="absolute inset-0 block w-full h-full">
-                        <div style="display: block; overflow: hidden; position: absolute; inset: 0px; box-sizing: border-box; margin: 0px;">
-                          <img alt="Product Image" src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}" class="border border-accents-2" style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;">
-                        </div>
-                      </button>
-                    </div>
-                    <div class="hidden group-hover:block  group-focus-within:block  left-0 top-0 absolute w-5/6">
-                      <div class="w-full" style="padding-top: {{image.aspect_ratio|plus:100}}%;">
-                        <div class="absolute top-0 right-0 w-full h-full flex-1">
-                          <div style="display: block; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;">
-                            <div style="display: block; box-sizing: border-box; padding-top: {{image.aspect_ratio|plus:100}}%;"></div>
-                            <modal-opener data-modal="#ProductModal-{{ section.id }}">
-                              <button type="button" aria-haspopup="dialog" data-media-id="{{ image.id }}">
-                                <img class=" " data-media-id="{{ section.id }}-{{ image.id }}" alt="Product Image" src="{{image.src | img_url: '1024x1024', scale: 2 }}" style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;">
-                                <div class="hidden group-hover:block absolute top-5 left-5 p-2 bg-white rounded-full text-sm">
-                                  {%- render 'icon-zoom' -%}</div>
-                              </button>
-                            </modal-opener>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                {% endfor %}
-                <div class="flex-1"></div>
-              </div>
-            </div>
-          </div>
         </div>
         <div class="flex-1 lg:sticky top-header lg:pt-24 order-2 lg:order-3 w-full">
           <div id="ProductInfo-{{ section.id }}" class="space-y-6">
@@ -350,7 +370,7 @@
         <path d="M6 6l12 12"></path>
       </svg>
     </button>
-    <div class="product-media-modal__content absolute  inset-0 w-full h-full overflow-auto bg-white" role="document" aria-label="{{ 'products.modal.label' | t }}" tabindex="0">
+    <div class="product-media-modal__content absolute  inset-0 w-full h-full overflow-auto bg-white flex flex-col justify-start" role="document" aria-label="{{ 'products.modal.label' | t }}" tabindex="0">
       {%- for image in product.images -%}
         <img loading="lazy" class="w-full" srcset="{%- if image.width >= 550 -%}{{ image | img_url: '550x' }} 550w,{%- endif -%} {%- if image.width >= 1100 -%}{{ image | img_url: '1100x' }} 1100w,{%- endif -%} {%- if image.width >= 1680 -%}{{ image | img_url: '1680x' }} 1680w,{%- endif -%} {%- if image.width >= 2048 -%}{{ image | img_url: '2048x' }} 2048w,{%- endif -%} {%- if image.width >= 4096 -%}{{ image | img_url: '4096x' }} 4096w{%- endif -%}" sizes="(min-width: 750px) calc(100vw - 12rem), 100vw" src="{{ image | img_url: '750x' }}" alt="{{ media.alt | escape }}" loading="lazy" width="1100" height="{{ 1100 | divided_by: image.aspect_ratio | ceil }}" data-media-id="{{ image.id }}">
       {%- endfor -%}
@@ -358,6 +378,77 @@
   </div>
 </product-modal>
 {% javascript %}
+class ProductSlider extends HTMLElement {
+  constructor() {
+    super();
+    let stated = false
+    const start = () => {
+      var slider = new KeenSlider("#my-keen-slider", {
+        created: function (instance) {
+          document.getElementById("arrow-left").addEventListener("click", function () {
+            instance.prev()
+          })
+
+          document.getElementById("arrow-right").addEventListener("click", function () {
+            instance.next()
+          })
+          var dots_wrapper = document.getElementById("dots")
+          var slides = document.querySelectorAll(".keen-slider__slide")
+          slides.forEach(function (t, idx) {
+            var dot = document.createElement("button")
+            dot.classList.add("dot")
+            dots_wrapper.appendChild(dot)
+            dot.addEventListener("click", function () {
+              instance.moveToSlide(idx)
+            })
+          })
+          updateClasses(instance)
+        },
+        slideChanged(instance) {
+          updateClasses(instance)
+        }
+      })
+
+      function updateClasses(instance) {
+        var slide = instance.details().relativeSlide
+        var arrowLeft = document.getElementById("arrow-left")
+        var arrowRight = document.getElementById("arrow-right")
+        slide === 0
+          ? arrowLeft.classList.add("arrow--disabled")
+          : arrowLeft.classList.remove("arrow--disabled")
+        slide === instance.details().size - 1
+          ? arrowRight.classList.add("arrow--disabled")
+          : arrowRight.classList.remove("arrow--disabled")
+
+        var dots = document.querySelectorAll(".dot")
+        dots.forEach(function (dot, idx) {
+          idx === slide
+            ? dot.classList.add("dot--active")
+            : dot.classList.remove("dot--active")
+        })
+      }
+      this.classList.add("ready")
+    }
+    const handleIntersection = (entries, observer) => {
+      if (!entries[0].isIntersecting) 
+        return;
+      
+
+      if (!KeenSlider) 
+        return
+
+      
+
+      console.log(KeenSlider)
+      observer.unobserve(this);
+      start()
+    }
+    new IntersectionObserver(handleIntersection.bind(this), {
+      rootMargin: '0px 0px 500px 0px'
+    }).observe(this);
+  }
+}
+customElements.define('product-slider', ProductSlider);
 
 class ProductModal extends ModalDialog {
     constructor() {
@@ -397,7 +488,8 @@ class ProductModal extends ModalDialog {
 customElements.define('product-modal', ProductModal);
 
 {% endjavascript %}
-
+{{ 'global.js' | asset_url | script_tag }}
+<script src="https://cdn.jsdelivr.net/npm/keen-slider@5.5.0/keen-slider.min.js"></script>
 {% stylesheet %}
 
 .modal[open] {
@@ -549,6 +641,138 @@ customElements.define('product-modal', ProductModal);
     text-underline-offset: 0.3rem;
 }
 
+
+//Slider
+product-slider .keen-slider__slide {
+  display: none;
+}
+
+product-slider.ready .keen-slider__slide {
+  display: block;
+}
+
+product-slider>* {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s linear;
+}
+
+product-slider.ready>* {
+  opacity: 100;
+  visibility: visible;
+}
+
+.keen-slider {
+  display: flex;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent
+}
+
+.keen-slider,
+.keen-slider__slide {
+  overflow: hidden;
+  position: relative
+}
+
+.keen-slider__slide {
+  width: 100%;
+  min-height: 100%
+}
+
+.keen-slider[data-keen-slider-v] {
+  flex-wrap: wrap
+}
+
+.keen-slider[data-keen-slider-v] .keen-slider__slide {
+  width: 100%
+}
+
+.keen-slider[data-keen-slider-moves] * {
+  pointer-events: none
+}
+
+[class^="number-slide"],
+[class*=" number-slide"] {
+  background: grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  color: #fff;
+  font-weight: 500;
+}
+
+.navigation-wrapper {
+  position: relative;
+}
+
+.dots {
+  display: flex;
+  padding: 10px 0;
+  justify-content: center;
+}
+
+.dot {
+  border-radius: 9999px;
+  padding: 0.5rem;
+}
+
+.dot::before {
+  display: block;
+  content: "";
+  height: 6px;
+  width: 6px;
+  border-radius: 9999px;
+  border-width: 1px;
+  border-color: var(--accents-5);
+  background-color: var(--accents-1);
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.15s;
+}
+
+.dot:focus {
+  outline: none;
+}
+
+.dot--active::before {
+  --tw-bg-opacity: 1;
+  background-color: rgba(0, 0, 0, var(--tw-bg-opacity));
+}
+
+.arrow {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  cursor: pointer;
+  opacity:100;
+  transition : opacity 0.5s 
+}
+
+.arrow--left {
+  left: 5px;
+}
+
+.arrow--right {
+  left: auto;
+  right: 5px;
+}
+
+.arrow--disabled {
+  opacity:0
+}
+  
 {% endstylesheet %}
 
 

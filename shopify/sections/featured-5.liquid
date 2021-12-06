@@ -1,8 +1,8 @@
-<div id="{{ section.id }}" class="mt-16 container mx-auto tw-grid grid-cols-2  gap-x-12">
-    <div class="flex-1 relative">
+<div id="{{ section.id }}" class="mt-16 container mx-auto tw-grid grid-cols-1 lg:grid-cols-2 p-6 gap-x-12 relative">
+    <div class="flex-1 lg:relative absolute inset-0 w-full h-full">
         {% render '[section]-image-full'  class: '' %}
     </div>
-    <div class="p-16 border border-black flex-1">
+    <div class="p-16 border border-black flex-1 isolate bg-base-100 bg-opacity-50">
         {% render '[section]-heading'  class: '' %}
         {% render '[section]-sub-heading'  class: 'mt-8' %}
         {% render '[section]-description'  class: 'mt-8' %}

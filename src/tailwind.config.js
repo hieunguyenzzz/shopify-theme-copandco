@@ -48,7 +48,7 @@ module.exports = {
     require('@tailwindcss/aspect-ratio'),
     require('daisyui'),
     require('tailwindcss-animatecss')({
-      classes: ['animate__animated', 'animate__fadeIn', 'animate__bounceIn', 'animate__lightSpeedOut'],
+      classes: ['animate__animated', 'animate__fadeIn', 'animate__bounceIn', 'animate__lightSpeedOut', 'animate__fadeInUp'],
       settings: {
         animatedSpeed: 1000,
         heartBeatSpeed: 1000,
