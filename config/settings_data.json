@@ -1,6 +1,7 @@
 {
   "current": {
     "colors_accent_1": "#ff7012",
+    "favicon": "shopify:\/\/shop_images\/jewelry-02.png",
     "sections": {
       "announcement-bar": {
         "type": "announcement-bar",
