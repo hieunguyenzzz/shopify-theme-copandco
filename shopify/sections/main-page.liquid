@@ -1,13 +1,10 @@
-<link rel="stylesheet" href="{{ 'section-main-page.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-rte.css' | asset_url }}" media="print" onload="this.media='all'">
 
-<noscript>{{ 'section-main-page.css' | asset_url | stylesheet_tag }}</noscript>
-<noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
-
-<div class="container mx-auto container mx-auto--narrow">
-  <h1 class="main-page-title page-title h0">
-    {{ page.title | escape }}
-  </h1>
+<div class="w-full space-y-16">
+  <div class="py-16 bg-base-200 text-center">
+    <h1 class="text-4xl container  mx-auto">
+      {{ page.title | escape }}
+    </h1>
+  </div>
   <div class="rte">
     {{ page.content }}
   </div>

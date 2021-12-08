@@ -1,88 +1,8 @@
 {% assign shop_name = shop.name %}
 
 <link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
-<!-- <link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print" onload="this.media='all'"> -->
-
 <noscript>{{ 'component-list-menu.css' | asset_url | stylesheet_tag }}</noscript>
-<noscript>{{ 'component-search.css' | asset_url | stylesheet_tag }}</noscript>
-<noscript>{{ 'component-menu-drawer.css' | asset_url | stylesheet_tag }}</noscript>
-<!-- <noscript>{{ 'component-cart-notification.css' | asset_url | stylesheet_tag }}</noscript> -->
-<style>
-  /* Icon 1 */
-  .nav-icon {
-    width: 20px;
-    height: 15px;
-    position: relative;
-    margin: auto;
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg);
-    -webkit-transition: .5s ease-in-out;
-    -moz-transition: .5s ease-in-out;
-    -o-transition: .5s ease-in-out;
-    transition: .5s ease-in-out;
-    cursor: pointer;
-  }
 
-  .nav-icon span,
-  #nav-icon3 span,
-  #nav-icon4 span {
-    display: block;
-    position: absolute;
-    height: 2px;
-    width: 100%;
-    background: rgb(var(--color-foreground));
-    border-radius: 3px;
-    opacity: 1;
-    left: 0;
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg);
-    -webkit-transition: .25s ease-in-out;
-    -moz-transition: .25s ease-in-out;
-    -o-transition: .25s ease-in-out;
-    transition: .25s ease-in-out;
-    -webkit-transition-delay: 0.2s, 0s;
-    transition-delay: 0.2s, 0s;
-  }
-
-  .nav-icon span:nth-child(1) {
-    top: 0px;
-  }
-
-  .nav-icon span:nth-child(2) {
-    top: 6px;
-  }
-
-  .nav-icon span:nth-child(3) {
-    top: 12px;
-  }
-
-  .menu-opening .nav-icon span:nth-child(1) {
-    top: 6px;
-    -webkit-transform: rotate(135deg);
-    -moz-transform: rotate(135deg);
-    -o-transform: rotate(135deg);
-    transform: rotate(135deg);
-  }
-
-  .menu-opening .nav-icon span:nth-child(2) {
-    opacity: 0;
-    left: -20px;
-  }
-
-  .menu-opening .nav-icon span:nth-child(3) {
-    top: 6px;
-    -webkit-transform: rotate(-135deg);
-    -moz-transform: rotate(-135deg);
-    -o-transform: rotate(-135deg);
-    transform: rotate(-135deg);
-  }
-</style>
 <style>
   { % if section.settings.enable_sticky_header % }
 
@@ -358,7 +278,7 @@
                 <form action="/search" class="h-header flex items-center" method="GET">
                     <input autocomplete="none" class="lg:w-full py-2 shadow-inner border border-accents-3 px-12 focus-within:w-full lg:focus:w-80 focus:outline-none rounded-full bg-accents-0 transition-all duration-300 ease-in-out" id="q" name="q">
                 </form>
-                    <div class="bg-white px-12 shadow-lg bg-accents-0 flex flex-col py-6 relative object-center space-y-3">
+                    <div class="bg-white lg:px-12 lg:shadow-lg bg-accents-0 flex flex-col py-6 relative object-center space-y-3">
                         <div class="font-bold font-heading">Quick links</div>
                         
                         <div class="leading-extra-loose flex flex-col items-start space-y-3">
@@ -389,14 +309,14 @@
           -%}
           <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
           {%- if cart != empty -%}
-          <div class="cart-count-bubble px-1 transform translate-x-1/2  absolute top-0 right-0 bg-black text-white text-sm rounded-full">
-    {%- if cart.item_count < 100 -%}
-        <span aria-hidden="true">{{ cart.item_count }}</span>
-    {% else %}
-        <span aria-hidden="true">99+</span>
-    {%- endif -%}
-    <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
-</div>
+          <div class="cart-count-bubble px-1 transform translate-x-1/2  absolute top-0 right-0 bg-black text-white text-sm rounded-full text-center leading-[15px] min-w-[15px]">
+              {%- if cart.item_count < 100 -%}
+                  <span aria-hidden="true">{{ cart.item_count }}</span>
+              {% else %}
+                  <span aria-hidden="true">99+</span>
+              {%- endif -%}
+              <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+          </div>
           {%- endif -%}
         </a>
         {%- if shop.customer_accounts_enabled -%}
@@ -420,7 +340,7 @@
           </label>
         </div>
     </div>
-    <modal-opener class="no-js-hidden lg:hidden" data-modal="#drawer-modal">
+    <modal-opener class="no-js-hidden xl:hidden" data-modal="#drawer-modal">
       <div id="drawer-modal-btn" class="absolute top-full left-1/2 transform -translate-x-1/2 -translate-y-1/2">
       <button
           class=" cursor-pointer w-14 h-14 bg-base-100 shadow-lg rounded-full border flex justify-center text-3xl items-center relative transition ease-in-out uration-100 outline-none z-10"
@@ -584,14 +504,13 @@
                   Back
                 </button>
               </modal-closer>
-              
             </div>
             <div  class="flex-1 modal-content w-full">
               <ul class="flex flex-col items-end px-12 gap-12">
                 <li style="animation-delay: 300ms;" class="flex items-center relative animate__animated animate__fadeInUp">
                   <div class="h-full group ">
                     <div
-                      class=" text font-heading text-5xl text-base-accent-1">
+                      class=" text font-heading text-5xl text-effect-1">
                       <span >Shop</span>
                     </div>
                   </div>
@@ -601,7 +520,7 @@
                     {%- if link.links != blank -%}
                     <div class="h-full group  ">
                       <div
-                        class=" text-base-accent-1 text font-heading text-5xl">
+                        class=" text-base-accent-1 text font-heading text-5xl text-effect-1">
                         <span {%- if link.child_active %} class="underline" {% endif %}>{{ link.title | escape
                           }}</span>
                       </div>
@@ -643,7 +562,7 @@
                     </div>
                     {%- else -%}
                     <a href="{{ link.url }}"
-                      class=" text-base-accent-1 text font-heading text-5xl justify-end"  {%
+                      class=" text-base-accent-1 text font-heading text-5xl justify-end text-effect-1"  {%
                       if link.current %} aria-current="page" {% endif %}>
                       <span {%- if link.current %} class="underline" {% endif %}>{{ link.title | escape }}</span>
                     </a>
@@ -657,36 +576,10 @@
       </div>
   </div>
 </modal-dialog>
-<modal-dialog id="PopupModal-search" class="collage-video__modal">
-  <div class="bg-[#272727] fixed inset-0 w-screen h-screen" role="dialog" aria-modal="true"
-    aria-label="{{ 'general.search.search' | t }}">
-    <div class="absolute p-12 inset-0 overflow-auto flex justify-center items-center " tabindex="-1">
-      <form action="{{ routes.search_url }}" method="get" role="search" class="w-full">
-        <div
-          class="w-full max-w-6xl mx-auto flex justify-center border-b-2 transition-colors  py-6 border-gray-500 focus-within:border-white">
-          <input
-            class="w-full block text-3xl text-white bg-transparent appearance-none focus:outline-none focus-visible:outline-none focus-visible:shadow-none"
-            id="Search-In-Modal" type="search" name="q" value="{{ search.terms | escape }}"
-            placeholder="{{ 'general.search.search' | t }}">
-          <label class="field__label" for="Search-In-Modal">{{ 'general.search.search' | t }}</label>
-          <input type="hidden" name="options[prefix]" value="last">
-        </div>
-      </form>
-    </div>
-    <div class="flex justify-center">
-      <modal-closer role="button" data-modal="#PopupModal-search" aria-label="{{ 'accessibility.close' | t }}">
-        <button class="text-[45px] p-12 text-gray-500 transform rotate-180 hover:text-white">{% render 'icon-caret'
-          %}</button>
-      </modal-closer>
-    </div>
-  </div>
-</modal-dialog>
+
 {%- if request.page_type != 'cart' -%}
 {%- render 'cart-notification' -%}
 {%- endif -%}
-
-
-
 
 
 {% javascript %}

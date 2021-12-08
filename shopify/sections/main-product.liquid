@@ -1,6 +1,28 @@
 {% assign collection = product.collections[0] %}
 {% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
 {% assign image = featured_image %}
+
+{% capture ollapsible_tabs %}
+  {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'collapsible_tab' %}
+          <div class="space-y-md  pointer-events-none">
+            <div class="w-full pointer-events-auto focus:pointer-events-none group flex flex-col items-start" tabindex="0">
+              <div class="border-b border-black space-x-3 flex items-center">
+                <div class="py-1 flex-1 text-left">
+                  <span class="font-bold capitalize ">{{block.settings.heading}}</span>
+                </div>
+              </div>
+              <div class="h-0 pointer-events-auto group-focus:h-auto group-focus:block whitespace-pre-line overflow-hidden transition-all -mt-4 group-focus:mt-0">
+                <div>{{block.settings.content}}</div>
+              </div>
+            </div>
+          </div>
+        {% else %}
+      {% endcase %}
+  {% endfor %}
+{% endcapture %}
+
 <div class="space-y-24 pt-12 pb-24 ">
   <div class="space-y-12">
     <div class="container mx-auto hidden lg:block">
@@ -19,42 +41,7 @@
           <div class="whitespace-pre-line prose">
             {{product.description | strip_html }}
           </div>
-          <div class="space-y-md  pointer-events-none">
-            <div class="w-full pointer-events-auto focus:pointer-events-none group flex flex-col items-start" tabindex="0">
-              <div class="border-b border-black space-x-3 flex items-center">
-                <div class="py-1 flex-1 text-left">
-                  <span class="font-bold capitalize ">Details</span>
-                </div>
-              </div>
-              <div class="h-0 pointer-events-auto group-focus:h-auto group-focus:block whitespace-pre-line overflow-hidden transition-all -mt-4 group-focus:mt-0">
-                <div>Sed in metus nec dui consequat vestibulum. In varius pretium nunc, sed bibendum mauris lacinia non. Praesent vel neque ut ligula porttitor vestibulum ac eu erat. Pellentesque quis turpis odio. Etiam auctor laoreet ligula, vel aliquam urna ornare sed. Praesent laoreet diam vitae lectus molestie pulvinar.</div>
-              </div>
-            </div>
-          </div>
-          <div class="space-y-md  pointer-events-none">
-            <div class="w-full pointer-events-auto focus:pointer-events-none group flex flex-col items-start" tabindex="0">
-              <div class="border-b border-black space-x-3 flex items-center">
-                <div class="py-1 flex-1 text-left">
-                  <span class="font-bold capitalize ">Materials</span>
-                </div>
-              </div>
-              <div class="h-0 pointer-events-auto group-focus:h-auto group-focus:block whitespace-pre-line overflow-hidden transition-all -mt-4 group-focus:mt-0">
-                <div>Sed in metus nec dui consequat vestibulum. In varius pretium nunc, sed bibendum mauris lacinia non. Praesent vel neque ut ligula porttitor vestibulum ac eu erat. Pellentesque quis turpis odio. Etiam auctor laoreet ligula, vel aliquam urna ornare sed. Praesent laoreet diam vitae lectus molestie pulvinar.</div>
-              </div>
-            </div>
-          </div>
-          <div class="space-y-md  pointer-events-none">
-            <div class="w-full pointer-events-auto focus:pointer-events-none group flex flex-col items-start" tabindex="0">
-              <div class="border-b border-black space-x-3 flex items-center">
-                <div class="py-1 flex-1 text-left">
-                  <span class="font-bold capitalize ">Shipping and returns</span>
-                </div>
-              </div>
-              <div class="h-0 pointer-events-auto group-focus:h-auto group-focus:block whitespace-pre-line overflow-hidden transition-all -mt-4 group-focus:mt-0">
-                <div>Sed in metus nec dui consequat vestibulum. In varius pretium nunc, sed bibendum mauris lacinia non. Praesent vel neque ut ligula porttitor vestibulum ac eu erat. Pellentesque quis turpis odio. Etiam auctor laoreet ligula, vel aliquam urna ornare sed. Praesent laoreet diam vitae lectus molestie pulvinar.</div>
-              </div>
-            </div>
-          </div>
+          {{ollapsible_tabs}}
           <div></div>
         </div>
         <div class="lg:w-5/12 relative  min-h-full order-1 lg:order-2 w-full">
@@ -783,7 +770,27 @@ product-slider.ready>* {
     "name": "t:sections.main-product.name",
     "tag": "section",
     "class": "spaced-section--transparent",
-    "settings": []
+    "settings": [],
+    "blocks":[
+    {
+      "type": "collapsible_tab",
+      "name": "Collapsible tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Collapsible tab",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Content</p>"
+        }
+      ]
+    }
+    ]
 }
 
 {% endschema %}

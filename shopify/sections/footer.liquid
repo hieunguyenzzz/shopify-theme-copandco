@@ -155,7 +155,7 @@
                                         </div>
                                         <div>{% render 'icon-caret' %}</div>
                                     </button>
-                                    <ul class="disclosure__list list-unstyled bg-base-100" hidden id="FooterCountryList" role="list">
+                                    <ul class="disclosure__list list-unstyled bg-base-100 shadow-lg" hidden id="FooterCountryList" role="list">
                                         {%- for country in localization.available_countries -%}
                                             <li class="disclosure__item" tabindex="-1">
                                                 <a class="link link--text disclosure__link caption-large{% if country.iso_code == localization.country.iso_code %} disclosure__link--active{% endif %} focus-inset" href="#" {% if country.iso_code == localization.country.iso_code %} aria-current="true" {% endif %} data-value="{{ country.iso_code }}">
