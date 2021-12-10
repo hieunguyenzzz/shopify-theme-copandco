@@ -162,12 +162,12 @@
                                             <div class="flex space-x-3">
                                                 <div class="filter-group-display__price-range-from flex-1 flex space-x-3 items-baseline">
                                                     <label for="Filter-{{ filter.min_value.param_name }}">From</label>
-                                                    <input class="input input-bordered input-sm flex-1" name="{{ filter.min_value.param_name }}" id="Filter-{{ filter.min_value.param_name }}" {% if filter.min_value.value -%} value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}" {%- endif %} type="number" placeholder="0" min="0" max="{{ filter.range_max | money_without_currency | replace: ',', '' }}">
+                                                    <input class="input input-bordered input-sm flex-1 w-0" name="{{ filter.min_value.param_name }}" id="Filter-{{ filter.min_value.param_name }}" {% if filter.min_value.value -%} value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}" {%- endif %} type="number" placeholder="0" min="0" max="{{ filter.range_max | money_without_currency | replace: ',', '' }}">
 
                                                 </div>
                                                 <div class="filter-group-display__price-range-to flex-1 flex space-x-3 items-baseline">
                                                     <label for="Filter-{{ filter.max_value.param_name }}">To</label>
-                                                    <input class="input input-bordered input-sm flex-1" name="{{ filter.max_value.param_name }}" id="Filter-{{ filter.max_value.param_name }}" {% if filter.max_value.value -%} value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}" {%- endif %} type="number" placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}" min="0" max="{{ filter.range_max | money_without_currency | replace: ',', '' }}">
+                                                    <input class="input input-bordered input-sm flex-1 w-0" name="{{ filter.max_value.param_name }}" id="Filter-{{ filter.max_value.param_name }}" {% if filter.max_value.value -%} value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}" {%- endif %} type="number" placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}" min="0" max="{{ filter.range_max | money_without_currency | replace: ',', '' }}">
 
                                                 </div>
                                             </div>

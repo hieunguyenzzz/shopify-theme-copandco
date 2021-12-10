@@ -1,11 +1,11 @@
 <div id="{{ section.id }}" class="mt-16">
-    <div class="container mx-auto flex items-center">
-        <div class="flex-1 px-12">
+    <div class="container mx-auto flex flex-col gap-6 lg:flex-row lg:items-center">
+        <div class="flex-1 lg:px-12">
             <div class="mb-2 text-xl">{{section.settings.sub_heading}}</div>
             <h2 class="text-6xl">{{section.settings.heading}}</h2>
             {% render 'button' url: section.settings.buttonUrl text: section.settings.buttonText class: 'mt-6' %}
         </div>
-        <div class="flex-1 py-4">
+        <div class="flex-1 lg:py-4">
             <div>{{section.settings.description}}</div>
         </div>
     </div>
@@ -14,7 +14,7 @@
             {% if section.blocks.size == 0 %}
                 <ul class="carousel carousel-center gap-6 {% render '[class]-container-full'  class: '' %}">
                     {% for i in (1..6) %}
-                    <li class="carousel-item py-8 relative group cursor-pointer">
+                    <li class="carousel-item relative group cursor-pointer">
                         <a href="/" class="relative">
                             <div class="w-[40vw] lg:w-[20vw] relative group-hover:shadow-lg transition-transform group-hover:scale-110 ">
                                 <div class="pt-[145%]"></div>
@@ -63,6 +63,7 @@
         </scrolling-carousel>
     </div>
 </div>
+
 {% javascript %}
 
 class ScrollingCarousel extends HTMLElement {
@@ -106,7 +107,6 @@ class ScrollingCarousel extends HTMLElement {
             if (!entries[0].isIntersecting) 
                 return;
             
-
             observer.unobserve(this);
             start()
         }
