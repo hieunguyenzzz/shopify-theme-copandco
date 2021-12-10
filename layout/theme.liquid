@@ -28,31 +28,10 @@
 
         {{ content_for_header }}
 
-        {%- liquid
-            assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
-            assign body_font_italic = settings.type_body_font | font_modify: 'style', 'italic'
-            assign body_font_bold_italic = body_font_bold | font_modify: 'style', 'italic'
-        %}
+    
 
         <style>
-            {{settings.type_body_font | font_face: font_display: 'swap'}}{{body_font_bold | font_face: font_display: 'swap'}}{{body_font_italic | font_face: font_display: 'swap'}}{{body_font_bold_italic | font_face: font_display: 'swap'}}{{settings.type_header_font | font_face: font_display: 'swap'}}:root {
-            --font-body-family:"Gramatika";
-            --font-body-style: {{settings.type_body_font.style}};
-            --font-body-weight: {{settings.type_body_font.weight}};
-
-            --font-heading-family: "Vanitas";
-            --font-heading-style: {{settings.type_header_font.style}};
-            --font-heading-weight: {{settings.type_header_font.weight}};
-
-            --color-base-text: {{settings.colors_text.red}}, {{settings.colors_text.green}}, {{settings.colors_text.blue}};
-            --color-base-background-1: {{settings.colors_background_1.red}}, {{settings.colors_background_1.green}}, {{settings.colors_background_1.blue}};
-            --color-base-background-2: {{settings.colors_background_2.red}}, {{settings.colors_background_2.green}}, {{settings.colors_background_2.blue}};
-            --color-base-solid-button-labels: {{settings.colors_solid_button_labels.red}}, {{settings.colors_solid_button_labels.green}}, {{settings.colors_solid_button_labels.blue}};
-            --color-base-outline-button-labels: {{settings.colors_outline_button_labels.red}}, {{settings.colors_outline_button_labels.green}}, {{settings.colors_outline_button_labels.blue}};
-            --color-base-accent-1: {{settings.colors_accent_1.red}}, {{settings.colors_accent_1.green}}, {{settings.colors_accent_1.blue}};
-            --color-base-accent-2: {{settings.colors_accent_2.red}}, {{settings.colors_accent_2.green}}, {{settings.colors_accent_2.blue}};
-            --payment-terms-background-color: {{settings.colors_background_1}};
-        }
+            
 
         *,
         *::before,
@@ -95,11 +74,92 @@
         {%- unless settings.type_header_font.system? -%}
             <link rel="preload" as="font" href="{{ settings.type_header_font | font_url }}" type="font/woff2" crossorigin>
         {%- endunless -%}
+        
+        {%- liquid
+            assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
+            assign body_font_italic = settings.type_body_font | font_modify: 'style', 'italic'
+            assign body_font_bold_italic = body_font_bold | font_modify: 'style', 'italic'
+          %}  
+    {% style %}
+    
+    {{ settings.type_body_font | font_face: font_display: 'swap' }}
+    {{ body_font_bold | font_face: font_display: 'swap' }}
+    {{ body_font_italic | font_face: font_display: 'swap' }}
+    {{ body_font_bold_italic | font_face: font_display: 'swap' }}
+    {{ settings.type_header_font | font_face: font_display: 'swap' }}
+    :root{
+        
+        {% if settings.custom_font %}
+            --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+            --font-body-style: {{ settings.type_body_font.style }};
+            --font-body-weight: {{ settings.type_body_font.weight }};
 
-        <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+            --font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+            --font-heading-style: {{ settings.type_header_font.style }};
+            --font-heading-weight: {{ settings.type_header_font.weight }};
+        {% else %}
+            --font-body-family:"Gramatika" ,{{ settings.type_body_font.fallback_families }};
+            --font-body-style: {{settings.type_body_font.style}};
+            --font-body-weight: {{settings.type_body_font.weight}};
+            --font-heading-family: "Vanitas", {{ settings.type_header_font.fallback_families }};
+            --font-heading-style: {{settings.type_header_font.style}};
+            --font-heading-weight: {{settings.type_header_font.weight}};
+        {% endif %}
+                
+
+        --p: {{settings.colors_primary.hue}} {{settings.colors_primary.saturation}}% {{settings.colors_primary.lightness}}%;
+        --pf: {{settings.colors_primary_focus.hue}} {{settings.colors_primary_focus.saturation}}% {{settings.colors_primary_focus.lightness}}%;
+        --pc: {{settings.colors_primary_content.hue}} {{settings.colors_primary_content.saturation}}% {{settings.colors_primary_content.lightness}}%;
+        --s: {{settings.colors_secondary.hue}} {{settings.colors_secondary.saturation}}% {{settings.colors_secondary.lightness}}%;
+        --sf: {{settings.colors_secondary_focus.hue}} {{settings.colors_secondary_focus.saturation}}% {{settings.colors_secondary_focus.lightness}}%;
+        --sc: {{settings.colors_secondary_content.hue}} {{settings.colors_secondary_content.saturation}}% {{settings.colors_secondary_content.lightness}}%;
+        --a: {{settings.colors_accent.hue}} {{settings.colors_accent.saturation}}% {{settings.colors_accent.lightness}}%;
+        --af: {{settings.colors_accent_focus.hue}} {{settings.colors_accent_focus.saturation}}% {{settings.colors_accent_focus.lightness}}%;
+        --ac: {{settings.colors_accent_content.hue}} {{settings.colors_accent_content.saturation}}% {{settings.colors_accent_content.lightness}}%;
+        --n: {{settings.colors_neutral.hue}} {{settings.colors_neutral.saturation}}% {{settings.colors_neutral.lightness}}%;
+        --nf: {{settings.colors_neutral_focus.hue}} {{settings.colors_neutral_focus.saturation}}% {{settings.colors_neutral_focus.lightness}}%;
+        --nc: {{settings.colors_neutral_content.hue}} {{settings.colors_neutral_content.saturation}}% {{settings.colors_neutral_content.lightness}}%;
+        --b1: {{settings.colors_base_100.hue}} {{settings.colors_base_100.saturation}}% {{settings.colors_base_100.lightness}}%;
+        --b2: {{settings.colors_base_200.hue}} {{settings.colors_base_200.saturation}}% {{settings.colors_base_200.lightness}}%;
+        --b3: {{settings.colors_base_300.hue}} {{settings.colors_base_300.saturation}}% {{settings.colors_base_300.lightness}}%;
+        --bc: {{settings.colors_base_content.hue}} {{settings.colors_base_content.saturation}}% {{settings.colors_base_content.lightness}}%;
+        --in: {{settings.colors_info.hue}} {{settings.colors_info.saturation}}% {{settings.colors_info.lightness}}%;
+        --su: {{settings.colors_success.hue}} {{settings.colors_success.saturation}}% {{settings.colors_success.lightness}}%;
+        --wa: {{settings.colors_warning.hue}} {{settings.colors_warning.saturation}}% {{settings.colors_warning.lightness}}%;
+        --er: {{settings.colors_error.hue}} {{settings.colors_error.saturation}}% {{settings.colors_error.lightness}}%;
+        
+        --border-color: var(--b3);
+        --rounded-box: 1rem;
+        --rounded-btn: 0rem;
+        --rounded-badge: 1.9rem;
+        --animation-btn: 0.25s;
+        --animation-input: .2s;
+        --btn-text-case: uppercase;
+        --btn-focus-scale: 0.95;
+        --navbar-padding: .5rem;
+        --border-btn: 1px;
+        --tab-border: 1px;
+        --tab-radius: 0.5rem;
+
+        --in: 207 89.8% 53.9%;
+        --su: 174 100% 29%;
+        --wa: 36 100% 50%;
+        --er: 14 100% 57.1%;
+        --border-color: var(--b3);
+        --animation-btn: 0.25s;
+        --animation-input: .2s;
+        --btn-text-case: uppercase;
+        --btn-focus-scale: 0.95;
+        --navbar-padding: .5rem;
+        --border-btn: 1px;
+        --tab-border: 1px;
+
+    }   
+    {% endstyle %}
+    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
     </head>
 
-    <body >
+    <body>
         <script src="{{ 'visible-animate.js' | asset_url }}" defer="defer"></script>
         <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
         <script src="{{ 'accordion.js' | asset_url }}" defer="defer"></script>

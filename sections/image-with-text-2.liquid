@@ -1,0 +1,65 @@
+<div class=" py-header lg:h-screen flex items-center justify-center pt-28 px-12 w-full">
+  <div class="absolute inset-0 bg-accents-1">
+      {% if section.settings.image %}
+        <img class="w-full h-full object-cover object-center" loading="lazy" width="800" height="800" data-aspectratio="1.4998169168802635" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" src="{{ section.settings.image.src |img_url : '1440x1440' |default}}" alt="" >
+      {% else %}
+    <div style="display:block;overflow:hidden;position:absolute;top:0;left:0;bottom:0;right:0;box-sizing:border-box;margin:0">
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    </div>
+    {% endif %}
+  </div>
+  <div class="text-center mx-auto isolate flex flex-col items-center w-full space-y-3 text-white max-w-3xl">
+    {% unless section.settings.subHeading == blank %}
+      <div class="uppercase text-xs lg:text-sm">{{section.settings.subHeading }}</div>
+    {% endunless %}
+    {% unless section.settings.heading == blank %}
+      <div class="uppercase text-xl leading-2xl lg:text-4xl lg:leading-relaxed">{{section.settings.heading }}</div>
+    {% endunless %}
+    {% unless section.settings.buttonText == blank %}
+      <a href="{{section.settings.buttonUrl}}" class="button button__small button_ghost inline-block" data-variant="ghost" href="/" role="button">
+        <span class="text-white">{{section.settings.buttonText }}</span>
+      </a>
+    {% endunless %}
+  </div>
+</div>
+
+{% schema %}
+
+{
+  "name": "t:sections.image-banner.name",
+  "tag": "section",
+  "class": "spaced-section spaced-section--full-width",
+  "settings": [
+    {
+      "id": "image",
+      "type": "image_picker",
+      "label": "Image",
+      "info": "Image 800x800"
+    }, {
+      "type": "text",
+      "id": "subHeading",
+      "label": "Sub heading"
+    }, {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    }, {
+      "type": "text",
+      "id": "buttonText",
+      "label": "Button text"
+    }, {
+      "type": "url",
+      "id": "buttonUrl",
+      "label": "Button url"
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "t:sections.image-banner.presets.name",
+      "blocks": []
+    }
+  ]
+}
+
+{% endschema %}

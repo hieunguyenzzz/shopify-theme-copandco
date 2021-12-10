@@ -7,7 +7,7 @@
 -%}
 <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
 {%- if cart != empty -%}
-    <div class="cart-count-bubble px-1 transform translate-x-1/2  absolute top-0 right-0 bg-black text-white text-sm rounded-full">
+    <div class="cart-count-bubble px-1 transform translate-x-1/2  absolute top-0 right-0 bg-black text-white text-sm rounded-full text-center leading-[15px] min-w-[15px]">
         {%- if cart.item_count < 100 -%}
             <span aria-hidden="true">{{ cart.item_count }}</span>
         {% else %}
