@@ -157,7 +157,8 @@
     }   
     {% endstyle %}
     <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
-    </head>
+    {% render 'builder-head' %}
+</head>
 
     <body>
         <script src="{{ 'visible-animate.js' | asset_url }}" defer="defer"></script>
